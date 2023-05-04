@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout style="@style/Base.Size.Match_Match">
+
+        <View
+            android:id="@+id/iv_top_gradient"
+            style="@style/ImageView_Home_Gradient_Top_Style"
+            app:layout_constraintEnd_toEndOf="@id/iv_thumbnail"
+            app:layout_constraintStart_toStartOf="@id/iv_thumbnail"
+            app:layout_constraintTop_toTopOf="@id/iv_thumbnail" />
+
+        <ImageView
+            android:id="@+id/iv_thumbnail"
+            style="@style/ImageView_Home_Banner_Thumbnail_Style"
+            app:layout_constraintDimensionRatio="H,6:4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/test_thumbnail_landscape_xlarge" />
+
+        <TextView
+            style="@style/TextView_Home_Banner_Title_Style"
+            app:layout_constraintBottom_toBottomOf="@id/iv_thumbnail"
+            app:layout_constraintEnd_toEndOf="@id/iv_thumbnail"
+            app:layout_constraintStart_toStartOf="@id/iv_thumbnail"
+            tools:text="Avengers: The Initiative (2007) #14" />
+
+        <View
+            android:id="@+id/iv_bottom_gradient"
+            style="@style/ImageView_Home_Gradient_Bottom_Style"
+            app:layout_constraintBottom_toBottomOf="@id/iv_thumbnail"
+            app:layout_constraintEnd_toEndOf="@id/iv_thumbnail"
+            app:layout_constraintStart_toStartOf="@id/iv_thumbnail" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!--######################################### Base ##########################################-->
+
+    <style name="Base" />
+
+    <style name="Base.Size" />
+
+    <style name="Base.TextView" />
+
+    <style name="Base.Size.0_0">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+    </style>
+
+    <style name="Base.Size.0_Wrap">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="Base.Size.Wrap_Wrap">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="Base.Size.Match_Wrap">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="Base.Size.Match_Match">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="Base.TextView.Size.0_Wrap" parent="Base.Size.0_Wrap">
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textSize">12dp</item>
+        <item name="android:textColor">@color/color_common_normal_text_white</item>
+    </style>
+
+    <style name="Base.TextView.Size.Match_Wrap" parent="Base.Size.Match_Wrap">
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textSize">12dp</item>
+        <item name="android:textColor">@color/color_common_normal_text_white</item>
+    </style>
+
+    <style name="Base.TextView.Size.Wrap_Wrap" parent="Base.Size.Wrap_Wrap">
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textSize">12dp</item>
+        <item name="android:textColor">@color/color_common_normal_text_white</item>
+    </style>
+
+    <!--######################################## View ###########################################-->
+
+    <!-- View Divider -->
+    <style name="View_Divider_Style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/color_common_divider_grey</item>
+    </style>
+
+    <!--################################ FragmentContainerView ##################################-->
+
+    <!-- BottomNavigationView -->
+    <style name="FragmentContainerView_Style" parent="Base.Size.0_0">
+        <item name="android:name">androidx.navigation.fragment.NavHostFragment</item>
+    </style>
+
+    <!--################################ BottomNavigationView ###################################-->
+
+    <!-- BottomNavigationView -->
+    <style name="BottomNavigationView_Style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">57dp</item>
+        <item name="android:background">@color/color_common_bg_default</item>
+    </style>
+
+    <!--###################################### Indicator ########################################-->
+
+    <!-- Indicator -->
+    <style name="Indicator_Style" parent="Base.Size.Wrap_Wrap">
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+
+    <!--###################################### ImageView ########################################-->
+
+    <!-- ImageView Title -->
+    <style name="ImageView_Title_Style">
+        <item name="android:layout_width">80dp</item>
+        <item name="android:layout_height">32dp</item>
+        <item name="android:layout_margin">20dp</item>
+        <item name="android:src">@drawable/ic_marvel</item>
+    </style>
+
+    <!-- ImageView Home Banner Top Gradient  -->
+    <style name="ImageView_Home_Gradient_Top_Style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:translationZ">1dp</item>
+        <item name="android:background">@drawable/shape_top_gradient</item>
+    </style>
+
+    <!-- ImageView Home Banner Bottom Gradient  -->
+    <style name="ImageView_Home_Gradient_Bottom_Style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="android:background">@drawable/shape_bottom_gradient</item>
+    </style>
+
+    <!-- ImageView Home Banner Thumbnail -->
+    <style name="ImageView_Home_Banner_Thumbnail_Style" parent="Base.Size.0_0">
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <!--####################################### TextView ########################################-->
+
+    <!-- ImageView Home Banner Thumbnail -->
+    <style name="TextView_Home_Banner_Title_Style" parent="Base.TextView.Size.0_Wrap">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_margin">20dp</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="autoSizeMinTextSize">12dp</item>
+        <item name="autoSizeTextType">uniform</item>
+    </style>
+
+</resources>

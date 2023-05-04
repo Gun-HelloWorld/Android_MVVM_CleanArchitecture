@@ -6,4 +6,4 @@ import kotlinx.parcelize.Parcelize
 
 @Keep
 @Parcelize
-data class TestData(val title: String): Parcelable
+data class TestData(val title: String, val imgUrl: String): Parcelable
