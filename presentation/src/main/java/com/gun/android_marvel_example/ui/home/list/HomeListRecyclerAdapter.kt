@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.gun.android_marvel_example.common.BaseListAdapter
 import com.gun.android_marvel_example.common.BaseViewHolder
-import com.gun.android_marvel_example.data.TestData
+import com.gun.domain.model.TestData
 import com.gun.android_marvel_example.databinding.HolderHomeListBinding
 
 class HomeListRecyclerAdapter :

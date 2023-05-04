@@ -1,17 +1,14 @@
 package com.gun.android_marvel_example.ui.home
 
-import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.gun.android_marvel_example.R
-import com.gun.android_marvel_example.data.TestData
+import com.gun.domain.model.TestData
 import com.gun.android_marvel_example.databinding.FragmentHomeBinding
 import com.gun.android_marvel_example.ui.home.banner.HomeBannerAdapter
 import com.gun.android_marvel_example.ui.home.banner.HomeBannerFragment
