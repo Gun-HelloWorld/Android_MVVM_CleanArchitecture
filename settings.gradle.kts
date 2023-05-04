@@ -12,7 +12,11 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
 rootProject.name = "Android_Marvel_Example"
-include ':presentation'
-include ':domain'
-include ':data'
+
+include(
+    ":presentation",
+    ":domain",
+    ":data"
+)
