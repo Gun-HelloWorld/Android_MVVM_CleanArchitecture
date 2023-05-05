@@ -1,4 +1,4 @@
-package com.gun.android_marvel_example.ui.home
+package com.gun.presentation.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
-import com.gun.android_marvel_example.R
 import com.gun.domain.model.TestData
-import com.gun.android_marvel_example.databinding.FragmentHomeBinding
-import com.gun.android_marvel_example.ui.home.banner.HomeBannerAdapter
-import com.gun.android_marvel_example.ui.home.banner.HomeBannerFragment
-import com.gun.android_marvel_example.ui.home.banner.HomeBannerPageChangeCallback
-import com.gun.android_marvel_example.ui.home.list.HomeListRecyclerAdapter
+import com.gun.mvvm_cleanarchitecture.R
+import com.gun.mvvm_cleanarchitecture.databinding.FragmentHomeBinding
+import com.gun.presentation.ui.home.banner.HomeBannerAdapter
+import com.gun.presentation.ui.home.banner.HomeBannerFragment
+import com.gun.presentation.ui.home.banner.HomeBannerPageChangeCallback
+import com.gun.presentation.ui.home.list.HomeListRecyclerAdapter
 
 
 class HomeFragment : Fragment() {

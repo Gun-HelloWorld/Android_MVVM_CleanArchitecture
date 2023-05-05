@@ -1,5 +1,5 @@
 object AppConfig {
-    const val NAME_SPACE = "com.gun.android_marvel_example"
+    const val NAME_SPACE = "com.gun.mvvm_cleanarchitecture"
     const val COMPILE_SDK = 33
     const val MIN_SDK = 24
     const val TARGET_SDK = 33

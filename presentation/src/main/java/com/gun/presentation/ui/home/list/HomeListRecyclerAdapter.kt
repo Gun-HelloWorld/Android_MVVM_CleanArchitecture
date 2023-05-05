@@ -1,11 +1,11 @@
-package com.gun.android_marvel_example.ui.home.list
+package com.gun.presentation.ui.home.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.gun.android_marvel_example.common.BaseListAdapter
-import com.gun.android_marvel_example.common.BaseViewHolder
+import com.gun.presentation.common.BaseListAdapter
+import com.gun.presentation.common.BaseViewHolder
 import com.gun.domain.model.TestData
-import com.gun.android_marvel_example.databinding.HolderHomeListBinding
+import com.gun.mvvm_cleanarchitecture.databinding.HolderHomeListBinding
 
 class HomeListRecyclerAdapter :
     BaseListAdapter<TestData, HomeListRecyclerAdapter.ViewHolder>() {

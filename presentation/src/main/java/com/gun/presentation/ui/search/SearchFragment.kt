@@ -1,11 +1,11 @@
-package com.gun.android_marvel_example.ui.search
+package com.gun.presentation.ui.search
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.gun.android_marvel_example.R
+import com.gun.mvvm_cleanarchitecture.R
 
 class SearchFragment : Fragment() {
 

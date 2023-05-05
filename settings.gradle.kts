@@ -13,7 +13,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Android_Marvel_Example"
+rootProject.name = "Android_MVVM_CleanArchitecture"
 
 include(
     ":presentation",

@@ -1,4 +1,4 @@
-package com.gun.android_marvel_example.ui.home.banner
+package com.gun.presentation.ui.home.banner
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.gun.android_marvel_example.databinding.FragmentHomeBannerBinding
+import com.gun.mvvm_cleanarchitecture.databinding.FragmentHomeBannerBinding
 
 class HomeBannerFragment : Fragment() {
     private lateinit var binding: FragmentHomeBannerBinding

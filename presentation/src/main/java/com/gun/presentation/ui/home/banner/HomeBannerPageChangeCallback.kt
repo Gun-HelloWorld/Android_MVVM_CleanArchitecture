@@ -1,4 +1,4 @@
-package com.gun.android_marvel_example.ui.home.banner
+package com.gun.presentation.ui.home.banner
 
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2

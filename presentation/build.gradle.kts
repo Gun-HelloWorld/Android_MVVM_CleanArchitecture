@@ -12,7 +12,7 @@ android {
     compileSdk = AppConfig.COMPILE_SDK
 
     defaultConfig {
-        applicationId = "com.gun.android_marvel_example"
+        applicationId = "com.gun.mvvm_cleanarchitecture"
         minSdk = AppConfig.MIN_SDK
         targetSdk = AppConfig.TARGET_SDK
         versionCode = 1

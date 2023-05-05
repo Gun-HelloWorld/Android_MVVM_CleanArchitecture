@@ -1,4 +1,4 @@
-package com.gun.android_marvel_example.common
+package com.gun.presentation.common
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

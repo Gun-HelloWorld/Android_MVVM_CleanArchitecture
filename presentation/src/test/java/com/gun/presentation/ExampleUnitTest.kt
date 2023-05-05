@@ -1,4 +1,4 @@
-package com.gun.android_marvel_example
+package com.gun.presentation
 
 import org.junit.Test
 

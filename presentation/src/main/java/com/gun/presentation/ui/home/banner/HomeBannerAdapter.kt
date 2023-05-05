@@ -1,4 +1,4 @@
-package com.gun.android_marvel_example.ui.home.banner
+package com.gun.presentation.ui.home.banner
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -11,7 +11,6 @@ class HomeBannerAdapter(
 ) : FragmentStateAdapter(fragmentActivity) {
 
     override fun getItemCount(): Int {
-        if (fragmentList == null) return 0
         return fragmentList.size
     }
 

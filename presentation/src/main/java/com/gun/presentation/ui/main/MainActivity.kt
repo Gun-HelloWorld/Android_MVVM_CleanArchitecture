@@ -1,14 +1,13 @@
-package com.gun.android_marvel_example.ui.main
+package com.gun.presentation.ui.main
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
-import com.gun.android_marvel_example.R
-import com.gun.android_marvel_example.databinding.ActivityMainBinding
+import com.gun.mvvm_cleanarchitecture.R
+import com.gun.mvvm_cleanarchitecture.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private val binding by lazy<ActivityMainBinding> {
