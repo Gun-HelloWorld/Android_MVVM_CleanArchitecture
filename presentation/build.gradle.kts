@@ -8,33 +8,33 @@ plugins {
 }
 
 android {
-    namespace = "com.gun.android_marvel_example"
-    compileSdk = 33
+    namespace = AppConfig.NAME_SPACE
+    compileSdk = AppConfig.COMPILE_SDK
 
     defaultConfig {
         applicationId = "com.gun.android_marvel_example"
-        minSdk = 24
-        targetSdk = 33
+        minSdk = AppConfig.MIN_SDK
+        targetSdk = AppConfig.TARGET_SDK
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = AppConfig.TEST_INSTRUMENTATION_RUNNER
     }
 
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(getDefaultProguardFile(AppConfig.PROGUARD_OPTIMIZE), AppConfig.PROGUARD)
         }
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 
     dataBinding {
@@ -43,27 +43,26 @@ android {
 }
 
 dependencies {
-    val nav_version = "2.5.3"
-
     implementation(project(":data"))
     implementation(project(":domain"))
 
-    implementation("androidx.core:core-ktx:1.7.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.8.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation(Dependencies.Google.MATERIAL)
+    testImplementation(Dependencies.Test.JUNIT)
+    androidTestImplementation(Dependencies.Test.JUNIT_ANDROID)
+    androidTestImplementation(Dependencies.Test.ESPRESSO)
+
+    implementation(Dependencies.AndroidX.CORE)
+    implementation(Dependencies.AndroidX.APP_COMPAT)
+    implementation(Dependencies.AndroidX.CONSTRAINT_LAYOUT)
 
     // AAC Navigation
-    implementation("androidx.navigation:navigation-fragment-ktx:${nav_version}")
-    implementation("androidx.navigation:navigation-ui-ktx:${nav_version}")
+    implementation(Dependencies.AndroidX.NAVIGATION_FRAGMENT)
+    implementation(Dependencies.AndroidX.NAVIGATION_UI)
 
     // Glide
-    implementation("com.github.bumptech.glide:glide:4.15.1")
-    kapt("com.github.bumptech.glide:compiler:4.15.1")
+    implementation(Dependencies.Glide.GLIDE)
+    kapt(Dependencies.Glide.GLIDE_COMPILER)
 
     // ViewPager Indicator
-    implementation("com.tbuonomo:dotsindicator:4.3")
+    implementation(Dependencies.DotsIndicator.DOTS_INDICATOR)
 }
