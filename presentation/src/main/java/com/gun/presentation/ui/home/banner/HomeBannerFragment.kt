@@ -6,13 +6,27 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.gun.domain.model.Event
 import com.gun.mvvm_cleanarchitecture.databinding.FragmentHomeBannerBinding
+
+const val KEY_HOME_BANNER_DATA = "key_home_banner_data"
+const val HOME_BANNER_IMAGE_SIZE = "landscape_xlarge"
 
 class HomeBannerFragment : Fragment() {
     private lateinit var binding: FragmentHomeBannerBinding
 
+    private lateinit var event: Event
+
     companion object {
-        fun newInstance() = HomeBannerFragment()
+        fun newInstance(event: Event): HomeBannerFragment {
+            val bundle = Bundle()
+            bundle.putSerializable(KEY_HOME_BANNER_DATA, event)
+
+            val fragment = HomeBannerFragment()
+            fragment.arguments = bundle
+            return fragment
+
+        }
     }
 
     override fun onCreateView(
@@ -21,6 +35,8 @@ class HomeBannerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBannerBinding.inflate(inflater, container, false)
+        event = requireArguments().getSerializable(KEY_HOME_BANNER_DATA) as Event
+
         return binding.root
     }
 
@@ -29,8 +45,9 @@ class HomeBannerFragment : Fragment() {
         with(binding) {
             lifecycleOwner = viewLifecycleOwner
 
+            val thumbnailUrl = "${event.thumbnailPath}/$HOME_BANNER_IMAGE_SIZE.${event.thumbnailExtension}"
             Glide.with(ivThumbnail)
-                .load("https://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784/landscape_xlarge.jpg")
+                .load(thumbnailUrl)
                 .into(ivThumbnail)
         }
     }

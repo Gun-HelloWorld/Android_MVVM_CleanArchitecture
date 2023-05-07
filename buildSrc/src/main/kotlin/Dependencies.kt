@@ -7,12 +7,19 @@ object Dependencies {
     private const val VERSION_ANDROIDX_CORE = "1.7.0"
     private const val VERSION_ANDROIDX_APPCOMPAT = "1.6.1"
     private const val VERSION_ANDROIDX_CONSTRAINT_LAYOUT = "2.1.4"
-    private const val VERSION_ANDROIDX_NAVIGATION = "2.5.3"
     private const val VERSION_GLIDE = "4.15.1"
     private const val VERSION_DOTS_INDICATOR = "4.3"                                                // For ViewPager
+    private const val VERSION_RETROFIT = "2.9.0"
+    private const val VERSION_OKHTTP = "4.10.0"
+    private const val VERSION_GSON = "2.10.1"
+
+    const val VERSION_ANDROIDX_NAVIGATION = "2.5.3"
+    const val VERSION_HILT = "2.45"
 
     object Google {
         const val MATERIAL = "com.google.android.material:material:${VERSION_GOOGLE_MATERIAL}"
+        const val HILT = "com.google.dagger:hilt-android:${VERSION_HILT}"
+        const val HILT_COMPILER = "com.google.dagger:hilt-android-compiler:${VERSION_HILT}"
     }
 
     object Test {
@@ -38,6 +45,20 @@ object Dependencies {
 
     object DotsIndicator {
         const val DOTS_INDICATOR = "com.tbuonomo:dotsindicator:${VERSION_DOTS_INDICATOR}"
+    }
+
+    object Retrofit {
+        const val RETROFIT = "com.squareup.retrofit2:retrofit:${VERSION_RETROFIT}"
+        const val RETROFIT_CONVERTOR = "com.squareup.retrofit2:converter-gson:${VERSION_RETROFIT}"
+    }
+
+    object OkHttp {
+        const val OKHTTP = "com.squareup.okhttp3:okhttp:${VERSION_OKHTTP}"
+        const val OKHTTP_INTERCEPTOR = "com.squareup.okhttp3:logging-interceptor:${VERSION_OKHTTP}"
+    }
+
+    object Gson {
+        const val GSON = "com.google.code.gson:gson:${VERSION_GSON}"
     }
 
 }

@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
+        android:name="com.gun.presentation.common.BaseApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -12,6 +13,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.MVVM_CleanArchitecture"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
             android:name="com.gun.presentation.ui.main.MainActivity"

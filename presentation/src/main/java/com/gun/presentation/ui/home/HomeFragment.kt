@@ -6,16 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import com.gun.domain.model.Event
 import com.gun.domain.model.TestData
 import com.gun.mvvm_cleanarchitecture.R
 import com.gun.mvvm_cleanarchitecture.databinding.FragmentHomeBinding
 import com.gun.presentation.ui.home.banner.HomeBannerAdapter
 import com.gun.presentation.ui.home.banner.HomeBannerFragment
-import com.gun.presentation.ui.home.banner.HomeBannerPageChangeCallback
 import com.gun.presentation.ui.home.list.HomeListRecyclerAdapter
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
-
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
@@ -23,7 +28,7 @@ class HomeFragment : Fragment() {
     private lateinit var viewPagerAdapter: HomeBannerAdapter
     private lateinit var homeListRecyclerAdapter: HomeListRecyclerAdapter
 
-    private lateinit var pageChangeCallback: OnPageChangeCallback
+    private val homeViewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,9 +42,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
-            viewPagerAdapter = HomeBannerAdapter(requireActivity(), getTestFragment())
-            pageChangeCallback = HomeBannerPageChangeCallback(binding.viewPager, viewPagerAdapter)
-            viewPager.registerOnPageChangeCallback(pageChangeCallback)
+            viewPagerAdapter = HomeBannerAdapter(requireActivity())
             viewPager.adapter = viewPagerAdapter
             dotsIndicator.attachTo(binding.viewPager)
 
@@ -48,11 +51,46 @@ class HomeFragment : Fragment() {
 
             homeListRecyclerAdapter.submitList(getTestData())
         }
+
+        initObserver()
+
+        homeViewModel.getHomeListData()
     }
 
-    override fun onPause() {
-        super.onPause()
-        binding.viewPager.unregisterOnPageChangeCallback(pageChangeCallback)
+    private fun initObserver() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch {
+                    homeViewModel.homeUiStateFlow.collect {
+                        when (it) {
+                            is HomeUiState.ShowLoading -> {
+                                // TODO Show Loading
+                            }
+                            is HomeUiState.ShowMessage -> {
+                                // TODO Show Message
+                            }
+                            is HomeUiState.ShowData -> {
+                                setHomeBannerViewPager(it.data.eventList ?: emptyList())
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun setHomeBannerViewPager(data: List<Event>) {
+        if (data.isEmpty()) {
+            return
+        }
+
+        val fragmentLis = data.let {
+            it.slice(1..5).map { event ->
+                HomeBannerFragment.newInstance(event)
+            }
+        }
+
+        viewPagerAdapter.replaceFragmentList(fragmentLis)
     }
 
     // TODO Test
@@ -70,13 +108,5 @@ class HomeFragment : Fragment() {
         TestData("11", ""),
         TestData("12", ""),
         TestData("13", "")
-    )
-
-    // TODO Test
-    private fun getTestFragment() = mutableListOf(
-        HomeBannerFragment.newInstance(),
-        HomeBannerFragment.newInstance(),
-        HomeBannerFragment.newInstance(),
-        HomeBannerFragment.newInstance()
     )
 }

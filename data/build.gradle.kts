@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
+    id("kotlin-kapt")                            // Hilt
 }
 
 android {
@@ -42,4 +43,18 @@ dependencies {
     implementation(Dependencies.AndroidX.CORE)
     implementation(Dependencies.AndroidX.APP_COMPAT)
 
+    //Hilt
+    implementation(Dependencies.Google.HILT)
+    kapt(Dependencies.Google.HILT_COMPILER)
+
+    // Retrofit
+    implementation(Dependencies.Retrofit.RETROFIT)
+    implementation(Dependencies.Retrofit.RETROFIT_CONVERTOR)
+
+    // OkHttp
+    implementation(Dependencies.OkHttp.OKHTTP_INTERCEPTOR)
+    implementation(Dependencies.OkHttp.OKHTTP_INTERCEPTOR)
+
+    //Gson
+    implementation(Dependencies.Gson.GSON)
 }

@@ -4,7 +4,8 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("androidx.navigation.safeargs.kotlin")    // AAC Navigation
-    id("kotlin-kapt")                            // Glide
+    id("kotlin-kapt")                            // Glide, Hilt
+    id("com.google.dagger.hilt.android")         // Hilt
 }
 
 android {
@@ -65,4 +66,24 @@ dependencies {
 
     // ViewPager Indicator
     implementation(Dependencies.DotsIndicator.DOTS_INDICATOR)
+
+    //Hilt
+    implementation(Dependencies.Google.HILT)
+    kapt(Dependencies.Google.HILT_COMPILER)
+
+    // Retrofit
+    implementation(Dependencies.Retrofit.RETROFIT)
+    implementation(Dependencies.Retrofit.RETROFIT_CONVERTOR)
+
+    // OkHttp
+    implementation(Dependencies.OkHttp.OKHTTP)
+    implementation(Dependencies.OkHttp.OKHTTP_INTERCEPTOR)
+
+    //Gson
+    implementation(Dependencies.Gson.GSON)
+}
+
+// Hilt
+kapt {
+    correctErrorTypes = true
 }
