@@ -44,7 +44,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         with(binding) {
-            viewPagerAdapter = HomeBannerAdapter(requireActivity())
+            viewPagerAdapter = HomeBannerAdapter(childFragmentManager, lifecycle)
             viewPager.adapter = viewPagerAdapter
 
             dotsIndicator.attachTo(binding.viewPager)
