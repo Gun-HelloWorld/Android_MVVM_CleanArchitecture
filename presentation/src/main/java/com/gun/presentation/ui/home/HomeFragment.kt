@@ -61,7 +61,13 @@ class HomeFragment : Fragment() {
                     homeViewModel.homeUiStateFlow.collect {
                         when (it) {
                             is HomeUiState.ShowLoading -> {
-                                // TODO Show Loading
+                                if (it.loadingCount >= 1) {                                    binding.shimmerViewContainer.visibility = View.VISIBLE
+                                    binding.shimmerViewContainer.startShimmer()
+                                    binding.shimmerViewContainer.visibility = View.VISIBLE
+                                } else {
+                                    binding.shimmerViewContainer.visibility = View.GONE
+                                    binding.shimmerViewContainer.stopShimmer()
+                                }
                             }
                             is HomeUiState.ShowMessage -> {
                                 // TODO Show Message

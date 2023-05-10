@@ -88,6 +88,9 @@ dependencies {
 
     // CardView
     implementation(Dependencies.AndroidX.CARD_VIEW)
+
+    // ShimmerEffect
+    implementation(Dependencies.ShimmerEffect.SHIMMER_EFFECT)
 }
 
 // Hilt
