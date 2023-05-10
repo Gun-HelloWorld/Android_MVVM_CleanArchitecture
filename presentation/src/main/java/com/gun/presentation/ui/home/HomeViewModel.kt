@@ -3,6 +3,9 @@ package com.gun.presentation.ui.home
 import androidx.lifecycle.viewModelScope
 import com.gun.domain.usecase.GetHomeDataUseCase
 import com.gun.presentation.common.BaseViewModel
+import com.gun.presentation.ui.home.model.EventType
+import com.gun.presentation.ui.home.model.HomeListItem
+import com.gun.presentation.ui.home.model.HomeUiModel
 import com.gun.presentation.ui.home.model.mapper.toUiModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -43,5 +46,12 @@ class HomeViewModel @Inject constructor(
                     }
                 }
         }
+    }
+
+    fun getFilterHomeBannerModel(homeUiModel: HomeUiModel): List<HomeListItem>? {
+        return homeUiModel
+            .fromUiModelType(EventType)
+            .filterThumbnailAvailable()
+            .sliceHomeListItem(5)
     }
 }

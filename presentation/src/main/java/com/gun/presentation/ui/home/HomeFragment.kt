@@ -16,9 +16,7 @@ import com.gun.mvvm_cleanarchitecture.databinding.FragmentHomeBinding
 import com.gun.presentation.ui.home.banner.HomeBannerAdapter
 import com.gun.presentation.ui.home.banner.HomeBannerFragment
 import com.gun.presentation.ui.home.list.HomeMainRecyclerAdapter
-import com.gun.presentation.ui.home.model.EventType
 import com.gun.presentation.ui.home.model.HomeUiModel
-import com.gun.presentation.ui.home.model.HomeUiSubModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -61,7 +59,7 @@ class HomeFragment : Fragment() {
                         when (it) {
                             is HomeUiModelState.Nothing -> {}
                             is HomeUiModelState.ShowData -> {
-                                setHomeBannerViewPager(it.data.fromUiModelType(EventType))
+                                setHomeBannerViewPager(it.data)
                                 setHomeListRecyclerView(it.data)
                             }
                         }
@@ -89,23 +87,17 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun setHomeBannerViewPager(data: HomeUiSubModel) {
-        val thumbnailAvailableList = data.homeListItem?.filter { it.isThumbnailAvailable() }
+    private fun setHomeBannerViewPager(data: HomeUiModel) {
+        val bannerFragmentList = homeViewModel.getFilterHomeBannerModel(data)
+            ?.map { HomeBannerFragment.newInstance(it) }
 
-        if (thumbnailAvailableList.isNullOrEmpty()) {
-            binding.recyclerView.visibility = View.GONE
+        if (bannerFragmentList.isNullOrEmpty()) {
+            binding.viewPager.visibility = View.GONE
+            binding.dotsIndicator.visibility = View.GONE
             return
         }
 
-        val fragmentLis = with(thumbnailAvailableList) {
-            if (this.size > 5) {
-                slice(1..5).map { HomeBannerFragment.newInstance(it) }
-            } else {
-                map { HomeBannerFragment.newInstance(it) }
-            }
-        }
-
-        viewPagerAdapter.replaceFragmentList(fragmentLis)
+        viewPagerAdapter.replaceFragmentList(bannerFragmentList)
     }
 
     private fun setHomeListRecyclerView(data: HomeUiModel) {
