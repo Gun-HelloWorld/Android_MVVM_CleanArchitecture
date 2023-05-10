@@ -3,6 +3,7 @@ package com.gun.presentation.ui.home.list
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.gun.mvvm_cleanarchitecture.databinding.HolderHomeListItemBinding
 import com.gun.presentation.common.BaseListAdapter
 import com.gun.presentation.common.BaseViewHolder
@@ -26,6 +27,10 @@ class HomeSubRecyclerAdapter :
             with(binding) {
                 tvName.text = data.name
                 Glide.with(ivThumbnail).load(data.getListItemThumbnailUrl()).into(ivThumbnail)
+            }
+
+            itemView.setOnClickListener {
+                Snackbar.make(it, "준비중", Snackbar.LENGTH_LONG).show()
             }
         }
     }
