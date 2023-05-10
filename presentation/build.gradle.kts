@@ -6,6 +6,7 @@ plugins {
     id("androidx.navigation.safeargs.kotlin")    // AAC Navigation
     id("kotlin-kapt")                            // Glide, Hilt
     id("com.google.dagger.hilt.android")         // Hilt
+    id("kotlin-parcelize")
 }
 
 android {
@@ -81,6 +82,12 @@ dependencies {
 
     //Gson
     implementation(Dependencies.Gson.GSON)
+
+    // RecyclerView (with ConcatAdapter)
+    implementation(Dependencies.AndroidX.RECYCLER_VIEW)
+
+    // CardView
+    implementation(Dependencies.AndroidX.CARD_VIEW)
 }
 
 // Hilt

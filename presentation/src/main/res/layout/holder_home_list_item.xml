@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.gun.presentation.ui.home.HomeFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout style="@style/Base.Size.Wrap_Wrap">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view"
+            android:layout_width="100dp"
+            android:layout_height="170dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="3dp"
+            app:cardUseCompatPadding="true"
+            android:outlineSpotShadowColor="@color/color_card_view_shadow_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tv_name">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_thumbnail"
+                style="@style/ImageView_Home_List_Thumbnail_Style"
+                tools:srcCompat="@drawable/test_thumbnail_landscape_xlarge" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/tv_name"
+            style="@style/Base.TextView.Home_List_Item_Name_Style"
+            android:autoSizeMinTextSize="9dp"
+            android:autoSizeTextType="uniform"
+            tools:text="Test"
+            app:layout_constraintEnd_toEndOf="@id/card_view"
+            app:layout_constraintStart_toStartOf="@id/card_view"
+            app:layout_constraintTop_toBottomOf="@id/card_view" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

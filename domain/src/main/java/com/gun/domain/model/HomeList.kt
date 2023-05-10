@@ -5,5 +5,5 @@ data class HomeList(
     val comicList: List<Comic>?,
     val creatorList: List<Creator>?,
     val eventList: List<Event>?,
-    val series: List<Series>?
+    val seriesList: List<Series>?
 )

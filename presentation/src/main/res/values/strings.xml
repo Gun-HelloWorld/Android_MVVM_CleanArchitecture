@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MVVM_CleanArchitecture</string>
+
+    <string name="label_character">Character</string>
+    <string name="label_comic">Comic</string>
+    <string name="label_creator">Creator</string>
+    <string name="label_event">Event</string>
+    <string name="label_series">Series</string>
 </resources>

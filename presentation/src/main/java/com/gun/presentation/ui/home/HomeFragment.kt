@@ -10,15 +10,17 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.gun.domain.model.Event
-import com.gun.domain.model.TestData
 import com.gun.mvvm_cleanarchitecture.R
 import com.gun.mvvm_cleanarchitecture.databinding.FragmentHomeBinding
 import com.gun.presentation.ui.home.banner.HomeBannerAdapter
 import com.gun.presentation.ui.home.banner.HomeBannerFragment
-import com.gun.presentation.ui.home.list.HomeListRecyclerAdapter
+import com.gun.presentation.ui.home.list.HomeMainRecyclerAdapter
+import com.gun.presentation.ui.home.model.EventType
+import com.gun.presentation.ui.home.model.HomeUiModel
+import com.gun.presentation.ui.home.model.HomeUiSubModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -26,7 +28,6 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
 
     private lateinit var viewPagerAdapter: HomeBannerAdapter
-    private lateinit var homeListRecyclerAdapter: HomeListRecyclerAdapter
 
     private val homeViewModel: HomeViewModel by viewModels()
 
@@ -41,15 +42,11 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.apply {
+        with(binding) {
             viewPagerAdapter = HomeBannerAdapter(requireActivity())
             viewPager.adapter = viewPagerAdapter
+
             dotsIndicator.attachTo(binding.viewPager)
-
-            homeListRecyclerAdapter = HomeListRecyclerAdapter()
-            recyclerView.adapter = homeListRecyclerAdapter
-
-            homeListRecyclerAdapter.submitList(getTestData())
         }
 
         initObserver()
@@ -70,7 +67,8 @@ class HomeFragment : Fragment() {
                                 // TODO Show Message
                             }
                             is HomeUiState.ShowData -> {
-                                setHomeBannerViewPager(it.data.eventList ?: emptyList())
+                                setHomeBannerViewPager(it.data.fromUiModelType(EventType))
+                                setHomeListRecyclerView(it.data)
                             }
                         }
                     }
@@ -79,34 +77,26 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun setHomeBannerViewPager(data: List<Event>) {
-        if (data.isEmpty()) {
+    private fun setHomeBannerViewPager(data: HomeUiSubModel) {
+        val thumbnailAvailableList = data.homeListItem?.filter { it.isThumbnailAvailable() }
+
+        if (thumbnailAvailableList.isNullOrEmpty()) {
+            binding.recyclerView.visibility = View.GONE
             return
         }
 
-        val fragmentLis = data.let {
-            it.slice(1..5).map { event ->
-                HomeBannerFragment.newInstance(event)
+        val fragmentLis = with(thumbnailAvailableList) {
+            if (this.size > 5) {
+                slice(1..5).map { HomeBannerFragment.newInstance(it) }
+            } else {
+                map { HomeBannerFragment.newInstance(it) }
             }
         }
 
         viewPagerAdapter.replaceFragmentList(fragmentLis)
     }
 
-    // TODO Test
-    private fun getTestData() = mutableListOf(
-        TestData("1", ""),
-        TestData("2", ""),
-        TestData("3", ""),
-        TestData("4", ""),
-        TestData("5", ""),
-        TestData("6", ""),
-        TestData("7", ""),
-        TestData("8", ""),
-        TestData("9", ""),
-        TestData("10", ""),
-        TestData("11", ""),
-        TestData("12", ""),
-        TestData("13", "")
-    )
+    private fun setHomeListRecyclerView(data: HomeUiModel) {
+        binding.recyclerView.adapter = HomeMainRecyclerAdapter(requireContext(), data)
+    }
 }

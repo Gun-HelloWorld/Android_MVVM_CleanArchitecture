@@ -22,13 +22,6 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/test_thumbnail_landscape_xlarge" />
 
-        <TextView
-            style="@style/TextView_Home_Banner_Title_Style"
-            app:layout_constraintBottom_toBottomOf="@id/iv_thumbnail"
-            app:layout_constraintEnd_toEndOf="@id/iv_thumbnail"
-            app:layout_constraintStart_toStartOf="@id/iv_thumbnail"
-            tools:text="Avengers: The Initiative (2007) #14" />
-
         <View
             android:id="@+id/iv_bottom_gradient"
             style="@style/ImageView_Home_Gradient_Bottom_Style"

@@ -19,4 +19,5 @@
     <color name="color_indicator_active">#FF3636</color>
     <color name="color_indicator_default">#C4C4C5</color>
 
+    <color name="color_card_view_shadow_color">#EAEAEA</color>
 </resources>

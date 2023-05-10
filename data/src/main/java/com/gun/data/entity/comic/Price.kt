@@ -1,6 +1,6 @@
 package com.gun.data.entity.comic
 
 data class Price(
-    val price: Int,
+    val price: Float,
     val type: String
 )

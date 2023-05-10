@@ -20,9 +20,13 @@ class HomeBannerAdapter(
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun replaceFragmentList(fragmentList: List<Fragment>) {
+    fun replaceFragmentList(fragmentList: List<Fragment>?) {
         this.fragmentList.clear()
-        this.fragmentList.addAll(fragmentList)
+
+        if (!fragmentList.isNullOrEmpty()) {
+            this.fragmentList.addAll(fragmentList)
+        }
+
         notifyDataSetChanged()
     }
 }

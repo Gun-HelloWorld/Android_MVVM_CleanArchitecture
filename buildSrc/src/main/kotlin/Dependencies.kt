@@ -12,6 +12,8 @@ object Dependencies {
     private const val VERSION_RETROFIT = "2.9.0"
     private const val VERSION_OKHTTP = "4.10.0"
     private const val VERSION_GSON = "2.10.1"
+    private const val VERSION_RECYCLER_VIEW = "1.2.1"
+    private const val VERSION_CARD_VIEW = "1.0.0"
 
     const val VERSION_ANDROIDX_NAVIGATION = "2.5.3"
     const val VERSION_HILT = "2.45"
@@ -36,6 +38,12 @@ object Dependencies {
         // Navigation
         const val NAVIGATION_FRAGMENT = "androidx.navigation:navigation-fragment-ktx:${VERSION_ANDROIDX_NAVIGATION}"
         const val NAVIGATION_UI = "androidx.navigation:navigation-ui-ktx:${VERSION_ANDROIDX_NAVIGATION}"
+
+        // RecyclerView (with ConcatAdapter)
+        const val RECYCLER_VIEW = "androidx.recyclerview:recyclerview:${VERSION_RECYCLER_VIEW}"
+
+        // CardView
+        const val CARD_VIEW = "androidx.cardview:cardview:$VERSION_CARD_VIEW"
     }
 
     object Glide {

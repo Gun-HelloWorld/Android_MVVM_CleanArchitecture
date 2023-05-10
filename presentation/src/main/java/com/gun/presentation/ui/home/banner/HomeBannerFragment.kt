@@ -1,26 +1,26 @@
 package com.gun.presentation.ui.home.banner
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.gun.domain.model.Event
 import com.gun.mvvm_cleanarchitecture.databinding.FragmentHomeBannerBinding
+import com.gun.presentation.ui.home.model.HomeListItem
 
-const val KEY_HOME_BANNER_DATA = "key_home_banner_data"
-const val HOME_BANNER_IMAGE_SIZE = "landscape_xlarge"
+private const val KEY_HOME_BANNER_DATA = "key_home_banner_data"
 
 class HomeBannerFragment : Fragment() {
     private lateinit var binding: FragmentHomeBannerBinding
 
-    private lateinit var event: Event
+    private lateinit var data: HomeListItem
 
     companion object {
-        fun newInstance(event: Event): HomeBannerFragment {
+        fun newInstance(event: HomeListItem): HomeBannerFragment {
             val bundle = Bundle()
-            bundle.putSerializable(KEY_HOME_BANNER_DATA, event)
+            bundle.putParcelable(KEY_HOME_BANNER_DATA, event)
 
             val fragment = HomeBannerFragment()
             fragment.arguments = bundle
@@ -35,7 +35,12 @@ class HomeBannerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBannerBinding.inflate(inflater, container, false)
-        event = requireArguments().getSerializable(KEY_HOME_BANNER_DATA) as Event
+
+        data = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            requireArguments().getParcelable(KEY_HOME_BANNER_DATA, HomeListItem::class.java)!!
+        } else {
+            (requireArguments().getParcelable(KEY_HOME_BANNER_DATA) as? HomeListItem)!!
+        }
 
         return binding.root
     }
@@ -45,9 +50,8 @@ class HomeBannerFragment : Fragment() {
         with(binding) {
             lifecycleOwner = viewLifecycleOwner
 
-            val thumbnailUrl = "${event.thumbnailPath}/$HOME_BANNER_IMAGE_SIZE.${event.thumbnailExtension}"
             Glide.with(ivThumbnail)
-                .load(thumbnailUrl)
+                .load(data.getBannerItemThumbnailUrl())
                 .into(ivThumbnail)
         }
     }
