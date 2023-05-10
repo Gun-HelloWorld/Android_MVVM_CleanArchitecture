@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.google.android.material.snackbar.Snackbar
 import com.gun.mvvm_cleanarchitecture.R
 import com.gun.mvvm_cleanarchitecture.databinding.FragmentHomeBinding
 import com.gun.presentation.ui.home.banner.HomeBannerAdapter
@@ -50,8 +51,6 @@ class HomeFragment : Fragment() {
         }
 
         initObserver()
-
-        homeViewModel.getHomeListData()
     }
 
     private fun initObserver() {
@@ -60,23 +59,30 @@ class HomeFragment : Fragment() {
                 launch {
                     homeViewModel.homeUiStateFlow.collect {
                         when (it) {
-                            is HomeUiState.ShowLoading -> {
-                                if (it.loadingCount >= 1) {                                    binding.shimmerViewContainer.visibility = View.VISIBLE
-                                    binding.shimmerViewContainer.startShimmer()
-                                    binding.shimmerViewContainer.visibility = View.VISIBLE
-                                } else {
-                                    binding.shimmerViewContainer.visibility = View.GONE
-                                    binding.shimmerViewContainer.stopShimmer()
-                                }
-                            }
-                            is HomeUiState.ShowMessage -> {
-                                // TODO Show Message
-                            }
-                            is HomeUiState.ShowData -> {
+                            is HomeUiModelState.Nothing -> {}
+                            is HomeUiModelState.ShowData -> {
                                 setHomeBannerViewPager(it.data.fromUiModelType(EventType))
                                 setHomeListRecyclerView(it.data)
                             }
                         }
+                    }
+                }
+
+                launch {
+                    homeViewModel.loadingStateFlow.collect {
+                        if (it >= 1) {
+                            binding.shimmerViewContainer.startShimmer()
+                            binding.shimmerViewContainer.visibility = View.VISIBLE
+                        } else {
+                            binding.shimmerViewContainer.visibility = View.GONE
+                            binding.shimmerViewContainer.stopShimmer()
+                        }
+                    }
+                }
+
+                launch {
+                    homeViewModel.messageSharedFlow.collect {
+                        Snackbar.make(binding.root, it, Snackbar.LENGTH_LONG).show()
                     }
                 }
             }
