@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.bumptech.glide.Glide
 import com.gun.mvvm_cleanarchitecture.databinding.FragmentHomeBannerBinding
 import com.gun.presentation.ui.home.model.HomeListItem
 
@@ -25,7 +24,6 @@ class HomeBannerFragment : Fragment() {
             val fragment = HomeBannerFragment()
             fragment.arguments = bundle
             return fragment
-
         }
     }
 
@@ -35,6 +33,7 @@ class HomeBannerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBannerBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
 
         data = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             requireArguments().getParcelable(KEY_HOME_BANNER_DATA, HomeListItem::class.java)!!
@@ -49,10 +48,7 @@ class HomeBannerFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
             lifecycleOwner = viewLifecycleOwner
-
-            Glide.with(ivThumbnail)
-                .load(data.getBannerItemThumbnailUrl())
-                .into(ivThumbnail)
+            data = this@HomeBannerFragment.data
         }
     }
 

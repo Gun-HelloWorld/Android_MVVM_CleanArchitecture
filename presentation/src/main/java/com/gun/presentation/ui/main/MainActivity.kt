@@ -16,11 +16,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding.lifecycleOwner = this
 
-        val navHostFragment = supportFragmentManager.findFragmentById(binding.navHostFragment.id) as NavHostFragment
-        val navController = navHostFragment.findNavController()
-
-        binding.bottomNavigation.setupWithNavController(navController)
+        with(binding) {
+            lifecycleOwner = this@MainActivity
+            val navHostFragment = supportFragmentManager.findFragmentById(navHostFragment.id) as NavHostFragment
+            val navController = navHostFragment.findNavController()
+            bottomNavigation.setupWithNavController(navController)
+        }
     }
 }

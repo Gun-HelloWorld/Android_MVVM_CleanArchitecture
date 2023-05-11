@@ -4,7 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.gun.presentation.ui.home.HomeFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout style="@style/Base.Size.Match_Match">
+    <data>
+        <variable
+            name="data"
+            type="com.gun.presentation.ui.home.model.HomeListItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout style="@style/Base.Size.Match_Match"
+        android:background="@color/color_common_shimmer_effect_bg">
 
         <View
             android:id="@+id/iv_top_gradient"
@@ -16,6 +23,8 @@
         <ImageView
             android:id="@+id/iv_thumbnail"
             style="@style/ImageView_Home_Banner_Thumbnail_Style"
+            app:imageUrl="@{data.bannerItemThumbnailUrl}"
+            app:imageError="@{@drawable/ic_error_banner}"
             app:layout_constraintDimensionRatio="H,6:4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

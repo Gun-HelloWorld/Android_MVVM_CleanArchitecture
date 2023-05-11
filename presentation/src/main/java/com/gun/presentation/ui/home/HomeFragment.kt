@@ -42,6 +42,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         with(binding) {
+            lifecycleOwner = viewLifecycleOwner
             viewPagerAdapter = HomeBannerAdapter(childFragmentManager, lifecycle)
             viewPager.adapter = viewPagerAdapter
 
