@@ -44,7 +44,7 @@ object Dependencies {
         const val RECYCLER_VIEW = "androidx.recyclerview:recyclerview:${VERSION_RECYCLER_VIEW}"
 
         // CardView
-        const val CARD_VIEW = "androidx.cardview:cardview:$VERSION_CARD_VIEW"
+        const val CARD_VIEW = "androidx.cardview:cardview:${VERSION_CARD_VIEW}"
     }
 
     object Glide {

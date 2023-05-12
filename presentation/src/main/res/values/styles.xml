@@ -90,10 +90,10 @@
 
     <!-- ImageView Title -->
     <style name="ImageView_Title_Style">
-        <item name="android:layout_width">80dp</item>
-        <item name="android:layout_height">32dp</item>
-        <item name="android:layout_margin">20dp</item>
-        <item name="android:src">@drawable/ic_marvel</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="tint">@color/white</item>
+        <item name="android:src">@drawable/ic_marvel_studios</item>
     </style>
 
     <!-- ImageView Home Banner Top Gradient  -->
@@ -122,6 +122,13 @@
     </style>
 
     <!--####################################### TextView ########################################-->
+
+    <!-- TextView Title -->
+    <style name="Base.TextView.Title_Style" parent="Base.Size.Wrap_Wrap">
+        <item name="android:textSize">8dp</item>
+        <item name="android:textColor">@color/color_common_normal_text_white</item>
+        <item name="android:text">@string/label_data_provided_by_marvel</item>
+    </style>
 
     <!-- TextView Home List Title -->
     <style name="Base.TextView.Home_List_Style" parent="Base.Size.0_Wrap">
