@@ -32,15 +32,15 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             getHomeListDataUseCase(HOME_LIST_PAGE, HOME_LIST_LIMIT)
                 .onStart {
-                    _loadingStateFlow.emit(loadingCount.incrementAndGet())
+                    _loadingStateFlow.update { it.plus(1) }
                 }.onCompletion {
-                    _loadingStateFlow.emit(loadingCount.decrementAndGet())
+                    _loadingStateFlow.update { it.minus(1) }
                 }.catch {
                     _messageSharedFlow.emit(it.message ?: "Error")
                     it.printStackTrace()
                 }.collectLatest { result ->
                     result.onSuccess { homeList ->
-                        _homeUiDataStateFlow.emit(HomeUiModelState.ShowData(homeList.toUiModel()))
+                        _homeUiDataStateFlow.value = HomeUiModelState.ShowData(homeList.toUiModel())
                     }.onFailure {
                         _messageSharedFlow.emit(it.message ?: "Error")
                     }
