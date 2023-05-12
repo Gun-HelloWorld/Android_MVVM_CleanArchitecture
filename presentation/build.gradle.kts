@@ -70,17 +70,6 @@ dependencies {
     implementation(Dependencies.Google.HILT)
     kapt(Dependencies.Google.HILT_COMPILER)
 
-    // Retrofit
-    implementation(Dependencies.Retrofit.RETROFIT)
-    implementation(Dependencies.Retrofit.RETROFIT_CONVERTOR)
-
-    // OkHttp
-    implementation(Dependencies.OkHttp.OKHTTP)
-    implementation(Dependencies.OkHttp.OKHTTP_INTERCEPTOR)
-
-    // Gson
-    implementation(Dependencies.Gson.GSON)
-
     // RecyclerView (with ConcatAdapter)
     implementation(Dependencies.AndroidX.RECYCLER_VIEW)
 
