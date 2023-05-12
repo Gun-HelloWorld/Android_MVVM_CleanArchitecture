@@ -5,6 +5,7 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.annotation.GlideModule
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.module.AppGlideModule
 
 @GlideModule
@@ -16,5 +17,6 @@ fun loadImage(imageView: ImageView, url: String, error: Drawable) {
         .load(url)
         .sizeMultiplier(0.5f)
         .error(error)
+        .diskCacheStrategy(DiskCacheStrategy.ALL)
         .into(imageView)
 }
