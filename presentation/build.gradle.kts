@@ -1,5 +1,3 @@
-@file:Suppress("UnstableApiUsage")
-
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -68,7 +66,7 @@ dependencies {
     // ViewPager Indicator
     implementation(Dependencies.DotsIndicator.DOTS_INDICATOR)
 
-    //Hilt
+    // Hilt
     implementation(Dependencies.Google.HILT)
     kapt(Dependencies.Google.HILT_COMPILER)
 
@@ -80,7 +78,7 @@ dependencies {
     implementation(Dependencies.OkHttp.OKHTTP)
     implementation(Dependencies.OkHttp.OKHTTP_INTERCEPTOR)
 
-    //Gson
+    // Gson
     implementation(Dependencies.Gson.GSON)
 
     // RecyclerView (with ConcatAdapter)
@@ -89,7 +87,7 @@ dependencies {
     // CardView
     implementation(Dependencies.AndroidX.CARD_VIEW)
 
-    // ShimmerEffect
+    // Shimmer Effect
     implementation(Dependencies.ShimmerEffect.SHIMMER_EFFECT)
 }
 

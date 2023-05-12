@@ -6,4 +6,7 @@ object AppConfig {
     const val TEST_INSTRUMENTATION_RUNNER = "androidx.test.runner.AndroidJUnitRunner"
     const val PROGUARD_OPTIMIZE = "proguard-android-optimize.txt"
     const val PROGUARD = "proguard-rules.pro"
+
+    const val API_PRIVATE_KEY = "MARVEL_API_PRIVATE_KEY"
+    const val API_PUBLIC_KEY = "MARVEL_API_PUBLIC_KEY"
 }

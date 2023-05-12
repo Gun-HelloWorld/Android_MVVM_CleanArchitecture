@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id("com.android.library")
     id("kotlin-android")
@@ -12,6 +14,9 @@ android {
         targetSdk = AppConfig.TARGET_SDK
 
         testInstrumentationRunner = AppConfig.TEST_INSTRUMENTATION_RUNNER
+
+        buildConfigField("String", AppConfig.API_PUBLIC_KEY, getApiKey(AppConfig.API_PUBLIC_KEY))
+        buildConfigField("String", AppConfig.API_PRIVATE_KEY, getApiKey(AppConfig.API_PRIVATE_KEY))
     }
 
     buildTypes {
@@ -43,7 +48,7 @@ dependencies {
     implementation(Dependencies.AndroidX.CORE)
     implementation(Dependencies.AndroidX.APP_COMPAT)
 
-    //Hilt
+    // Hilt
     implementation(Dependencies.Google.HILT)
     kapt(Dependencies.Google.HILT_COMPILER)
 
@@ -55,6 +60,15 @@ dependencies {
     implementation(Dependencies.OkHttp.OKHTTP_INTERCEPTOR)
     implementation(Dependencies.OkHttp.OKHTTP_INTERCEPTOR)
 
-    //Gson
+    // Gson
     implementation(Dependencies.Gson.GSON)
+}
+
+// Hilt
+kapt {
+    correctErrorTypes = true
+}
+
+fun getApiKey(propertyKey: String): String {
+    return gradleLocalProperties(rootDir).getProperty(propertyKey)
 }
