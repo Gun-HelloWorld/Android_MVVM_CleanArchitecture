@@ -13,7 +13,7 @@ import javax.inject.Singleton
 class ApiModule {
     @Singleton
     @Provides
-    fun provideMovieApi(retrofit: Retrofit): MarvelApi {
+    fun provideMarvelApi(retrofit: Retrofit): MarvelApi {
         return retrofit.create(MarvelApi::class.java)
     }
 }
