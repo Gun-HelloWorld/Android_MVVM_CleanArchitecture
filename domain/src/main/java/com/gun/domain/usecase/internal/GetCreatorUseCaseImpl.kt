@@ -1,17 +1,19 @@
-package com.gun.domain.usecase
+package com.gun.domain.usecase.internal
 
 import com.gun.domain.model.Creator
 import com.gun.domain.repository.CreatorRepository
+import com.gun.domain.usecase.CreatorUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class GetCreatorUseCase @Inject constructor(
+class GetCreatorUseCaseImpl @Inject constructor(
     private val creatorRepository: CreatorRepository
-) {
-    fun invoke(page: Int, limit: Int): Flow<Result<List<Creator>>> = flow {
+) : CreatorUseCase.GetCreatorUseCase {
+
+    override fun invoke(page: Int, limit: Int): Flow<Result<List<Creator>>> = flow {
         if (limit == 0) {
             emit(Result.failure(IllegalArgumentException()))
             return@flow
@@ -19,4 +21,5 @@ class GetCreatorUseCase @Inject constructor(
 
         creatorRepository.getCreators(page, limit)
     }
+
 }

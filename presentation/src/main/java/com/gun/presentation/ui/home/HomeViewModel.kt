@@ -1,7 +1,7 @@
 package com.gun.presentation.ui.home
 
 import androidx.lifecycle.viewModelScope
-import com.gun.domain.usecase.GetHomeDataUseCase
+import com.gun.domain.usecase.HomeDataUseCase
 import com.gun.presentation.common.BaseViewModel
 import com.gun.presentation.ui.home.model.EventType
 import com.gun.presentation.ui.home.model.HomeListItem
@@ -14,10 +14,11 @@ import javax.inject.Inject
 
 const val HOME_LIST_PAGE = 0
 const val HOME_LIST_LIMIT = 30
+const val HOME_BANNER_COUNT = 5
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getHomeListDataUseCase: GetHomeDataUseCase
+    private val getHomeListDataUseCase: HomeDataUseCase.GetHomeDataUseCase,
 ) : BaseViewModel() {
 
     private val _homeUiDataStateFlow: MutableStateFlow<HomeUiModelState> =
@@ -25,12 +26,12 @@ class HomeViewModel @Inject constructor(
     val homeUiStateFlow = _homeUiDataStateFlow.asStateFlow()
 
     init {
-        getHomeListData()
+        getHomeListData(HOME_LIST_PAGE, HOME_LIST_LIMIT)
     }
 
-    fun getHomeListData() {
+    fun getHomeListData(page: Int, limit: Int) {
         viewModelScope.launch {
-            getHomeListDataUseCase(HOME_LIST_PAGE, HOME_LIST_LIMIT)
+            getHomeListDataUseCase(page, limit)
                 .onStart {
                     _loadingStateFlow.update { it.plus(1) }
                 }.onCompletion {
@@ -52,6 +53,6 @@ class HomeViewModel @Inject constructor(
         return homeUiModel
             .fromUiModelType(EventType)
             .filterThumbnailAvailable()
-            .sliceHomeListItem(5)
+            .sliceHomeListItem(HOME_BANNER_COUNT)
     }
 }

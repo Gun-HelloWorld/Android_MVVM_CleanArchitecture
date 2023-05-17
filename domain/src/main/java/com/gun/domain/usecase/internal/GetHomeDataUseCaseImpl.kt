@@ -1,20 +1,21 @@
-package com.gun.domain.usecase
+package com.gun.domain.usecase.internal
 
 import com.gun.domain.model.*
 import com.gun.domain.repository.*
+import com.gun.domain.usecase.HomeDataUseCase
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
-class GetHomeDataUseCase @Inject constructor(
+class GetHomeDataUseCaseImpl @Inject constructor(
     private val characterRepository: CharacterRepository,
     private val comicRepository: ComicRepository,
     private val creatorRepository: CreatorRepository,
     private val eventRepository: EventRepository,
     private val seriesRepository: SeriesRepository
-) {
-    operator fun invoke(page: Int, limit: Int): Flow<Result<HomeList>> = flow {
+) : HomeDataUseCase.GetHomeDataUseCase {
+
+    override fun invoke(page: Int, limit: Int): Flow<Result<HomeList>> = flow {
         if (limit == 0) {
             emit(Result.failure(IllegalArgumentException()))
             return@flow
@@ -51,4 +52,5 @@ class GetHomeDataUseCase @Inject constructor(
             emit(it.asFlow().single())
         }
     }
+
 }
