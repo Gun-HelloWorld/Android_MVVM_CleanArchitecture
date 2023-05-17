@@ -40,17 +40,17 @@ MVVM & Clean Architecture 패턴을 적용하고 Marvel의 Public API를 통해 
 * [Gradle Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html#kotlin_dsl)
   - Gradle 스크립트 언어로, 자동완성 지원 및 가독성 확보 이점을 확보하기 위해 사용합니다.
 * [Hilt](https://dagger.dev/hilt/)
-  - Dagger2 기반 안드로이드 전용 DI 라이브러리입니다.
+  - `Dagger2` 기반 안드로이드 전용 DI 라이브러리입니다.
 * [Retrofit2](https://square.github.io/retrofit/), [OkHttp3](https://square.github.io/okhttp/) 
   - REST API를 호출하기 위한 비동기 네트워크 처리를 단순화 시켜줍니다.
 * [Gson](https://github.com/google/gson) 
-  - Json 포맷의 요청/응답 데이터를 쉽게 파싱할 수 있도록 도와줍니다.
+  - `Json` 포맷의 요청/응답 데이터를 쉽게 파싱할 수 있도록 도와줍니다.
 * [AAC-Navigation](https://developer.android.com/guide/navigation) 
-  - Android 스튜디오의 Navigation Editor를 사용하여 앱의 탐색 그래프를 지원하며, Fragment 기반 화면 이동 처리를 도와줍니다.
+  - Android 스튜디오의 Navigation Editor를 사용하여 앱의 탐색 그래프를 지원하며, `Fragment` 기반 화면 이동 처리를 도와줍니다.
 * [AAC-DataBinding](https://developer.android.com/topic/libraries/data-binding?hl=ko)
-  - View 바인딩 절차를 간소화하고 View 클래스에서 담당하는 로직을 xml 상에서 처리하여 View 클래스의 역할을 분담하도록 할 수 있습니다.
+  - `View` 바인딩 절차를 간소화하고 `View` 클래스에서 담당하는 로직을 `xml` 상에서 처리하여 `View` 클래스의 역할을 분담하도록 할 수 있습니다.
 * [AAC-ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
-  - 화면 회전 시 View가 재생성 되지만 관련 데이터가 소멸되지 않도록 보장하며, 사용자 이벤트를 처리하고 View에서 표시해야 할 데이터 및 상태를 관리합니다.
+  - 화면 회전 시 `View`가 재생성 되지만 관련 데이터가 소멸되지 않도록 보장하며, 사용자 이벤트를 처리하고 `View`에서 표시해야 할 데이터 및 상태를 관리합니다.
 * [Glide](https://github.com/bumptech/glide)
   - 이미지를 빠르고 효율적으로 표시해 주는 것을 도와줍니다.
 * [DotsIndicator](https://github.com/tommybuonomo/dotsindicator)
@@ -59,6 +59,12 @@ MVVM & Clean Architecture 패턴을 적용하고 Marvel의 Public API를 통해 
   - 그림자, 테두리 변형 등 간편하게 스타일을 일관되게 유지하는 데 도움을 주는 라이브러리입니다.
 * [ShimmerEffect](https://github.com/facebook/shimmer-android)
   - 비동기 처리 중 사용 시 애니메이션을 적용한 로딩 표시를 지원하여 UI 퍼포먼스를 올려줍니다.
+* [Junit4](https://github.com/junit-team/junit4)
+  - 단위 테스트를 위한 테스트 Framework 입니다.
+* [kotlinx-coroutines-test](https://github.com/Kotlin/kotlinx.coroutines/tree/master/kotlinx-coroutines-test)
+  - `runTest`와 같은 코루틴을 효율적으로 테스트하기 위한 유틸리티를 제공합니다. 
+* [Turbine]()
+  - `flow` 테스트를 더 쉽게 할 수 있도록 도와줍니다.
 
 <br>
 
