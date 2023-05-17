@@ -46,10 +46,23 @@ dependencies {
     implementation(project(":data"))
     implementation(project(":domain"))
 
+    // Test
+    {
+        // JUnit4
+        testImplementation(Dependencies.Test.JUNIT)
+        androidTestImplementation(Dependencies.Test.JUNIT_ANDROID)
+
+        // Espresso
+        androidTestImplementation(Dependencies.Test.ESPRESSO)
+
+        // Coroutines Test
+        testImplementation(Dependencies.Test.COROUTINES_TEST)
+
+        // Turbine
+        testImplementation(Dependencies.Test.TURBINE)
+    }
+
     implementation(Dependencies.Google.MATERIAL)
-    testImplementation(Dependencies.Test.JUNIT)
-    androidTestImplementation(Dependencies.Test.JUNIT_ANDROID)
-    androidTestImplementation(Dependencies.Test.ESPRESSO)
 
     implementation(Dependencies.AndroidX.CORE)
     implementation(Dependencies.AndroidX.APP_COMPAT)

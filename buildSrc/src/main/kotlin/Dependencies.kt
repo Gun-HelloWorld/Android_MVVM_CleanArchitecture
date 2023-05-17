@@ -15,6 +15,8 @@ object Dependencies {
     private const val VERSION_RECYCLER_VIEW = "1.2.1"
     private const val VERSION_CARD_VIEW = "1.0.0"
     private const val VERSION_SHIMMER_EFFECT = "0.5.0"
+    private const val VERSION_COROUTINES_TEST = "1.6.4"
+    private const val VERSION_TURBINE = "0.13.0"
 
     const val VERSION_ANDROIDX_NAVIGATION = "2.5.3"
     const val VERSION_HILT = "2.45"
@@ -29,6 +31,8 @@ object Dependencies {
         const val JUNIT = "junit:junit:${VERSION_JUNIT}"
         const val JUNIT_ANDROID = "androidx.test.ext:junit:${VERSION_JUNIT_ANDROID}"
         const val ESPRESSO = "androidx.test.espresso:espresso-core:${VERSION_ESPRESSO}"
+        const val COROUTINES_TEST = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${VERSION_COROUTINES_TEST}"
+        const val TURBINE = "app.cash.turbine:turbine:${VERSION_TURBINE}"
     }
 
     object AndroidX {
