@@ -42,7 +42,8 @@ data class HomeListItem (
 
     fun isThumbnailAvailable(): Boolean {
         return !thumbnailPath.isNullOrEmpty() &&
-                !thumbnailPath.contains("image_not_available")
+                !thumbnailPath.contains("image_not_available") &&
+                !thumbnailExtension.isNullOrEmpty()
     }
 
     companion object {
