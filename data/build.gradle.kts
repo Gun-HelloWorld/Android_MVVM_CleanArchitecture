@@ -57,7 +57,7 @@ dependencies {
     implementation(Dependencies.Retrofit.RETROFIT_CONVERTOR)
 
     // OkHttp
-    implementation(Dependencies.OkHttp.OKHTTP_INTERCEPTOR)
+    implementation(Dependencies.OkHttp.OKHTTP)
     implementation(Dependencies.OkHttp.OKHTTP_INTERCEPTOR)
 
     // Gson
