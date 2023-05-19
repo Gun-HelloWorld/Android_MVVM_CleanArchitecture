@@ -1,6 +1,7 @@
 package com.gun.domain.usecase
 
 import kotlinx.coroutines.flow.Flow
+import com.gun.domain.model.Character
 
 interface CharacterUseCase {
 

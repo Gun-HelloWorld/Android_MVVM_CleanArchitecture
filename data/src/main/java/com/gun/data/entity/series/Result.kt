@@ -1,5 +1,7 @@
 package com.gun.data.entity.series
 
+import android.text.TextUtils
+
 data class Result(
     val characters: Characters,
     val comics: Comics,
@@ -19,4 +21,21 @@ data class Result(
     val title: String,
     val type: String,
     val urls: List<Url>
-)
+) {
+    fun getDetailUrl(): String {
+        var detailUrl = ""
+
+        if (urls.isNullOrEmpty()) {
+            return detailUrl
+        }
+
+        for (url in urls) {
+            if (TextUtils.equals("detail", url.type)) {
+                detailUrl = url.url
+                break
+            }
+        }
+
+        return detailUrl
+    }
+}

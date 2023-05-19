@@ -42,8 +42,13 @@ class FakeGetHomeDataUseCase : HomeDataUseCase.GetHomeDataUseCase {
                     description = "TestCharacterDesc$i",
                     thumbnailPath = "TestCharacterThumbnailPath$i",
                     thumbnailExtension = "TestCharacterThumbnailExtension$i",
+                    detailUrl = "TestCharacterDetailUrl$i",
                     copyright = "TestCharacterCopyright$i",
-                    attributionText = "TestCharacterAttributionText$i"
+                    attributionText = "TestCharacterAttributionText$i",
+                    comicInfoList = listOf(SimpleInfo("TestComicResourceUri$i","TestComicName$i", "")),
+                    seriesInfoList = listOf(SimpleInfo("TestSeriesResourceUri$i","TestSeriesName$i", "")),
+                    storyInfoList = listOf(SimpleInfo("TestStoryResourceUri$i","TestStoryName$i", "")),
+                    eventInfoList = listOf(SimpleInfo("TestEventResourceUri$i","TestEventName$i", "")),
                 )
             )
         }
@@ -60,10 +65,17 @@ class FakeGetHomeDataUseCase : HomeDataUseCase.GetHomeDataUseCase {
                     id = i,
                     title = "TestComicTitle$i",
                     description = "TestComicDesc$i",
+                    format = "TestComicFormat$i",
                     thumbnailPath = "TestComicThumbnailPath$i",
                     thumbnailExtension = "TestComicThumbnailExtension$i",
+                    detailUrl = "TestComicDetailUrl$i",
                     copyright = "TestComicCopyright$i",
-                    attributionText = "TestComicAttributionText$i"
+                    attributionText = "TestComicAttributionText$i",
+                    seriesInfoList = listOf(SimpleInfo("TestSeriesResourceUri$i","TestSeriesName$i", "")),
+                    creatorInfoList = listOf(SimpleInfo("TestCreatorResourceUri$i","TestCreatorName$i", "TestCreatorRole$i")),
+                    characterInfoList = listOf(SimpleInfo("TestCharacterResourceUri$i","TestCharacterName$i", "")),
+                    storyInfoList = listOf(SimpleInfo("TestStoryResourceUri$i","TestStoryName$i", "")),
+                    eventInfoList = listOf(SimpleInfo("TestEventResourceUri$i","TestEventName$i", ""))
                 )
             )
         }
@@ -81,6 +93,13 @@ class FakeGetHomeDataUseCase : HomeDataUseCase.GetHomeDataUseCase {
                     fullName = "TestCreatorFullName$i",
                     thumbnailPath = "TestCreatorThumbnailPath$i",
                     thumbnailExtension = "TestCreatorThumbnailExtension$i",
+                    detailUrl = "TestCreatorDetailUrl$i",
+                    copyright = "TestCreatorCopyright$i",
+                    attributionText = "TestCreatorAttributionText$i",
+                    comicInfoList = listOf(SimpleInfo("TestComicResourceUri$i","TestComicName$i", "")),
+                    seriesInfoList = listOf(SimpleInfo("TestSeriesResourceUri$i","TestSeriesName$i", "")),
+                    storyInfoList = listOf(SimpleInfo("TestStoryResourceUri$i","TestStoryName$i", "")),
+                    eventInfoList = listOf(SimpleInfo("TestEventResourceUri$i","TestEventName$i", ""))
                 )
             )
         }
@@ -96,11 +115,19 @@ class FakeGetHomeDataUseCase : HomeDataUseCase.GetHomeDataUseCase {
                 Event(
                     id = i,
                     title = "TestEventTitle$i",
+                    start = "TestEventStart$i",
+                    end = "TestEventEnd$i",
                     description = "TestEventDescription$i",
                     thumbnailPath = "TestEventThumbnailPath$i",
                     thumbnailExtension = "TestEventThumbnailExtension$i",
+                    detailUrl = "TestEventDetailUrl$i",
                     copyright = "TestEventCopyright$i",
-                    attributionText = "TestEventAttributionText$i"
+                    attributionText = "TestEventAttributionText$i",
+                    creatorInfoList = listOf(SimpleInfo("TestCreatorResourceUri$i","TestCreatorName$i", "TestCreatorRole$i")),
+                    characterInfoList = listOf(SimpleInfo("TestCharacterResourceUri$i","TestCharacterName$i", "")),
+                    storyInfoList = listOf(SimpleInfo("TestStoryResourceUri$i","TestStoryName$i", "")),
+                    comicInfoList = listOf(SimpleInfo("TestComicResourceUri$i","TestComicName$i", "")),
+                    seriesInfoList = listOf(SimpleInfo("TestSeriesResourceUri$i","TestSeriesName$i", ""))
                 )
             )
         }
@@ -120,11 +147,16 @@ class FakeGetHomeDataUseCase : HomeDataUseCase.GetHomeDataUseCase {
                     startYear = i,
                     endYear = i,
                     rating = "TestSeriesRating$i",
-                    type = "TestSeriesType$i",
                     thumbnailPath = "TestSeriesThumbnailPath$i",
                     thumbnailExtension = "TestSeriesThumbnailExtension$i",
+                    detailUrl = "TestSeriesDetailUrl$i",
                     copyright = "TestSeriesCopyright$i",
-                    attributionText = "TestSeriesAttributionText$i"
+                    attributionText = "TestSeriesAttributionText$i",
+                    creatorInfoList = listOf(SimpleInfo("TestCreatorResourceUri$i","TestCreatorName$i", "TestCreatorRole$i")),
+                    characterInfoList = listOf(SimpleInfo("TestCharacterResourceUri$i","TestCharacterName$i", "")),
+                    storyInfoList = listOf(SimpleInfo("TestStoryResourceUri$i","TestStoryName$i", "")),
+                    comicInfoList = listOf(SimpleInfo("TestComicResourceUri$i","TestComicName$i", "")),
+                    eventInfoList = listOf(SimpleInfo("TestEventResourceUri$i","TestEventName$i", ""))
                 )
             )
         }

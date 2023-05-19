@@ -108,9 +108,9 @@ class HomeViewModelTest {
         val page = HOME_LIST_PAGE
         val limit = HOME_LIST_LIMIT
         val expectedHomeBannerCount = 0
-        val imageNotAvailableCase = Event(0, "", "", thumbnailPath = "image_not_available", thumbnailExtension = "정상확장자","", "")
-        val thumbnailPathEmptyCase = Event(0, "", "", thumbnailPath = "", thumbnailExtension = "정상확장자", "", "")
-        val extensionEmptyCase = Event(0, "", "", thumbnailPath = "https://정상주소.com/", thumbnailExtension = "", "", "")
+        val imageNotAvailableCase = Event(0, "", "", "", "", thumbnailPath = "image_not_available", thumbnailExtension = "정상확장자","", "", "", emptyList(), emptyList(), emptyList(), emptyList(), emptyList())
+        val thumbnailPathEmptyCase = Event(0, "", "", "", "", thumbnailPath = "", thumbnailExtension = "정상확장자", "", "", "", emptyList(), emptyList(), emptyList(), emptyList(), emptyList())
+        val extensionEmptyCase = Event(0, "", "", "", "", thumbnailPath = "https://정상주소.com/", thumbnailExtension = "", "", "", "", emptyList(), emptyList(), emptyList(), emptyList(), emptyList())
         fakeGetHomeDataUseCase.fakeEventList = mutableListOf(imageNotAvailableCase,thumbnailPathEmptyCase,extensionEmptyCase)
 
         // when

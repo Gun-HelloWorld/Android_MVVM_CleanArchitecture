@@ -1,5 +1,7 @@
 package com.gun.data.entity.comic
 
+import android.text.TextUtils
+
 data class Result(
     val characters: Characters,
     val collectedIssues: List<ComicSummary>,
@@ -30,4 +32,37 @@ data class Result(
     val urls: List<Url>,
     val variantDescription: String,
     val variants: List<ComicSummary>
-)
+) {
+    fun getDetailUrl(): String {
+        var detailUrl = ""
+
+        if (urls.isNullOrEmpty()) {
+            return detailUrl
+        }
+
+        for (url in urls) {
+            if (TextUtils.equals("detail", url.type)) {
+                detailUrl = url.url
+                break
+            }
+        }
+
+        return detailUrl
+    }
+
+    fun getAvailableDescription(): String {
+        var desc = description ?: ""
+
+        if (!desc.isNullOrEmpty()) {
+            return desc
+        }
+
+        try {
+            desc = textObjects.first { !it.text.isNullOrEmpty() }.text
+        } catch (e: java.util.NoSuchElementException) {
+            e.printStackTrace()
+        }
+
+        return desc
+    }
+}
