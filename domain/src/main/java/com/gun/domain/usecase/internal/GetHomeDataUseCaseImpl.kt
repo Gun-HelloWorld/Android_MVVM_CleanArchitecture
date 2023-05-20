@@ -5,7 +5,6 @@ import com.gun.domain.repository.*
 import com.gun.domain.usecase.HomeDataUseCase
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
-import javax.inject.Singleton
 
 class GetHomeDataUseCaseImpl @Inject constructor(
     private val characterRepository: CharacterRepository,
@@ -15,19 +14,18 @@ class GetHomeDataUseCaseImpl @Inject constructor(
     private val seriesRepository: SeriesRepository
 ) : HomeDataUseCase.GetHomeDataUseCase {
 
-    override fun invoke(page: Int, limit: Int): Flow<Result<HomeList>> = flow {
+    override fun invoke(offset: Int, limit: Int): Flow<Result<HomeList>> = flow {
         if (limit == 0) {
             emit(Result.failure(IllegalArgumentException()))
             return@flow
         }
 
-
         combine(
-            characterRepository.getCharacters(page, limit),
-            comicRepository.getComics(page, limit),
-            creatorRepository.getCreators(page, limit),
-            eventRepository.getEvents(page, limit),
-            seriesRepository.getSeries(page, limit)
+            characterRepository.getCharacterList(offset, limit),
+            comicRepository.getComicList(offset, limit),
+            creatorRepository.getCreatorList(offset, limit),
+            eventRepository.getEventList(offset, limit),
+            seriesRepository.getSeriesList(offset, limit)
         ) { characterResult: Result<List<Character>>,
             comicResult: Result<List<Comic>>,
             creatorResult: Result<List<Creator>>,

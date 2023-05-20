@@ -60,7 +60,7 @@ data class Result(
         try {
             desc = textObjects.first { !it.text.isNullOrEmpty() }.text
         } catch (e: java.util.NoSuchElementException) {
-            e.printStackTrace()
+            println(e.message)
         }
 
         return desc

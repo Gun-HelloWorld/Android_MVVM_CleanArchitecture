@@ -30,19 +30,19 @@ class HomeViewModelTest {
     @Test
     fun `getHomeListData()_메서드_호출_시_데이터_정상_수신_테스트`() {
         // given
-        val page = HOME_LIST_PAGE
+        val offset = HOME_LIST_OFFSET
         val limit = HOME_LIST_LIMIT
         val expectedHomeUiModelCount = 5 // [Character, Comic, Creator, Event, Series]
         val expectedHomeUiModel = HomeList(
-            characterList = fakeGetHomeDataUseCase.generateFakeCharacterList(page, limit),
-            comicList = fakeGetHomeDataUseCase.generateFakeComicList(page, limit),
-            creatorList = fakeGetHomeDataUseCase.generateFakeCreatorList(page, limit),
-            eventList = fakeGetHomeDataUseCase.generateFakeEventList(page, limit),
-            seriesList = fakeGetHomeDataUseCase.generateFakeSeriesList(page, limit)
+            characterList = fakeGetHomeDataUseCase.generateFakeCharacterList(offset, limit),
+            comicList = fakeGetHomeDataUseCase.generateFakeComicList(offset, limit),
+            creatorList = fakeGetHomeDataUseCase.generateFakeCreatorList(offset, limit),
+            eventList = fakeGetHomeDataUseCase.generateFakeEventList(offset, limit),
+            seriesList = fakeGetHomeDataUseCase.generateFakeSeriesList(offset, limit)
         ).toUiModel()
 
         // when
-        homeViewModel.getHomeListData(page, limit)
+        homeViewModel.getHomeListData(offset, limit)
         val actualData = (homeViewModel.homeUiStateFlow.value as HomeUiModelState.ShowData).data
         val actualHomeUiModelCount = actualData.homeUiSubModelList.size
 
@@ -54,12 +54,12 @@ class HomeViewModelTest {
     @Test
     fun `getHomeListData()_메서드_잘못된_파라미터_전달_시_에러_메세지_수신_테스트`() = runTest {
         // given
-        val page = 0
+        val offset = 0
         val limit = 0
 
         homeViewModel.messageSharedFlow.test {
             // when
-            homeViewModel.getHomeListData(page, limit)
+            homeViewModel.getHomeListData(offset, limit)
 
             // then
             assertEquals(awaitItem(), "Error")
@@ -71,13 +71,13 @@ class HomeViewModelTest {
     @Test
     fun `getFilterHomeBannerModel()_메서드_호출_시_데이터_정상_수신_테스트`() {
         // given
-        val page = HOME_LIST_PAGE
+        val offset = HOME_LIST_OFFSET
         val limit = HOME_LIST_LIMIT
         val expectedHomeBannerCount = HOME_BANNER_COUNT
-        fakeGetHomeDataUseCase.generateFakeEventList(page, limit)
+        fakeGetHomeDataUseCase.generateFakeEventList(offset, limit)
 
         // when
-        homeViewModel.getHomeListData(page, limit)
+        homeViewModel.getHomeListData(offset, limit)
         val resultData = (homeViewModel.homeUiStateFlow.value as HomeUiModelState.ShowData).data
         val actualHomeBannerCount = homeViewModel.getFilterHomeBannerModel(resultData)?.size
 
@@ -88,13 +88,13 @@ class HomeViewModelTest {
     @Test
     fun `getFilterHomeBannerModel()_메서드_호출_시_파라미터_사이즈_5_미만_이어도_해당_갯수_만큼_정상_수신_테스트`() {
         // given
-        val page = HOME_LIST_PAGE
+        val offset = HOME_LIST_OFFSET
         val limit = HOME_LIST_LIMIT
         val expectedHomeBannerCount = 4
-        fakeGetHomeDataUseCase.generateFakeEventList(page, expectedHomeBannerCount)
+        fakeGetHomeDataUseCase.generateFakeEventList(offset, expectedHomeBannerCount)
 
         // when
-        homeViewModel.getHomeListData(page, limit)
+        homeViewModel.getHomeListData(offset, limit)
         val resultData = (homeViewModel.homeUiStateFlow.value as HomeUiModelState.ShowData).data
         val actualHomeBannerCount = homeViewModel.getFilterHomeBannerModel(resultData)?.size
 
@@ -105,7 +105,7 @@ class HomeViewModelTest {
     @Test
     fun `getFilterHomeBannerModel()_메서드_호출_시_썸네일_유효하지_않은_경우_수신_테스트`() {
         // given
-        val page = HOME_LIST_PAGE
+        val offset = HOME_LIST_OFFSET
         val limit = HOME_LIST_LIMIT
         val expectedHomeBannerCount = 0
         val imageNotAvailableCase = Event(0, "", "", "", "", thumbnailPath = "image_not_available", thumbnailExtension = "정상확장자","", "", "", emptyList(), emptyList(), emptyList(), emptyList(), emptyList())
@@ -114,7 +114,7 @@ class HomeViewModelTest {
         fakeGetHomeDataUseCase.fakeEventList = mutableListOf(imageNotAvailableCase,thumbnailPathEmptyCase,extensionEmptyCase)
 
         // when
-        homeViewModel.getHomeListData(page, limit)
+        homeViewModel.getHomeListData(offset, limit)
         val resultData = (homeViewModel.homeUiStateFlow.value as HomeUiModelState.ShowData).data
         val actualHomeBannerCount = homeViewModel.getFilterHomeBannerModel(resultData)?.size
 

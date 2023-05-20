@@ -13,13 +13,13 @@ class GetCharactersUseCaseImpl @Inject constructor(
     private val characterRepository: CharacterRepository
 ) : CharacterUseCase.GetCharacterUseCase {
 
-    override fun invoke(page: Int, limit: Int): Flow<Result<List<Character>>> = flow {
+    override fun invoke(offset: Int, limit: Int): Flow<Result<List<Character>>> = flow {
         if (limit == 0) {
             emit(Result.failure(IllegalArgumentException()))
             return@flow
         }
 
-        characterRepository.getCharacters(page, limit)
+        characterRepository.getCharacterList(offset, limit)
     }
 
 }

@@ -13,13 +13,13 @@ class GetEventUseCaseImpl @Inject constructor(
     private val eventRepository: EventRepository
 ) : EventUseCase.GetEventUseCase {
 
-    override fun invoke(page: Int, limit: Int): Flow<Result<List<Event>>> = flow {
+    override fun invoke(offset: Int, limit: Int): Flow<Result<List<Event>>> = flow {
         if (limit == 0) {
             emit(Result.failure(IllegalArgumentException()))
             return@flow
         }
 
-        eventRepository.getEvents(page, limit)
+        eventRepository.getEventList(offset, limit)
     }
 
 }

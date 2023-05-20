@@ -10,7 +10,13 @@ import kotlinx.coroutines.flow.flow
 class EventRepositoryImpl(
     private val eventDataSource: EventDataSource.Remote
 ) : EventRepository {
-    override fun getEvents(page: Int, limit: Int): Flow<Result<List<Event>>> = flow {
-        emit(eventDataSource.getEvents(page, limit).map { it.toDomainModel() })
+
+    override fun getEvent(eventId: Int): Flow<Result<List<Event>>> = flow {
+        emit(eventDataSource.getEvent(eventId).map { it.toDomainModel() })
     }
+
+    override fun getEventList(offset: Int, limit: Int): Flow<Result<List<Event>>> = flow {
+        emit(eventDataSource.getEventList(offset, limit).map { it.toDomainModel() })
+    }
+
 }

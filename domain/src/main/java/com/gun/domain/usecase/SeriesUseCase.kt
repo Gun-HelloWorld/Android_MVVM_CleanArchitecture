@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 interface SeriesUseCase {
 
     interface GetSeriesUseCase {
-        operator fun invoke(page: Int, limit: Int): Flow<Result<List<Series>>>
+        operator fun invoke(offset: Int, limit: Int): Flow<Result<List<Series>>>
     }
 
 }

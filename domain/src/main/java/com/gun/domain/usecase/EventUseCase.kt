@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 interface EventUseCase {
 
     interface GetEventUseCase {
-        operator fun invoke(page: Int, limit: Int): Flow<Result<List<Event>>>
+        operator fun invoke(offset: Int, limit: Int): Flow<Result<List<Event>>>
     }
 
 }

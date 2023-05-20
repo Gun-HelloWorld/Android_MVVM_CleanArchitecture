@@ -10,7 +10,13 @@ import kotlinx.coroutines.flow.flow
 class CharacterRepositoryImpl(
     private val characterDataSource: CharacterDataSource.Remote
 ) : CharacterRepository {
-    override suspend fun getCharacters(page: Int, limit: Int): Flow<Result<List<Character>>> = flow {
-        emit(characterDataSource.getCharacters(page, limit).map { it.toDomainModel() })
+
+    override fun getCharacter(characterId: Int): Flow<Result<List<Character>>> = flow {
+        emit(characterDataSource.getCharacter(characterId).map { it.toDomainModel() })
     }
+
+    override fun getCharacterList(offset: Int, limit: Int): Flow<Result<List<Character>>> = flow {
+        emit(characterDataSource.getCharacterList(offset, limit).map { it.toDomainModel() })
+    }
+
 }

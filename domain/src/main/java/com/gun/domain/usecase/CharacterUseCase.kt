@@ -6,7 +6,7 @@ import com.gun.domain.model.Character
 interface CharacterUseCase {
 
     interface GetCharacterUseCase {
-        operator fun invoke(page: Int, limit: Int): Flow<Result<List<Character>>>
+        operator fun invoke(offset: Int, limit: Int): Flow<Result<List<Character>>>
     }
 
 }

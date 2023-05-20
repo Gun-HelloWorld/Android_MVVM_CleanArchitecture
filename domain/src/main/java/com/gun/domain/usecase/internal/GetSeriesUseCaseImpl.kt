@@ -13,13 +13,13 @@ class GetSeriesUseCaseImpl @Inject constructor(
     private val seriesRepository: SeriesRepository
 ) : SeriesUseCase.GetSeriesUseCase {
 
-    override fun invoke(page: Int, limit: Int): Flow<Result<List<Series>>> = flow {
+    override fun invoke(offset: Int, limit: Int): Flow<Result<List<Series>>> = flow {
         if (limit == 0) {
             emit(Result.failure(IllegalArgumentException()))
             return@flow
         }
 
-        seriesRepository.getSeries(page, limit)
+        seriesRepository.getSeriesList(offset, limit)
     }
 
 }

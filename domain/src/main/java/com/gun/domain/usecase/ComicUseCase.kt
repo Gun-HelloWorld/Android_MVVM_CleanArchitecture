@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 interface ComicUseCase {
 
     interface GetComicUseCase {
-        operator fun invoke(page: Int, limit: Int): Flow<Result<List<Comic>>>
+        operator fun invoke(offset: Int, limit: Int): Flow<Result<List<Comic>>>
     }
 
 }

@@ -13,13 +13,13 @@ class GetComicsUseCaseImpl @Inject constructor(
     private val comicRepository: ComicRepository
 ) : ComicUseCase.GetComicUseCase {
 
-    override fun invoke(page: Int, limit: Int): Flow<Result<List<Comic>>> = flow {
+    override fun invoke(offset: Int, limit: Int): Flow<Result<List<Comic>>> = flow {
         if (limit == 0) {
             emit(Result.failure(IllegalArgumentException()))
             return@flow
         }
 
-        comicRepository.getComics(page, limit)
+        comicRepository.getComicList(offset, limit)
     }
 
 }

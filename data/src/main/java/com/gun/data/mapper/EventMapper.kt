@@ -4,14 +4,6 @@ import com.gun.data.entity.event.EventDto
 import com.gun.domain.model.Event
 import com.gun.domain.model.SimpleInfo
 
-
-//EventModel : copyright, attributionText, id, title, description, start, end, thumbnailPath, thumbnailExtension
-//List<Creator>
-//List<Characters>
-//List<Story>
-//List<Comic>
-//List<Series>
-//detailUrl
 fun EventDto.toDomainModel(): List<Event> {
     return data.results.map { result ->
         Event(

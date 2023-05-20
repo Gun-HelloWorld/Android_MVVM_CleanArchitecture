@@ -10,7 +10,13 @@ import kotlinx.coroutines.flow.flow
 class ComicRepositoryImpl(
     private val comicDataSource: ComicDataSource.Remote
 ) : ComicRepository {
-    override fun getComics(page: Int, limit: Int): Flow<Result<List<Comic>>> = flow {
-        emit(comicDataSource.getComics(page, limit).map { it.toDomainModel() })
+
+    override fun getComic(comicId: Int): Flow<Result<List<Comic>>> = flow {
+        emit(comicDataSource.getComic(comicId).map { it.toDomainModel() })
     }
+
+    override fun getComicList(offset: Int, limit: Int): Flow<Result<List<Comic>>> = flow {
+        emit(comicDataSource.getComicList(offset, limit).map { it.toDomainModel() })
+    }
+
 }

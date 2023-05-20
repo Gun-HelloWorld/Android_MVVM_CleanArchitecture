@@ -4,14 +4,6 @@ import com.gun.data.entity.series.SeriesDto
 import com.gun.domain.model.Series
 import com.gun.domain.model.SimpleInfo
 
-
-//SeriesModel : copyright, attributionText, id, title, description, startYear, endYear, rating, thumbnailPath, thumbnailExtension
-//List<Creator>
-//List<Character>
-//List<Story>
-//List<Comic>
-//List<Event>
-//detailUrl
 fun SeriesDto.toDomainModel(): List<Series> {
     return data.results.map { result ->
         Series(

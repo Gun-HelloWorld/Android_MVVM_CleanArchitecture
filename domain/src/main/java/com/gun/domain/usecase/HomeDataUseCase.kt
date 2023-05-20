@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 interface HomeDataUseCase {
 
     interface GetHomeDataUseCase {
-        operator fun invoke(page: Int, limit: Int): Flow<Result<HomeList>>
+        operator fun invoke(offset: Int, limit: Int): Flow<Result<HomeList>>
     }
 
 }

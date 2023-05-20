@@ -10,7 +10,13 @@ import kotlinx.coroutines.flow.flow
 class CreatorRepositoryImpl(
     private val creatorDataSource: CreatorDataSource.Remote
 ) : CreatorRepository {
-    override fun getCreators(page: Int, limit: Int): Flow<Result<List<Creator>>> = flow {
-        emit(creatorDataSource.getCreators(page, limit).map { it.toDomainModel() })
+
+    override fun getCreator(creatorId: Int): Flow<Result<List<Creator>>> = flow {
+        emit(creatorDataSource.getCreator(creatorId).map { it.toDomainModel() })
     }
+
+    override fun getCreatorList(offset: Int, limit: Int): Flow<Result<List<Creator>>> = flow {
+        emit(creatorDataSource.getCreatorList(offset, limit).map { it.toDomainModel() })
+    }
+
 }

@@ -4,5 +4,6 @@ import com.gun.domain.model.Character
 import kotlinx.coroutines.flow.Flow
 
 interface CharacterRepository {
-    suspend fun getCharacters(page: Int, limit: Int): Flow<Result<List<Character>>>
+    fun getCharacter(characterId: Int): Flow<Result<List<Character>>>
+    fun getCharacterList(offset: Int, limit: Int): Flow<Result<List<Character>>>
 }

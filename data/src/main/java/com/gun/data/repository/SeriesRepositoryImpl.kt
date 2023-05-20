@@ -10,7 +10,13 @@ import kotlinx.coroutines.flow.flow
 class SeriesRepositoryImpl(
     private val seriesDataSource: SeriesDataSource.Remote
 ) : SeriesRepository {
-    override fun getSeries(page: Int, limit: Int): Flow<Result<List<Series>>> = flow {
-        emit(seriesDataSource.getSeries(page, limit).map { it.toDomainModel() })
+
+    override fun getSeries(seriesId: Int): Flow<Result<List<Series>>> = flow {
+        emit(seriesDataSource.getSeries(seriesId).map { it.toDomainModel() })
     }
+
+    override fun getSeriesList(offset: Int, limit: Int): Flow<Result<List<Series>>> = flow {
+        emit(seriesDataSource.getSeriesList(offset, limit).map { it.toDomainModel() })
+    }
+
 }

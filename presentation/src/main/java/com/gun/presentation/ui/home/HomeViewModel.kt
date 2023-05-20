@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-const val HOME_LIST_PAGE = 0
+const val HOME_LIST_OFFSET = 0
 const val HOME_LIST_LIMIT = 30
 const val HOME_BANNER_COUNT = 5
 
@@ -26,12 +26,12 @@ class HomeViewModel @Inject constructor(
     val homeUiStateFlow = _homeUiDataStateFlow.asStateFlow()
 
     init {
-        getHomeListData(HOME_LIST_PAGE, HOME_LIST_LIMIT)
+        getHomeListData(HOME_LIST_OFFSET, HOME_LIST_LIMIT)
     }
 
-    fun getHomeListData(page: Int, limit: Int) {
+    fun getHomeListData(offset: Int, limit: Int) {
         viewModelScope.launch {
-            getHomeListDataUseCase(page, limit)
+            getHomeListDataUseCase(offset, limit)
                 .onStart {
                     _loadingStateFlow.update { it.plus(1) }
                 }.onCompletion {

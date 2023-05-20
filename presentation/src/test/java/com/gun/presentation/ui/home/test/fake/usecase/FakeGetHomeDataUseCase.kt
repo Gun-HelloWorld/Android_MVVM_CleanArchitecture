@@ -12,7 +12,7 @@ class FakeGetHomeDataUseCase : HomeDataUseCase.GetHomeDataUseCase {
     var fakeEventList = mutableListOf<Event>()
     private var fakeSeriesList = mutableListOf<Series>()
 
-    override operator fun invoke(page: Int, limit: Int): Flow<Result<HomeList>> = flow {
+    override operator fun invoke(offset: Int, limit: Int): Flow<Result<HomeList>> = flow {
         if (limit == 0) {
             emit(Result.failure(IllegalArgumentException()))
             return@flow
@@ -31,10 +31,10 @@ class FakeGetHomeDataUseCase : HomeDataUseCase.GetHomeDataUseCase {
         )
     }
 
-    fun generateFakeCharacterList(page: Int, limit: Int): List<Character> {
+    fun generateFakeCharacterList(offset: Int, limit: Int): List<Character> {
         fakeCharacterList.clear()
 
-        for (i in page until limit) {
+        for (i in offset until limit) {
             fakeCharacterList.add(
                 Character(
                     id = i,
@@ -45,10 +45,34 @@ class FakeGetHomeDataUseCase : HomeDataUseCase.GetHomeDataUseCase {
                     detailUrl = "TestCharacterDetailUrl$i",
                     copyright = "TestCharacterCopyright$i",
                     attributionText = "TestCharacterAttributionText$i",
-                    comicInfoList = listOf(SimpleInfo("TestComicResourceUri$i","TestComicName$i", "")),
-                    seriesInfoList = listOf(SimpleInfo("TestSeriesResourceUri$i","TestSeriesName$i", "")),
-                    storyInfoList = listOf(SimpleInfo("TestStoryResourceUri$i","TestStoryName$i", "")),
-                    eventInfoList = listOf(SimpleInfo("TestEventResourceUri$i","TestEventName$i", "")),
+                    comicInfoList = listOf(
+                        SimpleInfo(
+                            "TestComicResourceUri$i",
+                            "TestComicName$i",
+                            ""
+                        )
+                    ),
+                    seriesInfoList = listOf(
+                        SimpleInfo(
+                            "TestSeriesResourceUri$i",
+                            "TestSeriesName$i",
+                            ""
+                        )
+                    ),
+                    storyInfoList = listOf(
+                        SimpleInfo(
+                            "TestStoryResourceUri$i",
+                            "TestStoryName$i",
+                            ""
+                        )
+                    ),
+                    eventInfoList = listOf(
+                        SimpleInfo(
+                            "TestEventResourceUri$i",
+                            "TestEventName$i",
+                            ""
+                        )
+                    ),
                 )
             )
         }
@@ -56,10 +80,10 @@ class FakeGetHomeDataUseCase : HomeDataUseCase.GetHomeDataUseCase {
         return fakeCharacterList
     }
 
-    fun generateFakeComicList(page: Int, limit: Int): List<Comic> {
+    fun generateFakeComicList(offset: Int, limit: Int): List<Comic> {
         fakeComicList.clear()
 
-        for (i in page until limit) {
+        for (i in offset until limit) {
             fakeComicList.add(
                 Comic(
                     id = i,
@@ -71,11 +95,41 @@ class FakeGetHomeDataUseCase : HomeDataUseCase.GetHomeDataUseCase {
                     detailUrl = "TestComicDetailUrl$i",
                     copyright = "TestComicCopyright$i",
                     attributionText = "TestComicAttributionText$i",
-                    seriesInfoList = listOf(SimpleInfo("TestSeriesResourceUri$i","TestSeriesName$i", "")),
-                    creatorInfoList = listOf(SimpleInfo("TestCreatorResourceUri$i","TestCreatorName$i", "TestCreatorRole$i")),
-                    characterInfoList = listOf(SimpleInfo("TestCharacterResourceUri$i","TestCharacterName$i", "")),
-                    storyInfoList = listOf(SimpleInfo("TestStoryResourceUri$i","TestStoryName$i", "")),
-                    eventInfoList = listOf(SimpleInfo("TestEventResourceUri$i","TestEventName$i", ""))
+                    seriesInfoList = listOf(
+                        SimpleInfo(
+                            "TestSeriesResourceUri$i",
+                            "TestSeriesName$i",
+                            ""
+                        )
+                    ),
+                    creatorInfoList = listOf(
+                        SimpleInfo(
+                            "TestCreatorResourceUri$i",
+                            "TestCreatorName$i",
+                            "TestCreatorRole$i"
+                        )
+                    ),
+                    characterInfoList = listOf(
+                        SimpleInfo(
+                            "TestCharacterResourceUri$i",
+                            "TestCharacterName$i",
+                            ""
+                        )
+                    ),
+                    storyInfoList = listOf(
+                        SimpleInfo(
+                            "TestStoryResourceUri$i",
+                            "TestStoryName$i",
+                            ""
+                        )
+                    ),
+                    eventInfoList = listOf(
+                        SimpleInfo(
+                            "TestEventResourceUri$i",
+                            "TestEventName$i",
+                            ""
+                        )
+                    )
                 )
             )
         }
@@ -83,10 +137,10 @@ class FakeGetHomeDataUseCase : HomeDataUseCase.GetHomeDataUseCase {
         return fakeComicList
     }
 
-    fun generateFakeCreatorList(page: Int, limit: Int): List<Creator> {
+    fun generateFakeCreatorList(offset: Int, limit: Int): List<Creator> {
         fakeCreatorList.clear()
 
-        for (i in page until limit) {
+        for (i in offset until limit) {
             fakeCreatorList.add(
                 Creator(
                     id = i,
@@ -96,10 +150,34 @@ class FakeGetHomeDataUseCase : HomeDataUseCase.GetHomeDataUseCase {
                     detailUrl = "TestCreatorDetailUrl$i",
                     copyright = "TestCreatorCopyright$i",
                     attributionText = "TestCreatorAttributionText$i",
-                    comicInfoList = listOf(SimpleInfo("TestComicResourceUri$i","TestComicName$i", "")),
-                    seriesInfoList = listOf(SimpleInfo("TestSeriesResourceUri$i","TestSeriesName$i", "")),
-                    storyInfoList = listOf(SimpleInfo("TestStoryResourceUri$i","TestStoryName$i", "")),
-                    eventInfoList = listOf(SimpleInfo("TestEventResourceUri$i","TestEventName$i", ""))
+                    comicInfoList = listOf(
+                        SimpleInfo(
+                            "TestComicResourceUri$i",
+                            "TestComicName$i",
+                            ""
+                        )
+                    ),
+                    seriesInfoList = listOf(
+                        SimpleInfo(
+                            "TestSeriesResourceUri$i",
+                            "TestSeriesName$i",
+                            ""
+                        )
+                    ),
+                    storyInfoList = listOf(
+                        SimpleInfo(
+                            "TestStoryResourceUri$i",
+                            "TestStoryName$i",
+                            ""
+                        )
+                    ),
+                    eventInfoList = listOf(
+                        SimpleInfo(
+                            "TestEventResourceUri$i",
+                            "TestEventName$i",
+                            ""
+                        )
+                    )
                 )
             )
         }
@@ -107,10 +185,10 @@ class FakeGetHomeDataUseCase : HomeDataUseCase.GetHomeDataUseCase {
         return fakeCreatorList
     }
 
-    fun generateFakeEventList(page: Int, limit: Int): List<Event> {
+    fun generateFakeEventList(offset: Int, limit: Int): List<Event> {
         fakeEventList.clear()
 
-        for (i in page until limit) {
+        for (i in offset until limit) {
             fakeEventList.add(
                 Event(
                     id = i,
@@ -123,11 +201,41 @@ class FakeGetHomeDataUseCase : HomeDataUseCase.GetHomeDataUseCase {
                     detailUrl = "TestEventDetailUrl$i",
                     copyright = "TestEventCopyright$i",
                     attributionText = "TestEventAttributionText$i",
-                    creatorInfoList = listOf(SimpleInfo("TestCreatorResourceUri$i","TestCreatorName$i", "TestCreatorRole$i")),
-                    characterInfoList = listOf(SimpleInfo("TestCharacterResourceUri$i","TestCharacterName$i", "")),
-                    storyInfoList = listOf(SimpleInfo("TestStoryResourceUri$i","TestStoryName$i", "")),
-                    comicInfoList = listOf(SimpleInfo("TestComicResourceUri$i","TestComicName$i", "")),
-                    seriesInfoList = listOf(SimpleInfo("TestSeriesResourceUri$i","TestSeriesName$i", ""))
+                    creatorInfoList = listOf(
+                        SimpleInfo(
+                            "TestCreatorResourceUri$i",
+                            "TestCreatorName$i",
+                            "TestCreatorRole$i"
+                        )
+                    ),
+                    characterInfoList = listOf(
+                        SimpleInfo(
+                            "TestCharacterResourceUri$i",
+                            "TestCharacterName$i",
+                            ""
+                        )
+                    ),
+                    storyInfoList = listOf(
+                        SimpleInfo(
+                            "TestStoryResourceUri$i",
+                            "TestStoryName$i",
+                            ""
+                        )
+                    ),
+                    comicInfoList = listOf(
+                        SimpleInfo(
+                            "TestComicResourceUri$i",
+                            "TestComicName$i",
+                            ""
+                        )
+                    ),
+                    seriesInfoList = listOf(
+                        SimpleInfo(
+                            "TestSeriesResourceUri$i",
+                            "TestSeriesName$i",
+                            ""
+                        )
+                    )
                 )
             )
         }
@@ -135,10 +243,10 @@ class FakeGetHomeDataUseCase : HomeDataUseCase.GetHomeDataUseCase {
         return fakeEventList
     }
 
-    fun generateFakeSeriesList(page: Int, limit: Int): List<Series> {
+    fun generateFakeSeriesList(offset: Int, limit: Int): List<Series> {
         fakeSeriesList.clear()
 
-        for (i in page until limit) {
+        for (i in offset until limit) {
             fakeSeriesList.add(
                 Series(
                     id = i,
@@ -152,11 +260,41 @@ class FakeGetHomeDataUseCase : HomeDataUseCase.GetHomeDataUseCase {
                     detailUrl = "TestSeriesDetailUrl$i",
                     copyright = "TestSeriesCopyright$i",
                     attributionText = "TestSeriesAttributionText$i",
-                    creatorInfoList = listOf(SimpleInfo("TestCreatorResourceUri$i","TestCreatorName$i", "TestCreatorRole$i")),
-                    characterInfoList = listOf(SimpleInfo("TestCharacterResourceUri$i","TestCharacterName$i", "")),
-                    storyInfoList = listOf(SimpleInfo("TestStoryResourceUri$i","TestStoryName$i", "")),
-                    comicInfoList = listOf(SimpleInfo("TestComicResourceUri$i","TestComicName$i", "")),
-                    eventInfoList = listOf(SimpleInfo("TestEventResourceUri$i","TestEventName$i", ""))
+                    creatorInfoList = listOf(
+                        SimpleInfo(
+                            "TestCreatorResourceUri$i",
+                            "TestCreatorName$i",
+                            "TestCreatorRole$i"
+                        )
+                    ),
+                    characterInfoList = listOf(
+                        SimpleInfo(
+                            "TestCharacterResourceUri$i",
+                            "TestCharacterName$i",
+                            ""
+                        )
+                    ),
+                    storyInfoList = listOf(
+                        SimpleInfo(
+                            "TestStoryResourceUri$i",
+                            "TestStoryName$i",
+                            ""
+                        )
+                    ),
+                    comicInfoList = listOf(
+                        SimpleInfo(
+                            "TestComicResourceUri$i",
+                            "TestComicName$i",
+                            ""
+                        )
+                    ),
+                    eventInfoList = listOf(
+                        SimpleInfo(
+                            "TestEventResourceUri$i",
+                            "TestEventName$i",
+                            ""
+                        )
+                    )
                 )
             )
         }
