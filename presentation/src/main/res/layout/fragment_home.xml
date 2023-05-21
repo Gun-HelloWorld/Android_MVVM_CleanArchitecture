@@ -80,6 +80,12 @@
 
                 </com.facebook.shimmer.ShimmerFrameLayout>
 
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/group_home_contents"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:constraint_referenced_ids="view_pager, dots_indicator, recycler_view" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>

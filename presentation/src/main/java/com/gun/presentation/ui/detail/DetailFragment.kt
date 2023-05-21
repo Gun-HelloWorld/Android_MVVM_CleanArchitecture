@@ -68,6 +68,7 @@ class DetailFragment : BaseFragment() {
                             is DetailUiModelState.ShowData -> {
                                 binding.data = it.data
                                 binding.viewDetailItem.setDetailUiModel(it.data)
+                                setFadeAnimation(binding.root, *binding.groupDetailContents.referencedIds)
                             }
                         }
                     }

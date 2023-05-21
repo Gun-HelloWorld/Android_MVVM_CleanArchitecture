@@ -1,5 +1,7 @@
 package com.gun.presentation.common
 
+import android.view.View
+import android.view.animation.AlphaAnimation
 import androidx.fragment.app.Fragment
 import com.gun.presentation.ui.main.MainActivity
 
@@ -9,4 +11,12 @@ abstract class BaseFragment: Fragment() {
         (requireActivity() as MainActivity).setWindowLayoutNoLimit(needExpand)
     }
 
+    fun setFadeAnimation(rootView: View, vararg viewIds: Int) {
+        val anim = AlphaAnimation(0.0f, 1.0f)
+        anim.duration = 1000L
+
+        for (viewId in viewIds) {
+            rootView.findViewById<View>(viewId).startAnimation(anim)
+        }
+    }
 }

@@ -63,6 +63,7 @@ class HomeFragment : BaseFragment(), ItemClickListener {
                             is HomeUiModelState.ShowData -> {
                                 setHomeBannerViewPager(it.data)
                                 setHomeListRecyclerView(it.data)
+                                setFadeAnimation(binding.root, *binding.groupHomeContents.referencedIds)
                             }
                         }
                     }
