@@ -5,11 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import com.gun.mvvm_cleanarchitecture.R
 import com.gun.mvvm_cleanarchitecture.databinding.FragmentFavoriteBinding
+import com.gun.presentation.common.BaseFragment
 
-class FavoriteFragment : Fragment() {
+class FavoriteFragment : BaseFragment() {
 
     private lateinit var binding: FragmentFavoriteBinding
 

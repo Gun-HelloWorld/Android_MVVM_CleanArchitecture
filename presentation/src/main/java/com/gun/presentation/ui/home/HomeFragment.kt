@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -14,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.gun.mvvm_cleanarchitecture.R
 import com.gun.mvvm_cleanarchitecture.databinding.FragmentHomeBinding
+import com.gun.presentation.common.BaseFragment
 import com.gun.presentation.ui.home.banner.HomeBannerAdapter
 import com.gun.presentation.ui.home.list.HomeMainRecyclerAdapter
 import com.gun.presentation.ui.home.model.HomeListItem
@@ -23,7 +23,7 @@ import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class HomeFragment : Fragment(), ItemClickListener {
+class HomeFragment : BaseFragment(), ItemClickListener {
 
     private lateinit var binding: FragmentHomeBinding
 
