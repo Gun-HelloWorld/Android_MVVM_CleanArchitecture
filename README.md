@@ -7,9 +7,13 @@ MVVM & Clean Architecture 패턴을 적용하고 Marvel의 Public API를 통해 
 ## 화면
 <table>  
   <th>Home</th>
+  <th>Detail</th>
   <tr>
     <td>
-      <img src="https://github.com/Gun-HelloWorld/Android_MVVM_CleanArchitecture/assets/129313980/76e9aa27-1ab7-476f-842f-4e62aece9abf" width="250" height="555"/>
+      <img src="https://github.com/Gun-HelloWorld/Android_MVVM_CleanArchitecture/assets/129313980/d15f3b15-b53a-41a9-a42e-da28d48b1b90" width="250" height="555"/>
+    </td>
+    <td>
+      <img src="https://github.com/Gun-HelloWorld/Android_MVVM_CleanArchitecture/assets/129313980/37fcceb6-574a-455f-89a7-739554b1b794" width="250" height="555"/>
     </td>
   </tr>
 </table>
@@ -18,7 +22,7 @@ MVVM & Clean Architecture 패턴을 적용하고 Marvel의 Public API를 통해 
 
 ## 적용 범위
 - [x] 홈 화면 - 상단 로고 애니메이션, 배너, 카테고리별 아이템 표시
-- [ ] 아이템 상세 화면 - 각 콘텐츠 상세화면 표시
+- [x] 아이템 상세 화면 - 각 콘텐츠 상세화면 표시
 - [ ] 카테고리 상세 화면 - 각 카테고리 전체 조회 상세화면 표시 (페이징 적용)
 - [ ] 검색 화면 - 검색 결과 표시 (페이징 적용)
 - [ ] 즐겨찾기 화면 - 로컬 기반 즐겨찾기 컬렉션 표시
