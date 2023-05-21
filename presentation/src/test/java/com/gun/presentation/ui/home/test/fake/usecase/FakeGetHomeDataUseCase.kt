@@ -1,11 +1,17 @@
 package com.gun.presentation.ui.home.test.fake.usecase
 
-import com.gun.domain.model.*
-import com.gun.domain.usecase.HomeDataUseCase
+import com.gun.domain.model.Character
+import com.gun.domain.model.Comic
+import com.gun.domain.model.SimpleInfo
+import com.gun.domain.model.Creator
+import com.gun.domain.model.Event
+import com.gun.domain.model.Series
+import com.gun.domain.model.home.HomeList
+import com.gun.domain.usecase.GetDataUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-class FakeGetHomeDataUseCase : HomeDataUseCase.GetHomeDataUseCase {
+class FakeGetHomeDataUseCase : GetDataUseCase.GetHomeDataUseCase {
     private var fakeCharacterList = mutableListOf<Character>()
     private var fakeComicList = mutableListOf<Comic>()
     private var fakeCreatorList = mutableListOf<Creator>()

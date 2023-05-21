@@ -6,5 +6,13 @@
     <string name="label_creator">Creator</string>
     <string name="label_event">Event</string>
     <string name="label_series">Series</string>
+
+    <string name="label_characters">Characters</string>
+    <string name="label_comics">Comics</string>
+    <string name="label_creators">Creators</string>
+    <string name="label_events">Events</string>
+    <string name="label_stories">Stories</string>
+
     <string name="label_data_provided_by_marvel">Data provided by Marvel. © 2014 Marvel</string>
+    <string name="label_more_information">More Information</string>
 </resources>

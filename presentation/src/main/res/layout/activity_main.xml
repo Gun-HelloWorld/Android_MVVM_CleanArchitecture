@@ -26,6 +26,7 @@
             app:itemIconTint="@drawable/selector_bottom_menu_color"
             app:itemTextColor="@drawable/selector_bottom_menu_color"
             app:labelVisibilityMode="labeled"
+            app:elevation="0dp"
             app:menu="@menu/bottom_nav_menu"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

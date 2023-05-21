@@ -10,19 +10,20 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.gun.mvvm_cleanarchitecture.R
 import com.gun.mvvm_cleanarchitecture.databinding.FragmentHomeBinding
 import com.gun.presentation.ui.home.banner.HomeBannerAdapter
-import com.gun.presentation.ui.home.banner.HomeBannerFragment
 import com.gun.presentation.ui.home.list.HomeMainRecyclerAdapter
+import com.gun.presentation.ui.home.model.HomeListItem
 import com.gun.presentation.ui.home.model.HomeUiModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), ItemClickListener {
 
     private lateinit var binding: FragmentHomeBinding
 
@@ -43,7 +44,7 @@ class HomeFragment : Fragment() {
 
         with(binding) {
             lifecycleOwner = viewLifecycleOwner
-            viewPagerAdapter = HomeBannerAdapter(childFragmentManager, lifecycle)
+            viewPagerAdapter = HomeBannerAdapter(childFragmentManager, lifecycle, this@HomeFragment)
             viewPager.adapter = viewPagerAdapter
 
             dotsIndicator.attachTo(binding.viewPager)
@@ -89,19 +90,23 @@ class HomeFragment : Fragment() {
     }
 
     private fun setHomeBannerViewPager(data: HomeUiModel) {
-        val bannerFragmentList = homeViewModel.getFilterHomeBannerModel(data)
-            ?.map { HomeBannerFragment.newInstance(it) }
+        val bannerList = homeViewModel.getFilterHomeBannerModel(data)
 
-        if (bannerFragmentList.isNullOrEmpty()) {
+        if (bannerList.isNullOrEmpty()) {
             binding.viewPager.visibility = View.GONE
             binding.dotsIndicator.visibility = View.GONE
             return
         }
 
-        viewPagerAdapter.replaceFragmentList(bannerFragmentList)
+        viewPagerAdapter.replaceData(bannerList)
     }
 
     private fun setHomeListRecyclerView(data: HomeUiModel) {
-        binding.recyclerView.adapter = HomeMainRecyclerAdapter(requireContext(), data)
+        binding.recyclerView.adapter = HomeMainRecyclerAdapter(requireContext(), data, this)
+    }
+
+    override fun onClickItem(data: HomeListItem) {
+        val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(data)
+        findNavController().navigate(action)
     }
 }

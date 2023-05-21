@@ -2,7 +2,7 @@ package com.gun.presentation.ui.home
 
 import app.cash.turbine.test
 import com.gun.domain.model.Event
-import com.gun.domain.model.HomeList
+import com.gun.domain.model.home.HomeList
 import com.gun.presentation.ui.home.model.mapper.toUiModel
 import com.gun.presentation.ui.home.test.MainDispatcherRule
 import com.gun.presentation.ui.home.test.fake.usecase.FakeGetHomeDataUseCase

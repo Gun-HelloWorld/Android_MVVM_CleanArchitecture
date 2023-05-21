@@ -6,6 +6,12 @@ import com.gun.domain.common.Constants.TYPE_COMIC
 import com.gun.domain.common.Constants.TYPE_CREATOR
 import com.gun.domain.common.Constants.TYPE_EVENT
 import com.gun.domain.common.Constants.TYPE_SERIES
+import com.gun.domain.common.ContentType
+import com.gun.domain.common.CharacterType
+import com.gun.domain.common.ComicType
+import com.gun.domain.common.CreatorType
+import com.gun.domain.common.EventType
+import com.gun.domain.common.SeriesType
 import kotlinx.parcelize.Parcelize
 
 private const val HOME_LIST_ITEM_IMAGE_SIZE = "portrait_xlarge"
@@ -21,7 +27,7 @@ data class HomeListItem (
     ) : Parcelable {
 
     // Parcelize 에서 sealed 클래스 미지원으로 속성을 감추고 메서드로 대체
-    fun getHomeUiModelType(): HomeUiModelType {
+    fun getContentType(): ContentType {
         return when(type) {
             TYPE_CHARACTER -> CharacterType
             TYPE_COMIC -> ComicType
@@ -41,9 +47,9 @@ data class HomeListItem (
     }
 
     fun isThumbnailAvailable(): Boolean {
-        return !thumbnailPath.isNullOrEmpty() &&
+        return thumbnailPath.isNotEmpty() &&
                 !thumbnailPath.contains("image_not_available") &&
-                !thumbnailExtension.isNullOrEmpty()
+                thumbnailExtension.isNotEmpty()
     }
 
     companion object {

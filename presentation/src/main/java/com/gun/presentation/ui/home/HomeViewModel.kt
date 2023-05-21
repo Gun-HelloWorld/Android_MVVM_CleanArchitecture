@@ -1,9 +1,9 @@
 package com.gun.presentation.ui.home
 
 import androidx.lifecycle.viewModelScope
-import com.gun.domain.usecase.HomeDataUseCase
+import com.gun.domain.common.EventType
+import com.gun.domain.usecase.GetDataUseCase
 import com.gun.presentation.common.BaseViewModel
-import com.gun.presentation.ui.home.model.EventType
 import com.gun.presentation.ui.home.model.HomeListItem
 import com.gun.presentation.ui.home.model.HomeUiModel
 import com.gun.presentation.ui.home.model.mapper.toUiModel
@@ -18,7 +18,7 @@ const val HOME_BANNER_COUNT = 5
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getHomeListDataUseCase: HomeDataUseCase.GetHomeDataUseCase,
+    private val getHomeListDataUseCase: GetDataUseCase.GetHomeDataUseCase,
 ) : BaseViewModel() {
 
     private val _homeUiDataStateFlow: MutableStateFlow<HomeUiModelState> =

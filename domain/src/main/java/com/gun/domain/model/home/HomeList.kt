@@ -1,4 +1,6 @@
-package com.gun.domain.model
+package com.gun.domain.model.home
+
+import com.gun.domain.model.*
 
 data class HomeList(
     val characterList: List<Character>?,

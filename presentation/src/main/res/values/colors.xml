@@ -8,7 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="color_common_error_text_red">#FF5A5A</color>
+    <color name="color_common_highlight">#FF5A5A</color>
     <color name="color_common_divider_grey">#5D5D5D</color>
     <color name="color_common_normal_text_white">#C4C4C5</color>
     <color name="color_common_bg_light">#C4C4C5</color>
@@ -21,4 +21,6 @@
     <color name="color_indicator_default">#C4C4C5</color>
 
     <color name="color_card_view_shadow_color">#EAEAEA</color>
+
+    <color name="color_detail_thumbnail_dim">#4d000000</color>
 </resources>

@@ -11,6 +11,8 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/color_common_transparent</item>
+        <!-- Navigation bar (Bottom Soft Key) color. -->
+        <item name="android:navigationBarColor">@color/color_common_bg_default</item>
 
         <!-- Activity, Fragment, BottomNavigation -->
         <item name="android:windowBackground">@color/color_common_bg_default</item>

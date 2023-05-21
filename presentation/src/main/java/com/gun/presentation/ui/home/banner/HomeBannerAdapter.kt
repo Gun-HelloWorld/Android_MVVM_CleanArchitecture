@@ -6,14 +6,17 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.adapter.FragmentViewHolder
-import com.google.android.material.snackbar.Snackbar
+import com.gun.presentation.ui.home.ItemClickListener
+import com.gun.presentation.ui.home.model.HomeListItem
 
 
 class HomeBannerAdapter(
     fragmentManager: FragmentManager,
-    lifecycle: Lifecycle
+    lifecycle: Lifecycle,
+    private val itemClickListener: ItemClickListener
 ) : FragmentStateAdapter(fragmentManager, lifecycle) {
     private val fragmentList: MutableList<Fragment> = mutableListOf()
+    private val dataList: MutableList<HomeListItem> = mutableListOf()
 
     override fun getItemCount(): Int {
         return fragmentList.size
@@ -31,17 +34,18 @@ class HomeBannerAdapter(
         super.onBindViewHolder(holder, position, payloads)
 
         holder.itemView.setOnClickListener {
-            Snackbar.make(it,"준비중", Snackbar.LENGTH_LONG).show()
+            itemClickListener.onClickItem((dataList[holder.adapterPosition]))
         }
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun replaceFragmentList(fragmentList: List<Fragment>?) {
+    fun replaceData(dataList: List<HomeListItem>) {
+        val bannerFragmentList = dataList.map { HomeBannerFragment.newInstance(it) }
         this.fragmentList.clear()
+        this.fragmentList.addAll(bannerFragmentList)
 
-        if (!fragmentList.isNullOrEmpty()) {
-            this.fragmentList.addAll(fragmentList)
-        }
+        this.dataList.clear()
+        this.dataList.addAll(dataList)
 
         notifyDataSetChanged()
     }

@@ -12,7 +12,10 @@ import com.bumptech.glide.module.AppGlideModule
 class GlideAppModule : AppGlideModule()
 
 @BindingAdapter("imageUrl", "imageError")
-fun loadImage(imageView: ImageView, url: String, error: Drawable) {
+fun loadImage(imageView: ImageView, url: String?, error: Drawable) {
+
+    if (url.isNullOrEmpty()) return
+
     Glide.with(imageView.context)
         .load(url)
         .sizeMultiplier(0.5f)

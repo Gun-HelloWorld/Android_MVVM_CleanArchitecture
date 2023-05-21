@@ -2,14 +2,15 @@ package com.gun.presentation.ui.home.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.google.android.material.snackbar.Snackbar
 import com.gun.mvvm_cleanarchitecture.databinding.HolderHomeListItemBinding
 import com.gun.presentation.common.BaseListAdapter
 import com.gun.presentation.common.BaseViewHolder
+import com.gun.presentation.ui.home.ItemClickListener
 import com.gun.presentation.ui.home.model.HomeListItem
 
-class HomeSubRecyclerAdapter :
-    BaseListAdapter<HomeListItem, HomeSubRecyclerAdapter.ViewHolder>() {
+class HomeSubRecyclerAdapter(
+    private val itemClickListener: ItemClickListener
+) : BaseListAdapter<HomeListItem, HomeSubRecyclerAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = HolderHomeListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -26,7 +27,7 @@ class HomeSubRecyclerAdapter :
             binding.data = data
 
             itemView.setOnClickListener {
-                Snackbar.make(it, "준비중", Snackbar.LENGTH_LONG).show()
+                itemClickListener.onClickItem(data)
             }
         }
     }

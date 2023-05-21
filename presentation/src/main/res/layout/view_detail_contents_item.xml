@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.gun.presentation.ui.detail.DetailFragment">
+
+    <LinearLayout
+        style="@style/Base.Size.Match_Wrap"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical" >
+
+        <View
+            style="@style/View_Divider_Style"
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"/>
+
+        <TextView
+            android:id="@+id/tv_label"
+            style="@style/Base.TextView.Size.Wrap_Wrap"
+            android:textColor="@color/color_common_highlight"
+            android:autoSizeMinTextSize="9dp"
+            android:autoSizeTextType="uniform"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            tools:text="* Title"/>
+
+        <TextView
+            android:id="@+id/tv_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="13dp"
+            android:textColor="@color/color_common_normal_text_white"
+            tools:text="2004-07-28"/>
+    </LinearLayout>
+
+</layout>

@@ -1,8 +1,12 @@
-package com.gun.domain.usecase.internal
+package com.gun.domain.usecase
 
-import com.gun.domain.model.*
+import com.gun.domain.model.Character
+import com.gun.domain.model.Comic
+import com.gun.domain.model.Creator
+import com.gun.domain.model.Event
+import com.gun.domain.model.Series
+import com.gun.domain.model.home.HomeList
 import com.gun.domain.repository.*
-import com.gun.domain.usecase.HomeDataUseCase
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
@@ -12,7 +16,7 @@ class GetHomeDataUseCaseImpl @Inject constructor(
     private val creatorRepository: CreatorRepository,
     private val eventRepository: EventRepository,
     private val seriesRepository: SeriesRepository
-) : HomeDataUseCase.GetHomeDataUseCase {
+) : GetDataUseCase.GetHomeDataUseCase {
 
     override fun invoke(offset: Int, limit: Int): Flow<Result<HomeList>> = flow {
         if (limit == 0) {

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.gun.presentation.ui.detail.DetailFragment">
+
+    <data>
+        <variable
+            name="data"
+            type="com.gun.domain.model.detail.ContentDetail" />
+    </data>
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/motion_layout"
+        style="@style/Base.Size.Match_Match"
+        app:layoutDescription="@xml/fragment_detail_scene">
+
+        <ImageView
+            android:id="@+id/iv_background"
+            style="@style/ImageView_Detail_Thumbnail_Style"
+            tools:src="@drawable/test_thumbnail_portrait_xlarge"
+            app:tint="@color/color_detail_thumbnail_dim"
+            app:imageUrl="@{data.thumbnailUrl}"
+            app:imageError="@{@drawable/ic_error_banner}"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintDimensionRatio="H,4:6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <View
+            android:id="@+id/view_gradient"
+            style="@style/View_Detail_Thumbnail_Gradient"
+            app:layout_constraintStart_toStartOf="@id/iv_background"
+            app:layout_constraintEnd_toEndOf="@id/iv_background"
+            app:layout_constraintTop_toTopOf="@id/iv_background"
+            app:layout_constraintBottom_toBottomOf="@id/iv_background"/>
+
+        <Button
+            android:id="@+id/btn_more_info"
+            style="@style/Button_Detail_More_Style"
+            android:text="@string/label_more_information"
+            app:layout_constraintBottom_toTopOf="@id/guide_line_desc_start"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scroll_view"
+            style="@style/NestedScrollView_Detail_Contents_Style"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guide_line_desc_start"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <com.gun.presentation.ui.detail.DetailItemView
+                android:id="@+id/view_detail_item"
+                style="@style/Base.Size.Match_Wrap"/>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_view_container"
+            style="@style/Base.Size.0_0"
+            app:shimmer_auto_start="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <include layout="@layout/layout_detail_shimmer" />
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_line_desc_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.6"/>
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_detail_contents"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="iv_background, btn_more_info, scroll_view"/>
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+
+</layout>

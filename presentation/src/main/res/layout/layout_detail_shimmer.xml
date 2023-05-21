@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <View
+            android:id="@+id/iv_background"
+            style="@style/ImageView_Detail_Thumbnail_Style"
+            android:background="@color/color_common_shimmer_effect_bg"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintDimensionRatio="H,4:6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <View
+            android:id="@+id/view_gradient"
+            style="@style/View_Detail_Thumbnail_Gradient"
+            app:layout_constraintBottom_toBottomOf="@id/iv_background"
+            app:layout_constraintEnd_toEndOf="@id/iv_background"
+            app:layout_constraintStart_toStartOf="@id/iv_background"
+            app:layout_constraintTop_toTopOf="@id/iv_background"/>
+
+        <View
+            android:id="@+id/btn_more_info"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:background="@color/color_common_shimmer_effect_bg"
+            app:layout_constraintBottom_toTopOf="@id/guide_line_desc_start"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <LinearLayout
+            android:id="@+id/scroll_view"
+            style="@style/NestedScrollView_Detail_Contents_Style"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guide_line_desc_start"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <View
+                android:id="@+id/view_shimmer_title"
+                android:layout_width="250dp"
+                android:layout_height="30dp"
+                android:background="@color/color_common_shimmer_effect_bg" />
+
+            <View
+                android:id="@+id/view_shimmer_licence"
+                android:layout_width="300dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/color_common_shimmer_effect_bg" />
+
+            <View
+                android:id="@+id/view_shimmer_desc"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="30dp"
+                android:background="@color/color_common_shimmer_effect_bg" />
+
+            <View
+                android:id="@+id/view_shimmer_contents"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/color_common_shimmer_effect_bg" />
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_line_desc_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.6" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

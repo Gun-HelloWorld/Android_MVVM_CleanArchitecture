@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetStart="@id/motion_start"
+        motion:constraintSetEnd="@+id/motion_end">
+
+        <OnSwipe
+            motion:touchAnchorId="@id/scroll_view"
+            motion:dragDirection="dragUp"/>
+    </Transition>
+
+    <!-- Begin (Loading State) -->
+    <ConstraintSet android:id="@+id/motion_start_loading">
+
+        <Constraint
+            android:id="@+id/btn_more_info"
+            android:visibility="gone"/>
+
+    </ConstraintSet>
+
+    <!-- Begin (Loading Finish State) -->
+    <ConstraintSet android:id="@+id/motion_start">
+
+        <Constraint android:id="@+id/guide_line_desc_start" />
+        <Constraint android:id="@+id/group_detail_contents" />
+
+        <Constraint
+            android:id="@+id/shimmer_view_container"
+            android:visibility="gone"/>
+
+        <Constraint
+            android:id="@+id/iv_background"
+            android:alpha="1"
+            android:scaleX="1"
+            android:scaleY="1"
+            motion:layout_constraintVertical_bias="0"
+            motion:layout_constraintDimensionRatio="H,4:6"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"/>
+
+        <Constraint
+            android:id="@id/view_gradient"
+            android:alpha="1"
+            android:scaleX="1"
+            android:scaleY="1"
+            motion:layout_constraintStart_toStartOf="@id/iv_background"
+            motion:layout_constraintEnd_toEndOf="@id/iv_background"
+            motion:layout_constraintTop_toTopOf="@id/iv_background"
+            motion:layout_constraintBottom_toBottomOf="@id/iv_background"/>
+
+        <Constraint
+            android:id="@+id/scroll_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="0dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintTop_toBottomOf="@id/guide_line_desc_start"
+            motion:layout_constraintBottom_toBottomOf="parent"/>
+
+        <Constraint
+            android:id="@+id/btn_more_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:alpha="1"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintBottom_toTopOf="@id/guide_line_desc_start"/>
+    </ConstraintSet>
+
+    <!-- End -->
+    <ConstraintSet android:id="@+id/motion_end">
+
+        <Constraint android:id="@id/guide_line_desc_start"/>
+        <Constraint android:id="@+id/group_detail_contents" />
+
+        <Constraint
+            android:id="@+id/shimmer_view_container"
+            android:visibility="gone"/>
+
+        <Constraint
+            android:id="@+id/iv_background"
+            android:alpha="0"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            motion:layout_constraintVertical_bias="0"
+            motion:layout_constraintDimensionRatio="H,4:6"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"/>
+
+        <Constraint
+            android:id="@id/view_gradient"
+            android:alpha="1"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            motion:layout_constraintStart_toStartOf="@id/iv_background"
+            motion:layout_constraintEnd_toEndOf="@id/iv_background"
+            motion:layout_constraintTop_toTopOf="@id/iv_background"
+            motion:layout_constraintBottom_toBottomOf="@id/iv_background"/>
+
+        <Constraint
+            android:id="@+id/scroll_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="30dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent" />
+
+        <Constraint
+            android:id="@+id/btn_more_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:alpha="0"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintBottom_toTopOf="@id/scroll_view"/>
+    </ConstraintSet>
+</MotionScene>

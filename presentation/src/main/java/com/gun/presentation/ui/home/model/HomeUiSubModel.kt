@@ -1,11 +1,13 @@
 package com.gun.presentation.ui.home.model
 
+import com.gun.domain.common.ContentType
+
 data class HomeUiSubModel(
-    val homeUiModelType: HomeUiModelType,
+    val contentType: ContentType,
     var homeListItem: List<HomeListItem>?,
 ) {
     fun filterThumbnailAvailable() = HomeUiSubModel(
-            homeUiModelType,
+            contentType,
             homeListItem?.filter { it.isThumbnailAvailable() }
     )
 

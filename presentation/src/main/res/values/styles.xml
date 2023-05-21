@@ -63,6 +63,11 @@
         <item name="android:background">@color/color_common_divider_grey</item>
     </style>
 
+    <!-- View Detail Thumbnail Gradient Dim -->
+    <style name="View_Detail_Thumbnail_Gradient" parent="Base.Size.0_0">
+        <item name="android:background">@drawable/shape_bottom_gradient</item>
+    </style>
+
     <!--################################ FragmentContainerView ##################################-->
 
     <!-- BottomNavigationView -->
@@ -77,6 +82,16 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">57dp</item>
         <item name="android:background">@color/color_common_bg_default</item>
+    </style>
+
+    <!--################################### NestedScrollView ####################################-->
+    <style name="NestedScrollView_Detail_Contents_Style" parent="Base.Size.0_0">
+        <item name="android:fillViewport">true</item>
+        <item name="android:clipToPadding">false</item>
+        <item name="android:paddingTop">20dp</item>
+        <item name="android:paddingBottom">20dp</item>
+        <item name="android:paddingStart">20dp</item>
+        <item name="android:paddingEnd">20dp</item>
     </style>
 
     <!--###################################### Indicator ########################################-->
@@ -96,7 +111,7 @@
         <item name="android:src">@drawable/ic_marvel_studios</item>
     </style>
 
-    <!-- ImageView Home Banner Top Gradient  -->
+    <!-- ImageView Home Banner Top Gradient -->
     <style name="ImageView_Home_Gradient_Top_Style">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">40dp</item>
@@ -104,14 +119,14 @@
         <item name="android:background">@drawable/shape_top_gradient</item>
     </style>
 
-    <!-- ImageView Home Banner Bottom Gradient  -->
+    <!-- ImageView Home Banner Bottom Gradient -->
     <style name="ImageView_Home_Gradient_Bottom_Style">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">100dp</item>
         <item name="android:background">@drawable/shape_bottom_gradient</item>
     </style>
 
-    <!-- ImageView Home Banner Thumbnail -->
+    <!-- ImageView Home Banner Thumbnail-->
     <style name="ImageView_Home_Banner_Thumbnail_Style" parent="Base.Size.0_0">
         <item name="android:scaleType">centerCrop</item>
     </style>
@@ -119,6 +134,11 @@
     <!-- ImageView Home List Thumbnail-->
     <style name="ImageView_Home_List_Thumbnail_Style" parent="Base.Size.Match_Match">
         <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <!-- ImageView Detail Thumbnail -->
+    <style name="ImageView_Detail_Thumbnail_Style" parent="Base.Size.0_0">
+        <item name="tintMode">src_over</item>
     </style>
 
     <!--####################################### TextView ########################################-->
@@ -152,4 +172,16 @@
         <item name="android:textColor">@color/color_common_normal_text_white</item>
     </style>
 
+    <!--######################################## Button #########################################-->
+
+    <style name="Button_Detail_More_Style" parent="Base.Size.Wrap_Wrap">
+        <item name="android:layout_marginStart">20dp</item>
+        <item name="android:paddingStart">20dp</item>
+        <item name="android:paddingEnd">20dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:background">@null</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:backgroundTint">@color/color_common_highlight</item>
+    </style>
 </resources>

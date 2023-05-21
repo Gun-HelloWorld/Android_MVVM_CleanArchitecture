@@ -1,7 +1,6 @@
 package com.gun.presentation.di
 
-import com.gun.domain.usecase.HomeDataUseCase
-import com.gun.domain.usecase.internal.GetHomeDataUseCaseImpl
+import com.gun.domain.usecase.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -16,5 +15,11 @@ abstract class UseCaseModule {
     @Singleton
     abstract fun bindGetHomeDataUseCase(
         getHomeDataUseCaseImpl: GetHomeDataUseCaseImpl
-    ): HomeDataUseCase.GetHomeDataUseCase
+    ): GetDataUseCase.GetHomeDataUseCase
+
+    @Binds
+    @Singleton
+    abstract fun bindGetDetailDataUseCase(
+        getDetailDataUseCaseImpl: GetDetailDataUseCaseImpl
+    ): GetDataUseCase.GetDetailDataUseCase
 }
