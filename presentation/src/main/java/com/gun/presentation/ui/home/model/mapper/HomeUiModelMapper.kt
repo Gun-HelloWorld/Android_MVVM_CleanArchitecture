@@ -34,11 +34,11 @@ fun HomeList.toUiModel(): HomeUiModel {
 
     return HomeUiModel(
         mutableListOf(
-            HomeUiSubModel(contentType = CharacterType, homeListItem = parsedCharacterList),
-            HomeUiSubModel(contentType = ComicType, homeListItem = parsedComicList),
-            HomeUiSubModel(contentType = CreatorType, homeListItem = parsedCreatorList),
-            HomeUiSubModel(contentType = EventType, homeListItem = parsedEventList),
             HomeUiSubModel(contentType = SeriesType, homeListItem = parsedSeriesList),
+            HomeUiSubModel(contentType = ComicType, homeListItem = parsedComicList),
+            HomeUiSubModel(contentType = EventType, homeListItem = parsedEventList),
+            HomeUiSubModel(contentType = CharacterType, homeListItem = parsedCharacterList),
+            HomeUiSubModel(contentType = CreatorType, homeListItem = parsedCreatorList)
         )
     )
 }
