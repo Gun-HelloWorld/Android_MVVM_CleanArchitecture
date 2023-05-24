@@ -1,4 +1,4 @@
-package com.gun.presentation.ui.home.test
+package com.gun.presentation
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
