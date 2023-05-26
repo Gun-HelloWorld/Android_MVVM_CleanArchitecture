@@ -7,6 +7,7 @@ import androidx.core.view.updateLayoutParams
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.gun.mvvm_cleanarchitecture.R
 import com.gun.mvvm_cleanarchitecture.databinding.ActivityMainBinding
@@ -21,12 +22,23 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding.lifecycleOwner = this
+        setNavigation()
+    }
 
+    private fun setNavigation() {
         with(binding) {
-            lifecycleOwner = this@MainActivity
-            val navHostFragment = supportFragmentManager.findFragmentById(navHostFragment.id) as NavHostFragment
+            val navHostFragment = supportFragmentManager
+                .findFragmentById(navHostFragment.id) as NavHostFragment
             val navController = navHostFragment.findNavController()
+
             bottomNavigation.setupWithNavController(navController)
+
+            bottomNavigation.setOnItemSelectedListener { item ->
+                NavigationUI.onNavDestinationSelected(item, navController)
+                // popBackStack 메서드를 호출하여 이동하려는 대상이 백 스택에 존재할 시, 해당 대상까지 사이의 스택을 지우고 가져온다.
+                navController.popBackStack(item.itemId, inclusive = false)
+            }
         }
     }
 
