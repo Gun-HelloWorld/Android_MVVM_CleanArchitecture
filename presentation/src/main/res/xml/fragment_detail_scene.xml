@@ -4,123 +4,134 @@
 
     <Transition
         motion:constraintSetStart="@id/motion_start"
-        motion:constraintSetEnd="@+id/motion_end">
+        motion:constraintSetEnd="@id/motion_end">
 
         <OnSwipe
             motion:touchAnchorId="@id/scroll_view"
             motion:dragDirection="dragUp"/>
+
+        <!-- Key Position -->
+        <KeyFrameSet>
+            <KeyPosition
+                motion:framePosition="70"
+                motion:keyPositionType="deltaRelative"
+                motion:percentX="0"
+                motion:sizePercent="0"
+                motion:motionTarget="@id/tv_title"/>
+
+            <KeyPosition
+                motion:framePosition="75"
+                motion:keyPositionType="deltaRelative"
+                motion:sizePercent="1"
+                motion:motionTarget="@id/tv_title"/>
+
+        </KeyFrameSet>
+
+        <!-- Key Attribute -->
+        <KeyFrameSet>
+            <KeyAttribute
+                motion:framePosition="80"
+                android:alpha="0"
+                android:scaleY="0.8"
+                motion:motionTarget="@id/card_view" />
+
+            <KeyAttribute
+                motion:framePosition="80"
+                android:alpha="0"
+                android:scaleY="0.8"
+                motion:motionTarget="@id/tv_title" />
+
+            <KeyAttribute
+                motion:framePosition="80"
+                android:alpha="0"
+                android:scaleY="0.8"
+                motion:motionTarget="@id/tv_licence" />
+
+            <KeyAttribute
+                motion:framePosition="80"
+                android:alpha="0"
+                android:scaleY="0.8"
+                motion:motionTarget="@id/btn_more_info" />
+        </KeyFrameSet>
     </Transition>
 
     <!-- Begin (Loading State) -->
     <ConstraintSet android:id="@+id/motion_start_loading">
+        <Constraint
+            android:id="@+id/card_view"
+            android:visibility="gone"/>
 
         <Constraint
             android:id="@+id/btn_more_info"
             android:visibility="gone"/>
-
     </ConstraintSet>
 
     <!-- Begin (Loading Finish State) -->
     <ConstraintSet android:id="@+id/motion_start">
-
-        <Constraint android:id="@+id/guide_line_desc_start" />
-        <Constraint android:id="@+id/group_detail_contents" />
-
         <Constraint
             android:id="@+id/shimmer_view_container"
             android:visibility="gone"/>
-
-        <Constraint
-            android:id="@+id/iv_background"
-            android:alpha="1"
-            android:scaleX="1"
-            android:scaleY="1"
-            motion:layout_constraintVertical_bias="0"
-            motion:layout_constraintDimensionRatio="H,4:6"
-            motion:layout_constraintStart_toStartOf="parent"
-            motion:layout_constraintEnd_toEndOf="parent"
-            motion:layout_constraintTop_toTopOf="parent"
-            motion:layout_constraintBottom_toBottomOf="parent"/>
-
-        <Constraint
-            android:id="@id/view_gradient"
-            android:alpha="1"
-            android:scaleX="1"
-            android:scaleY="1"
-            motion:layout_constraintStart_toStartOf="@id/iv_background"
-            motion:layout_constraintEnd_toEndOf="@id/iv_background"
-            motion:layout_constraintTop_toTopOf="@id/iv_background"
-            motion:layout_constraintBottom_toBottomOf="@id/iv_background"/>
-
-        <Constraint
-            android:id="@+id/scroll_view"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="0dp"
-            motion:layout_constraintStart_toStartOf="parent"
-            motion:layout_constraintEnd_toEndOf="parent"
-            motion:layout_constraintTop_toBottomOf="@id/guide_line_desc_start"
-            motion:layout_constraintBottom_toBottomOf="parent"/>
-
-        <Constraint
-            android:id="@+id/btn_more_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:alpha="1"
-            motion:layout_constraintStart_toStartOf="parent"
-            motion:layout_constraintBottom_toTopOf="@id/guide_line_desc_start"/>
     </ConstraintSet>
 
     <!-- End -->
     <ConstraintSet android:id="@+id/motion_end">
-
-        <Constraint android:id="@id/guide_line_desc_start"/>
-        <Constraint android:id="@+id/group_detail_contents" />
-
         <Constraint
             android:id="@+id/shimmer_view_container"
             android:visibility="gone"/>
 
-        <Constraint
+        <ConstraintOverride
             android:id="@+id/iv_background"
             android:alpha="0"
-            android:scaleX="1.5"
-            android:scaleY="1.5"
-            motion:layout_constraintVertical_bias="0"
-            motion:layout_constraintDimensionRatio="H,4:6"
-            motion:layout_constraintStart_toStartOf="parent"
-            motion:layout_constraintEnd_toEndOf="parent"
-            motion:layout_constraintTop_toTopOf="parent"
-            motion:layout_constraintBottom_toBottomOf="parent"/>
+            android:scaleX="2.0"
+            android:scaleY="2.0"/>
 
         <Constraint
-            android:id="@id/view_gradient"
-            android:alpha="1"
-            android:scaleX="1.5"
-            android:scaleY="1.5"
-            motion:layout_constraintStart_toStartOf="@id/iv_background"
-            motion:layout_constraintEnd_toEndOf="@id/iv_background"
-            motion:layout_constraintTop_toTopOf="@id/iv_background"
-            motion:layout_constraintBottom_toBottomOf="@id/iv_background"/>
+            android:id="@+id/card_view"
+            android:layout_width="100dp"
+            android:layout_height="170dp"
+            android:alpha="0"
+            motion:layout_constraintStart_toStartOf="@id/guide_line_content_start"
+            motion:layout_constraintTop_toTopOf="parent"/>
+
+        <Constraint
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            motion:layout_constraintStart_toStartOf="@id/guide_line_content_start"
+            motion:layout_constraintEnd_toEndOf="@id/guide_line_content_end"
+            motion:layout_constraintTop_toTopOf="parent"/>
+
+        <Constraint
+            android:id="@+id/tv_licence"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:alpha="0"
+            motion:layout_constraintStart_toEndOf="@id/card_view"
+            motion:layout_constraintEnd_toEndOf="@id/guide_line_content_end"
+            motion:layout_constraintTop_toBottomOf="@id/tv_title"
+            motion:layout_constraintBottom_toTopOf="@id/btn_more_info"/>
+
+        <Constraint
+            android:id="@+id/btn_more_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:alpha="0"
+            motion:layout_constraintStart_toEndOf="@id/card_view"
+            motion:layout_constraintEnd_toEndOf="@id/guide_line_content_end"
+            motion:layout_constraintTop_toBottomOf="@id/tv_licence"/>
 
         <Constraint
             android:id="@+id/scroll_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="30dp"
-            motion:layout_constraintStart_toStartOf="parent"
-            motion:layout_constraintEnd_toEndOf="parent"
-            motion:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="10dp"
+            motion:layout_constraintStart_toStartOf="@id/guide_line_content_start"
+            motion:layout_constraintEnd_toEndOf="@id/guide_line_content_end"
+            motion:layout_constraintTop_toBottomOf="@id/tv_title"
             motion:layout_constraintBottom_toBottomOf="parent" />
 
-        <Constraint
-            android:id="@+id/btn_more_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:alpha="0"
-            motion:layout_constraintStart_toStartOf="parent"
-            motion:layout_constraintBottom_toTopOf="@id/scroll_view"/>
     </ConstraintSet>
 </MotionScene>

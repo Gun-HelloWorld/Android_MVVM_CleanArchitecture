@@ -2,11 +2,9 @@ package com.gun.presentation.ui.detail
 
 import androidx.lifecycle.viewModelScope
 import com.gun.domain.common.ContentType
-import com.gun.domain.usecase.*
+import com.gun.domain.usecase.GetDataUseCase
 import com.gun.presentation.common.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject

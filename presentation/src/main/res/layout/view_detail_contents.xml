@@ -18,31 +18,13 @@
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/tv_title"
-            style="@style/Base.TextView.Size.Wrap_Wrap"
-            android:textColor="@color/white"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            tools:text="Title"
-            android:text="@{data.name}"/>
-
-        <TextView
-            android:id="@+id/tv_licence"
-            style="@style/Base.TextView.Size.Wrap_Wrap"
-            tools:text="Licence"
-            android:text="@{data.attributionText}"/>
-
-        <TextView
             android:id="@+id/tv_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
             android:visibility="@{TextUtils.isEmpty(data.description) ? View.GONE : View.VISIBLE}"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            android:textColor="@color/color_common_normal_text_white"
+            android:textSize="15dp"
             android:text="@{data.description}"
-            tools:text="Writer Brian Michael Bendis kicks off his historic run with the Avengers by bringing the previous era to a close alongside artist David Finch! Chaos reigns when of Earthâ€™s Mightiest Heroes turns against their teammates, leading the Avengers into a battle that not all will survive! Featuring Iron Man, Captain America, Hawkeye, the Scarlet Witch and more!"/>
+            tools:text="Writer Brian Michael Bendis kicks off his historic run with the Avengers by bringing the previous era to a close alongside artist David Finch! Chaos reigns when of Earthâ€™s Mightiest Heroes turns against their teammates, leading the Avengers into a battle that not all will survive! Featuring Iron Man, Captain America, Hawkeye, the Scarlet Witch and more!" />
 
     </LinearLayout>
 

@@ -8,11 +8,6 @@
         android:layout_marginTop="20dp"
         android:orientation="vertical" >
 
-        <View
-            style="@style/View_Divider_Style"
-            android:layout_marginBottom="20dp"
-            android:layout_width="match_parent"/>
-
         <TextView
             android:id="@+id/tv_label"
             style="@style/Base.TextView.Size.Wrap_Wrap"

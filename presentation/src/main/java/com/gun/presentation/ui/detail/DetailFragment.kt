@@ -1,9 +1,11 @@
 package com.gun.presentation.ui.detail
 
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -14,12 +16,14 @@ import com.google.android.material.snackbar.Snackbar
 import com.gun.mvvm_cleanarchitecture.R
 import com.gun.mvvm_cleanarchitecture.databinding.FragmentDetailBinding
 import com.gun.presentation.common.BaseFragment
+import com.gun.presentation.common.ImageLoadListener
+import com.gun.presentation.common.util.BlurUtil
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class DetailFragment : BaseFragment() {
+class DetailFragment : BaseFragment(), ImageLoadListener {
 
     private lateinit var binding: FragmentDetailBinding
 
@@ -32,6 +36,8 @@ class DetailFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail, container, false)
+        binding.imageLoadListener = this
+
         return binding.root
     }
 
@@ -97,4 +103,7 @@ class DetailFragment : BaseFragment() {
         }
     }
 
+    override fun onImageLoadedWithBitmap(imageView: ImageView, bitmap: Bitmap) {
+        BlurUtil.blurToDetailBackground(requireContext(), imageView, bitmap, 80)
+    }
 }
