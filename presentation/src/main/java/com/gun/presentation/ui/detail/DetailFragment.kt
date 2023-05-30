@@ -104,6 +104,6 @@ class DetailFragment : BaseFragment(), ImageLoadListener {
     }
 
     override fun onImageLoadedWithBitmap(imageView: ImageView, bitmap: Bitmap) {
-        BlurUtil.blurToDetailBackground(requireContext(), imageView, bitmap, 80)
+        BlurUtil.blurToDetailBackground(requireContext(), imageView, bitmap, 60)
     }
 }
