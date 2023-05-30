@@ -13,7 +13,7 @@ MVVM & Clean Architecture 패턴을 적용하고 Marvel의 Public API를 통해 
       <img src="https://github.com/Gun-HelloWorld/Android_MVVM_CleanArchitecture/assets/129313980/d15f3b15-b53a-41a9-a42e-da28d48b1b90" width="250" height="555"/>
     </td>
     <td>
-      <img src="https://github.com/Gun-HelloWorld/Android_MVVM_CleanArchitecture/assets/129313980/37fcceb6-574a-455f-89a7-739554b1b794" width="250" height="555"/>
+      <img src="https://github.com/Gun-HelloWorld/Android_MVVM_CleanArchitecture/assets/129313980/0131a890-219e-4e9b-b821-040698abc09d" width="250" height="555"/>
     </td>
   </tr>
 </table>
