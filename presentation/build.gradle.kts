@@ -19,6 +19,9 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = AppConfig.TEST_INSTRUMENTATION_RUNNER
+
+        renderscriptTargetApi = AppConfig.MIN_SDK
+        renderscriptSupportModeEnabled = true
     }
 
     buildTypes {
