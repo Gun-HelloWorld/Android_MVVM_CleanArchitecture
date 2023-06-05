@@ -7,6 +7,6 @@
 
     <ImageView style="@style/ImageView_Title_Style"/>
 
-    <TextView style="@style/Base.TextView.Title_Style" />
+    <TextView style="@style/Base.TextView.Home_Sub_Title_Style" />
 
 </LinearLayout>
