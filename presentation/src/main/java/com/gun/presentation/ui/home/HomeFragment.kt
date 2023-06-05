@@ -14,6 +14,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.gun.mvvm_cleanarchitecture.R
 import com.gun.mvvm_cleanarchitecture.databinding.FragmentHomeBinding
 import com.gun.presentation.common.BaseFragment
+import com.gun.presentation.common.ItemClickListener
 import com.gun.presentation.ui.home.banner.HomeBannerAdapter
 import com.gun.presentation.ui.home.list.HomeMainRecyclerAdapter
 import com.gun.presentation.ui.home.model.HomeListItem
@@ -23,7 +24,7 @@ import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment(), ItemClickListener {
+class HomeFragment : BaseFragment(), ItemClickListener<HomeListItem> {
 
     private lateinit var binding: FragmentHomeBinding
 

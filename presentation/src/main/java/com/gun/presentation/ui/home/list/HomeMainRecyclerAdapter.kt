@@ -8,14 +8,14 @@ import com.gun.mvvm_cleanarchitecture.R
 import com.gun.mvvm_cleanarchitecture.databinding.HolderHomeListBinding
 import com.gun.presentation.common.BaseListAdapter
 import com.gun.presentation.common.BaseViewHolder
-import com.gun.presentation.ui.home.ItemClickListener
+import com.gun.presentation.common.ItemClickListener
 import com.gun.presentation.ui.home.model.*
 
 class HomeMainRecyclerAdapter(
     private val context: Context,
     private val homeUiModel: HomeUiModel,
-    private val itemClickListener: ItemClickListener
-) : BaseListAdapter<HomeListItem, HomeMainRecyclerAdapter.ViewHolder>() {
+    itemClickListener: ItemClickListener<HomeListItem>? = null
+) : BaseListAdapter<HomeListItem, HomeMainRecyclerAdapter.ViewHolder>(itemClickListener) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = HolderHomeListBinding.inflate(LayoutInflater.from(parent.context), parent, false)

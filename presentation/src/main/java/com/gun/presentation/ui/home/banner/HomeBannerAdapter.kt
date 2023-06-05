@@ -6,15 +6,15 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.adapter.FragmentViewHolder
-import com.gun.presentation.ui.home.ItemClickListener
+import com.gun.presentation.common.ItemClickListener
 import com.gun.presentation.ui.home.model.HomeListItem
-
 
 class HomeBannerAdapter(
     fragmentManager: FragmentManager,
     lifecycle: Lifecycle,
-    private val itemClickListener: ItemClickListener
+    private val itemClickListener: ItemClickListener<HomeListItem>? = null
 ) : FragmentStateAdapter(fragmentManager, lifecycle) {
+
     private val fragmentList: MutableList<Fragment> = mutableListOf()
     private val dataList: MutableList<HomeListItem> = mutableListOf()
 
@@ -34,7 +34,7 @@ class HomeBannerAdapter(
         super.onBindViewHolder(holder, position, payloads)
 
         holder.itemView.setOnClickListener {
-            itemClickListener.onClickItem((dataList[holder.adapterPosition]))
+            itemClickListener?.onClickItem((dataList[holder.adapterPosition]))
         }
     }
 

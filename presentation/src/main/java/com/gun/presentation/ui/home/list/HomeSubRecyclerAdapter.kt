@@ -5,12 +5,12 @@ import android.view.ViewGroup
 import com.gun.mvvm_cleanarchitecture.databinding.HolderHomeListItemBinding
 import com.gun.presentation.common.BaseListAdapter
 import com.gun.presentation.common.BaseViewHolder
-import com.gun.presentation.ui.home.ItemClickListener
+import com.gun.presentation.common.ItemClickListener
 import com.gun.presentation.ui.home.model.HomeListItem
 
 class HomeSubRecyclerAdapter(
-    private val itemClickListener: ItemClickListener
-) : BaseListAdapter<HomeListItem, HomeSubRecyclerAdapter.ViewHolder>() {
+    itemClickListener: ItemClickListener<HomeListItem>? = null
+) : BaseListAdapter<HomeListItem, HomeSubRecyclerAdapter.ViewHolder>(itemClickListener) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = HolderHomeListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -27,7 +27,7 @@ class HomeSubRecyclerAdapter(
             binding.data = data
 
             itemView.setOnClickListener {
-                itemClickListener.onClickItem(data)
+                itemClickListener?.onClickItem(data)
             }
         }
     }
