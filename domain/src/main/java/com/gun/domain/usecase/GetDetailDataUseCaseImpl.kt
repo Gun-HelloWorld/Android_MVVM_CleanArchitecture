@@ -13,11 +13,7 @@ import javax.inject.Singleton
 
 @Singleton
 class GetDetailDataUseCaseImpl @Inject constructor(
-    private val characterRepository: CharacterRepository,
-    private val comicRepository: ComicRepository,
-    private val seriesRepository: SeriesRepository,
-    private val eventRepository: EventRepository,
-    private val creatorRepository: CreatorRepository
+    private val marvelRepository: MarvelRepository
 ) : GetDataUseCase.GetDetailDataUseCase {
 
     override fun invoke(contentId: Int, contentType: ContentType): Flow<Result<ContentDetail>> =
@@ -35,23 +31,23 @@ class GetDetailDataUseCaseImpl @Inject constructor(
 
             when (contentType) {
                 is CharacterType -> {
-                    result = characterRepository.getCharacter(contentId).single()
+                    result = marvelRepository.getCharacter(contentId).single()
                         .map { it.first().toContentDetail() }
                 }
                 is ComicType -> {
-                    result = comicRepository.getComic(contentId).single()
+                    result = marvelRepository.getComic(contentId).single()
                         .map { it.first().toContentDetail() }
                 }
                 is SeriesType -> {
-                    result = seriesRepository.getSeries(contentId).single()
+                    result = marvelRepository.getSeries(contentId).single()
                         .map { it.first().toContentDetail() }
                 }
                 is EventType -> {
-                    result = eventRepository.getEvent(contentId).single()
+                    result = marvelRepository.getEvent(contentId).single()
                         .map { it.first().toContentDetail() }
                 }
                 is CreatorType -> {
-                    result = creatorRepository.getCreator(contentId).single()
+                    result = marvelRepository.getCreator(contentId).single()
                         .map { it.first().toContentDetail() }
                 }
             }

@@ -11,11 +11,7 @@ import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 class GetHomeDataUseCaseImpl @Inject constructor(
-    private val characterRepository: CharacterRepository,
-    private val comicRepository: ComicRepository,
-    private val creatorRepository: CreatorRepository,
-    private val eventRepository: EventRepository,
-    private val seriesRepository: SeriesRepository
+    private val marvelRepository: MarvelRepository
 ) : GetDataUseCase.GetHomeDataUseCase {
 
     override fun invoke(offset: Int, limit: Int): Flow<Result<HomeList>> = flow {
@@ -25,11 +21,11 @@ class GetHomeDataUseCaseImpl @Inject constructor(
         }
 
         combine(
-            characterRepository.getCharacterList(offset, limit),
-            comicRepository.getComicList(offset, limit),
-            creatorRepository.getCreatorList(offset, limit),
-            eventRepository.getEventList(offset, limit),
-            seriesRepository.getSeriesList(offset, limit)
+            marvelRepository.getCharacterList(offset, limit),
+            marvelRepository.getComicList(offset, limit),
+            marvelRepository.getCreatorList(offset, limit),
+            marvelRepository.getEventList(offset, limit),
+            marvelRepository.getSeriesList(offset, limit)
         ) { characterResult: Result<List<Character>>,
             comicResult: Result<List<Comic>>,
             creatorResult: Result<List<Creator>>,
