@@ -94,6 +94,10 @@ dependencies {
 
     // Shimmer Effect
     implementation(Dependencies.ShimmerEffect.SHIMMER_EFFECT)
+
+    // Paging
+    implementation(Dependencies.AndroidX.PAGING)
+    testImplementation(Dependencies.AndroidX.PAGING_TEST)
 }
 
 // Hilt

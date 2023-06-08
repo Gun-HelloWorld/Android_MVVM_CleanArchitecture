@@ -17,6 +17,7 @@ object Dependencies {
     private const val VERSION_SHIMMER_EFFECT = "0.5.0"
     private const val VERSION_COROUTINES_TEST = "1.6.4"
     private const val VERSION_TURBINE = "0.13.0"
+    private const val VERSION_PAGING = "3.1.1"
 
     const val VERSION_ANDROIDX_NAVIGATION = "2.5.3"
     const val VERSION_HILT = "2.45"
@@ -49,6 +50,10 @@ object Dependencies {
 
         // CardView
         const val CARD_VIEW = "androidx.cardview:cardview:${VERSION_CARD_VIEW}"
+
+        // Paging
+        const val PAGING = "androidx.paging:paging-runtime:${VERSION_PAGING}"
+        const val PAGING_TEST = "androidx.paging:paging-common:${VERSION_PAGING}"
     }
 
     object Glide {
