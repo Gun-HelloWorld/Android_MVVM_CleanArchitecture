@@ -1,6 +1,8 @@
 package com.gun.domain.common
 
-sealed class ContentType
+import java.io.Serializable
+
+sealed class ContentType : Serializable
 
 object CharacterType: ContentType()
 object ComicType: ContentType()

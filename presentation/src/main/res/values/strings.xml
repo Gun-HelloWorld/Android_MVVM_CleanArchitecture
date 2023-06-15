@@ -14,7 +14,28 @@
     <string name="label_stories">Stories</string>
 
     <string name="label_search">Search</string>
+    <string name="label_retry">Retry</string>
+    <string name="label_modified">Modified</string>
+    <string name="label_notice">Notice</string>
 
     <string name="label_data_provided_by_marvel">Data provided by Marvel. © 2014 Marvel</string>
     <string name="label_more_information">More Information</string>
+
+    <string name="msg_search_guide_1">@string/label_data_provided_by_marvel</string>
+    <string name="msg_search_guide_2">The Marvel API does not support the \"Contains\" search mechanism, so this search menu only supports the \"StartsWith\" search mechanism by by text you enter</string>
+    <string name="msg_search_guide_3">The Marvel API is offset-based paging use the offset and limit query parameters to paginate through items in a collection.</string>
+    <string name="msg_search_guide_4">When scrolling to the end of loaded data, 20 additional data are automatically load.</string>
+
+    <string name="title_error_exception">Oops</string>
+    <string name="msg_error_exception">something went wrong. Let\'s try one more time.</string>
+    <string name="title_error_result_not_found">No results found</string>
+    <string name="msg_error_result_not_found">Sorry, there are not results for search</string>
+
+    <string-array name = "search_tab_name">
+        <item>@string/label_series</item>
+        <item>@string/label_comic</item>
+        <item>@string/label_event</item>
+        <item>@string/label_character</item>
+        <item>@string/label_creator</item>
+    </string-array>
 </resources>

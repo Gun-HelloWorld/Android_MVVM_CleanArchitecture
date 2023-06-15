@@ -2,13 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.gun.presentation.ui.home.HomeFragment">
-
-    <data>
-        <variable
-            name="data"
-            type="String" />
-    </data>
+    tools:context="com.gun.presentation.ui.search.result.SearchResultFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         style="@style/Base.Size.Match_Match">
@@ -21,6 +15,24 @@
             tools:listitem="@layout/holder_search_result_item"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <com.gun.presentation.ui.common.CustomBadResultView
+            android:id="@+id/view_bad_result"
+            style="@style/Base.Size.0_0"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <ProgressBar
+            android:id="@+id/loading_bar"
+            style="@style/ProgressBar_Loading_Style"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 

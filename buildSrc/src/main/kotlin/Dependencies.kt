@@ -53,7 +53,7 @@ object Dependencies {
 
         // Paging
         const val PAGING = "androidx.paging:paging-runtime:${VERSION_PAGING}"
-        const val PAGING_TEST = "androidx.paging:paging-common:${VERSION_PAGING}"
+        const val PAGING_COMMON = "androidx.paging:paging-common:${VERSION_PAGING}"
     }
 
     object Glide {

@@ -108,7 +108,9 @@ class HomeFragment : BaseFragment(), ItemClickListener<HomeListItem> {
     }
 
     override fun onClickItem(data: HomeListItem) {
-        val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(data)
+        val contentId = data.id
+        val contentType = data.getContentType()
+        val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(contentId, contentType)
         findNavController().navigate(action)
     }
 }

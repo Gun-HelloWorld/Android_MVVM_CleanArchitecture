@@ -32,15 +32,24 @@
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" >
         <argument
-            android:name="homeListItem"
-            app:argType="com.gun.presentation.ui.home.model.HomeListItem" />
+            android:name="contentId"
+            app:argType="integer" />
+        <argument
+            android:name="contentType"
+            app:argType="com.gun.domain.common.ContentType" />
     </fragment>
 
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.gun.presentation.ui.search.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_searchFragment_to_detailFragment"
+            app:destination="@id/detailFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:popEnterAnim="@android:anim/fade_in"/>
+    </fragment>
 
     <fragment
         android:id="@+id/favoriteFragment"

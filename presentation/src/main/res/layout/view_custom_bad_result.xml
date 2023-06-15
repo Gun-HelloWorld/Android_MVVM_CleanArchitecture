@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.gun.presentation.ui.common.CustomBadResultView"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="title"
+            type="String" />
+
+        <variable
+            name="message"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/iv_error"
+            style="@style/Base.Size.Wrap_Wrap"
+            android:src="@drawable/ic_mood_bad"
+            app:layout_constraintBottom_toTopOf="@id/tv_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/Base.TextView.Size.0_Wrap"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:text="@{title}"
+            tools:text="@string/title_error_exception"
+            app:layout_constraintBottom_toTopOf="@id/tv_message"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_error" />
+
+        <TextView
+            android:id="@+id/tv_message"
+            style="@style/Base.TextView.Size.0_Wrap"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:textSize="15dp"
+            android:text="@{message}"
+            tools:text="@string/msg_error_exception"
+            app:layout_constraintBottom_toTopOf="@id/btn_retry"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+        <Button
+            android:id="@+id/btn_retry"
+            style="@style/Button_Retry_Style"
+            android:layout_marginTop="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_message" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

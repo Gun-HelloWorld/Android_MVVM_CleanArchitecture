@@ -25,4 +25,5 @@
     <color name="color_detail_thumbnail_dim">#4d000000</color>
 
     <color name="color_search_category_background_color">#909091</color>
+    <color name="color_search_semi_transparent_color">#CC3a3a3a</color>
 </resources>

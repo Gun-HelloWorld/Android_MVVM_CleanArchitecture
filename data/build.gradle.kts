@@ -62,6 +62,9 @@ dependencies {
 
     // Gson
     implementation(Dependencies.Gson.GSON)
+
+    // Paging
+    implementation(Dependencies.AndroidX.PAGING_COMMON)
 }
 
 // Hilt

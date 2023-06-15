@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/iv_notice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/ic_check"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_notice"
+        style="@style/Base.TextView.Size.Wrap_Wrap"
+        android:layout_marginStart="5dp"
+        android:textColor="@color/color_common_highlight"
+        android:textSize="14dp"
+        android:text="@string/label_notice"
+        app:layout_constraintStart_toEndOf="@id/iv_notice"
+        app:layout_constraintTop_toTopOf="@id/iv_notice"
+        app:layout_constraintBottom_toBottomOf="@id/iv_notice"/>
+
+    <ImageView
+        android:id="@+id/iv_check_1"
+        style="@style/Base.Size.Wrap_Wrap"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/ic_arrow_right"
+        app:layout_constraintStart_toStartOf="@id/tv_notice"
+        app:layout_constraintTop_toBottomOf="@id/tv_notice"/>
+
+    <TextView
+        android:id="@+id/tv_guide_1"
+        style="@style/Base.Size.0_Wrap"
+        android:layout_marginStart="5dp"
+        android:textColor="@color/white"
+        android:textSize="11dp"
+        android:text="@string/msg_search_guide_1"
+        app:layout_constraintStart_toEndOf="@id/iv_check_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/iv_check_1"/>
+
+    <ImageView
+        android:id="@+id/iv_check_2"
+        style="@style/Base.Size.Wrap_Wrap"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/ic_arrow_right"
+        app:layout_constraintStart_toStartOf="@id/iv_check_1"
+        app:layout_constraintTop_toBottomOf="@id/tv_guide_1"/>
+
+    <TextView
+        android:id="@+id/tv_guide_2"
+        style="@style/Base.Size.0_Wrap"
+        android:layout_marginStart="5dp"
+        android:textColor="@color/white"
+        android:textSize="11dp"
+        android:text="@string/msg_search_guide_2"
+        app:layout_constraintStart_toEndOf="@id/iv_check_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/iv_check_2"/>
+
+    <ImageView
+        android:id="@+id/iv_check_3"
+        style="@style/Base.Size.Wrap_Wrap"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/ic_arrow_right"
+        app:layout_constraintStart_toStartOf="@id/iv_check_2"
+        app:layout_constraintTop_toBottomOf="@id/tv_guide_2"/>
+
+    <TextView
+        android:id="@+id/tv_guide_3"
+        style="@style/Base.Size.0_Wrap"
+        android:layout_marginStart="5dp"
+        android:textColor="@color/white"
+        android:textSize="11dp"
+        android:text="@string/msg_search_guide_3"
+        app:layout_constraintStart_toEndOf="@id/iv_check_3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/iv_check_3"/>
+
+    <ImageView
+        android:id="@+id/iv_check_4"
+        style="@style/Base.Size.Wrap_Wrap"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/ic_arrow_right"
+        app:layout_constraintStart_toStartOf="@id/iv_check_3"
+        app:layout_constraintTop_toBottomOf="@id/tv_guide_3"/>
+
+    <TextView
+        android:id="@+id/tv_guide_4"
+        style="@style/Base.Size.0_Wrap"
+        android:layout_marginStart="5dp"
+        android:textColor="@color/white"
+        android:textSize="11dp"
+        android:text="@string/msg_search_guide_4"
+        app:layout_constraintStart_toEndOf="@id/iv_check_4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/iv_check_4"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

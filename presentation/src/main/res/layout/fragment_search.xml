@@ -17,6 +17,7 @@
         <androidx.appcompat.widget.SearchView
             android:id="@+id/search_view"
             style="@style/SearchView_Style"
+            android:layout_height="40dp"
             android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="@id/guide_line_left"
             app:layout_constraintEnd_toEndOf="@id/guide_line_right"
@@ -25,7 +26,7 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
             style="@style/TabLayout_Style"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:layout_marginHorizontal="-10dp"
             app:layout_constraintStart_toStartOf="@id/guide_line_left"
             app:layout_constraintEnd_toEndOf="@id/guide_line_right"
@@ -34,10 +35,19 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/view_pager"
             style="@style/Base.Size.0_0"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             app:layout_constraintStart_toStartOf="@id/guide_line_left"
             app:layout_constraintEnd_toEndOf="@id/guide_line_right"
             app:layout_constraintTop_toBottomOf="@id/tab_layout"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <include
+            android:id="@+id/layout_guide"
+            layout="@layout/layout_search_guide"
+            style="@style/Base.Size.0_0"
+            app:layout_constraintStart_toStartOf="@id/guide_line_left"
+            app:layout_constraintEnd_toEndOf="@id/guide_line_right"
+            app:layout_constraintTop_toBottomOf="@id/search_view"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
         <androidx.constraintlayout.widget.Guideline
@@ -49,6 +59,16 @@
             android:id="@+id/guide_line_right"
             style="@style/GuideLine_Vertical_Style"
             app:layout_constraintGuide_end="20dp"/>
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_search_guide"
+            style="@style/Group_Style"
+            app:constraint_referenced_ids="layout_guide" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_search_result"
+            style="@style/Group_Style"
+            app:constraint_referenced_ids="tab_layout, view_pager" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

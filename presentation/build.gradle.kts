@@ -97,7 +97,6 @@ dependencies {
 
     // Paging
     implementation(Dependencies.AndroidX.PAGING)
-    testImplementation(Dependencies.AndroidX.PAGING_TEST)
 }
 
 // Hilt

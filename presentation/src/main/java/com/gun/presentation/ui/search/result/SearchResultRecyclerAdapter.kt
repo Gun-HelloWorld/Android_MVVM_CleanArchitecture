@@ -6,10 +6,11 @@ import com.gun.mvvm_cleanarchitecture.databinding.HolderSearchResultItemBinding
 import com.gun.presentation.common.BasePagingAdapter
 import com.gun.presentation.common.BaseViewHolder
 import com.gun.presentation.common.ItemClickListener
+import com.gun.domain.model.search.SearchResult
 
 class SearchResultRecyclerAdapter(
-    itemClickListener: ItemClickListener<String>? = null
-) : BasePagingAdapter<String, SearchResultRecyclerAdapter.ViewHolder>(itemClickListener)  {
+    itemClickListener: ItemClickListener<SearchResult>? = null
+) : BasePagingAdapter<SearchResult, SearchResultRecyclerAdapter.ViewHolder>(itemClickListener)  {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -25,8 +26,10 @@ class SearchResultRecyclerAdapter(
         }
     }
 
+
     inner class ViewHolder(val binding: HolderSearchResultItemBinding) : BaseViewHolder(binding.root) {
-        fun setData(data: String) {
+        fun setData(data: SearchResult) {
+            binding.data = data
 
             binding.root.setOnClickListener {
                 itemClickListener?.onClickItem(data)

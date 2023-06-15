@@ -1,15 +1,38 @@
 package com.gun.data.repository
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingSource
 import com.gun.data.datasource.MarvelRemoteDataSource
+import com.gun.data.datasource.MarvelRemotePagingDataSourceImpl
 import com.gun.data.mapper.toDomainModel
+import com.gun.domain.common.ContentType
 import com.gun.domain.model.*
+import com.gun.domain.model.search.SearchResult
 import com.gun.domain.repository.MarvelRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class MarvelRepositoryImpl(
-    private val marvelRemoteDataSource: MarvelRemoteDataSource
+    private val marvelRemoteDataSource: MarvelRemoteDataSource,
+    private var marvelRemotePagingDataSource: PagingSource<Int, SearchResult>
 ) : MarvelRepository {
+
+    override fun getSearchResult(
+        query: String,
+        contentType: ContentType,
+        pagingConfig: PagingConfig
+    ): Pager<Int, SearchResult> {
+        (marvelRemotePagingDataSource as MarvelRemotePagingDataSourceImpl).setContentType(contentType)
+        (marvelRemotePagingDataSource as MarvelRemotePagingDataSourceImpl).setQuery(query)
+
+        return Pager(
+            config = pagingConfig,
+            pagingSourceFactory = {
+                marvelRemotePagingDataSource
+            }
+        )
+    }
 
     override fun getCharacter(characterId: Int): Flow<Result<List<Character>>> = flow {
         emit(marvelRemoteDataSource.getCharacter(characterId).map { it.toDomainModel() })

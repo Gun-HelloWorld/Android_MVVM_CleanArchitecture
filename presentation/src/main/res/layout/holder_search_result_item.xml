@@ -3,22 +3,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android" >
 
+    <data>
+        <variable
+            name="data"
+            type="com.gun.domain.model.search.SearchResult" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         style="@style/Base.Size.Match_Wrap"
-        android:background="?selectableItemBackground">
+        android:background="?selectableItemBackground"
+        android:layout_marginBottom="5dp">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_view_thumbnail"
             style="@style/CardView_Search_Thumbnail_Style"
             app:layout_constraintDimensionRatio="H,6:4"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/guide_line_vertical_image_center"
+            app:layout_constraintEnd_toStartOf="@id/guide_line_vertical_image_end"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_thumbnail"
                 style="@style/ImageView_Home_List_Thumbnail_Style"
                 app:imageError="@{@drawable/ic_error_banner}"
+                app:imageUrl="@{data.searchItemThumbnailUrl}"
                 tools:srcCompat="@drawable/test_thumbnail_landscape_xlarge"/>
 
         </com.google.android.material.card.MaterialCardView>
@@ -36,27 +44,53 @@
                 <TextView
                     android:id="@+id/tv_name"
                     style="@style/Base.TextView.Search_Item_Name_Style"
+                    android:layout_marginBottom="5dp"
                     tools:text="Marvel Previews (2017)"
+                    android:text="@{data.name}"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/check_box_favorite"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintBottom_toTopOf="@id/check_box_favorite" />
+
+                <TextView
+                    android:id="@+id/tv_modified"
+                    style="@style/Base.TextView.Size.Wrap_Wrap"
+                    android:textSize="10dp"
+                    android:textStyle="bold"
+                    android:text="@string/label_modified"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/check_box_favorite"
+                    app:layout_constraintBottom_toBottomOf="@id/check_box_favorite"/>
+
+                <TextView
+                    android:id="@+id/tv_modified_date"
+                    style="@style/Base.TextView.Size.Wrap_Wrap"
+                    android:layout_marginStart="5dp"
+                    android:textSize="9dp"
+                    tools:text="Unknown"
+                    android:text="@{data.getModifiedByDisplayFormat()}"
+                    app:layout_constraintStart_toEndOf="@id/tv_modified"
+                    app:layout_constraintTop_toTopOf="@id/tv_modified"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_modified"/>
 
                 <CheckBox
                     android:id="@+id/check_box_favorite"
                     style="@style/CheckBox_Favorite_Style"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    app:layout_constraintHorizontal_bias="1"
                     android:layout_marginStart="5dp"
-                    app:layout_constraintStart_toEndOf="@id/tv_name"
+                    app:layout_constraintStart_toEndOf="@id/tv_modified_date"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/tv_name"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_name"/>
+                    app:layout_constraintTop_toTopOf="@id/tv_modified_date"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_modified_date"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guide_line_vertical_image_center"
+            android:id="@+id/guide_line_vertical_image_end"
             style="@style/GuideLine_Vertical_Style"
             app:layout_constraintGuide_percent="0.5"/>
 

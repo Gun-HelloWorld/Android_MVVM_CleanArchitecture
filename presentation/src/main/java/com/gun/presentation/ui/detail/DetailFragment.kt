@@ -47,9 +47,7 @@ class DetailFragment : BaseFragment(), ImageLoadListener {
         initObserver()
 
         if (detailViewModel.detailUiStateFlow.value is DetailUiModelState.Nothing) {
-            val contentId = args.homeListItem.id
-            val contentType = args.homeListItem.getContentType()
-            detailViewModel.getDetailData(contentId, contentType)
+            detailViewModel.getDetailData(args.contentId, args.contentType)
         }
     }
 

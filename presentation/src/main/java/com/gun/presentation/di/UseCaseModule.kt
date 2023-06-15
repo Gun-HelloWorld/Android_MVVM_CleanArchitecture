@@ -22,4 +22,11 @@ abstract class UseCaseModule {
     abstract fun bindGetDetailDataUseCase(
         getDetailDataUseCaseImpl: GetDetailDataUseCaseImpl
     ): GetDataUseCase.GetDetailDataUseCase
+
+    @Binds
+    @Singleton
+    abstract fun bindGetSearchDataUseCase(
+        getSearchDataUseCaseImpl: GetSearchDataUseCaseImpl
+    ): GetDataUseCase.GetSearchDataUseCase
+
 }
