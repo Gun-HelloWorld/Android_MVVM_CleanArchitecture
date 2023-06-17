@@ -13,7 +13,7 @@ abstract class BaseFragment: Fragment() {
 
     fun setFadeAnimation(rootView: View, vararg viewIds: Int) {
         val anim = AlphaAnimation(0.0f, 1.0f)
-        anim.duration = 1000L
+        anim.duration = 600L
 
         for (viewId in viewIds) {
             rootView.findViewById<View>(viewId).startAnimation(anim)
