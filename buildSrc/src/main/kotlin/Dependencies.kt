@@ -18,6 +18,7 @@ object Dependencies {
     private const val VERSION_COROUTINES_TEST = "1.6.4"
     private const val VERSION_TURBINE = "0.13.0"
     private const val VERSION_PAGING = "3.1.1"
+    private const val VERSION_MOCKK = "1.13.4"
 
     const val VERSION_ANDROIDX_NAVIGATION = "2.5.3"
     const val VERSION_HILT = "2.45"
@@ -34,6 +35,8 @@ object Dependencies {
         const val ESPRESSO = "androidx.test.espresso:espresso-core:${VERSION_ESPRESSO}"
         const val COROUTINES_TEST = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${VERSION_COROUTINES_TEST}"
         const val TURBINE = "app.cash.turbine:turbine:${VERSION_TURBINE}"
+        const val MOCKK = "io.mockk:mockk:${VERSION_MOCKK}"
+        const val MOCKK_ANDROID = "io.mockk:mockk-android${VERSION_MOCKK}"
     }
 
     object AndroidX {

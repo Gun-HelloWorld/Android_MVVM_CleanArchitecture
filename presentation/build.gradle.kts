@@ -63,6 +63,10 @@ dependencies {
 
         // Turbine
         testImplementation(Dependencies.Test.TURBINE)
+
+        // Mockk
+        testImplementation(Dependencies.Test.MOCKK)
+        androidTestImplementation(Dependencies.Test.MOCKK_ANDROID)
     }
 
     implementation(Dependencies.Google.MATERIAL)
