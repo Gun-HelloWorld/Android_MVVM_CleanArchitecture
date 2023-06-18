@@ -8,12 +8,16 @@ MVVM & Clean Architecture 패턴을 적용하고 Marvel의 Public API를 통해 
 <table>  
   <th>Home</th>
   <th>Detail</th>
+  <th>Search</th>
   <tr>
     <td>
       <img src="https://github.com/Gun-HelloWorld/Android_MVVM_CleanArchitecture/assets/129313980/d15f3b15-b53a-41a9-a42e-da28d48b1b90" width="250" height="555"/>
     </td>
     <td>
       <img src="https://github.com/Gun-HelloWorld/Android_MVVM_CleanArchitecture/assets/129313980/0131a890-219e-4e9b-b821-040698abc09d" width="250" height="555"/>
+    </td>
+    <td>
+      <img src="https://github.com/Gun-HelloWorld/Android_MVVM_CleanArchitecture/assets/129313980/bb8363a6-e921-44cf-8911-a1ed8c974a98" width="250" height="555"/>
     </td>
   </tr>
 </table>
@@ -23,8 +27,7 @@ MVVM & Clean Architecture 패턴을 적용하고 Marvel의 Public API를 통해 
 ## 적용 범위
 - [x] 홈 화면 - 상단 로고 애니메이션, 배너, 카테고리별 아이템 표시
 - [x] 아이템 상세 화면 - 각 콘텐츠 상세화면 표시
-- [ ] 카테고리 상세 화면 - 각 카테고리 전체 조회 상세화면 표시 (페이징 적용)
-- [ ] 검색 화면 - 검색 결과 표시 (페이징 적용)
+- [x] 검색 화면 - 검색 결과 표시
 - [ ] 즐겨찾기 화면 - 로컬 기반 즐겨찾기 컬렉션 표시
 - [ ] 프로필 화면 - 로컬 기반 프로필 관리 화면 표시
 
@@ -55,6 +58,8 @@ MVVM & Clean Architecture 패턴을 적용하고 Marvel의 Public API를 통해 
   - `View` 바인딩 절차를 간소화하고 `View` 클래스에서 담당하는 로직을 `xml` 상에서 처리하여 `View` 클래스의 역할을 분담하도록 할 수 있습니다.
 * [AAC-ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
   - 화면 회전 시 `View`가 재생성 되지만 관련 데이터가 소멸되지 않도록 보장하며, 사용자 이벤트를 처리하고 `View`에서 표시해야 할 데이터 및 상태를 관리합니다.
+* [AAC-Paging3](https://developer.android.com/topic/libraries/architecture/paging/v3-overview)
+  - 화면에 표시된 데이터 리스트를 끝까지 스크롤 시 자동으로 다음 데이터 세트를 요청하여 효율적인 페이징 처리를 쉽게 도와줍니다.
 * [Glide](https://github.com/bumptech/glide)
   - 이미지를 빠르고 효율적으로 표시해 주는 것을 도와줍니다.
 * [DotsIndicator](https://github.com/tommybuonomo/dotsindicator)
@@ -67,8 +72,12 @@ MVVM & Clean Architecture 패턴을 적용하고 Marvel의 Public API를 통해 
   - 단위 테스트를 위한 테스트 Framework 입니다.
 * [kotlinx-coroutines-test](https://github.com/Kotlin/kotlinx.coroutines/tree/master/kotlinx-coroutines-test)
   - `runTest`와 같은 코루틴을 효율적으로 테스트하기 위한 유틸리티를 제공합니다. 
-* [Turbine]()
+* [Turbine](https://github.com/cashapp/turbine)
   - `flow` 테스트를 더 쉽게 할 수 있도록 도와줍니다.
+* [Turbine](https://github.com/cashapp/turbine)
+  - `flow` 테스트를 더 쉽게 할 수 있도록 도와줍니다.
+* [Mockk](https://github.com/mockk/mockk)
+  - 테스트 타겟 이외의 객체를 모의 객체로 생성하고 동작을 지정하여 테스트 코드를 읽기 쉽고 유지 관리할 수 있게 도와줍니다.
 
 <br>
 
