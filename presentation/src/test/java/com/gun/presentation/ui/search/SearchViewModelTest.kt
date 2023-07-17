@@ -142,6 +142,22 @@ class SearchViewModelTest {
     }
 
     @Test
+    fun `getSearchPagingData()_이미_요청한_파라미터로_중복_요청_방지_테스트`() = runTest {
+        // [Given]
+        searchViewModel.queryStateFlow.value = "검색어_1"
+        searchViewModel.currentContentType.value = CharacterType
+        searchViewModel.getSearchPagingData() // [검색어_1, CharacterType] 조합으로 검색 요청 (결과 : 요청 진행)
+        doPagingDataConsume()
+
+        // [When]
+        searchViewModel.getSearchPagingData() // [검색어_1, CharacterType] 조합으로 중복 검색 요청 (결과 : 요청 미진행)
+        doPagingDataConsume()
+
+        // [Then]
+        coVerify(exactly = 1) { mockMarvelApi.getCharacterList(any(), any(), any()) }
+    }
+
+    @Test
     fun `getSearchPagingData()_메서드_호출_후_에러_발생_시_SearchUiEvent_정상_변화_테스트`() = runTest {
         searchViewModel.searchUiEventSharedFlow.test {
             // [Given]
