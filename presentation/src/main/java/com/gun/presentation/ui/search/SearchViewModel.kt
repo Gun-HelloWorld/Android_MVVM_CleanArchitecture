@@ -21,6 +21,8 @@ import javax.inject.Inject
 class SearchViewModel @Inject constructor(
     private val getSearchDataUseCase: GetSearchDataUseCase,
 ) : BaseViewModel() {
+    private var latestSearchedQueryStateFlow: MutableStateFlow<String?> = MutableStateFlow(null)
+    private var latestSearchedContentType: MutableStateFlow<ContentType> = MutableStateFlow(SeriesType)
 
     var queryStateFlow: MutableStateFlow<String?> = MutableStateFlow(null)
     var currentContentType: MutableStateFlow<ContentType> = MutableStateFlow(SeriesType)
@@ -81,13 +83,13 @@ class SearchViewModel @Inject constructor(
         val query = queryStateFlow.value
         val contentType = currentContentType.value
 
-        if (query.isNullOrEmpty()) {
-            return
-        }
+        if (!isSearchAvailable(query, contentType)) return
 
         _searchUiDataStateFlow.value = SearchUiModel.Clear
+        latestSearchedQueryStateFlow.value = query
+        latestSearchedContentType.value = contentType
 
-        val param = GetSearchDataUseCase.GetSearchParams(query, getPageConfig(), contentType)
+        val param = GetSearchDataUseCase.GetSearchParams(query!!, getPageConfig(), contentType)
         viewModelScope.launch {
             getSearchDataUseCase(param).cachedIn(this)
                 .onStart {
@@ -101,5 +103,17 @@ class SearchViewModel @Inject constructor(
                     _searchUiDataStateFlow.value = SearchUiModel.ShowData(contentType, result)
                 }
         }
+    }
+
+    private fun isSearchAvailable(query: String?, contentType: ContentType): Boolean {
+        if (query.isNullOrEmpty()) {
+            return false
+        }
+
+        if (latestSearchedQueryStateFlow.value.equals(query) && latestSearchedContentType.value == contentType) {
+            return false
+        }
+
+        return true
     }
 }

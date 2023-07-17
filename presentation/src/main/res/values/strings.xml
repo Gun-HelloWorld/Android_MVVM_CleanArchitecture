@@ -25,6 +25,7 @@
     <string name="msg_search_guide_2">The Marvel API does not support the \"Contains\" search mechanism, so this search menu only supports the \"StartsWith\" search mechanism by by text you enter</string>
     <string name="msg_search_guide_3">The Marvel API is offset-based paging use the offset and limit query parameters to paginate through items in a collection.</string>
     <string name="msg_search_guide_4">When scrolling to the end of loaded data, 20 additional data are automatically load.</string>
+    <string name="msg_search_guide_5">It automatically searches after a few seconds without clicking the submit button after entering the search term.</string>
 
     <string name="title_error_exception">Oops</string>
     <string name="msg_error_exception">something went wrong. Let\'s try one more time.</string>

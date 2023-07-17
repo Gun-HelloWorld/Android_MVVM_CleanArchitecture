@@ -101,4 +101,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/iv_check_4"/>
 
+    <ImageView
+        android:id="@+id/iv_check_5"
+        style="@style/Base.Size.Wrap_Wrap"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/ic_arrow_right"
+        app:layout_constraintStart_toStartOf="@id/iv_check_4"
+        app:layout_constraintTop_toBottomOf="@id/tv_guide_4"/>
+
+    <TextView
+        android:id="@+id/tv_guide_5"
+        style="@style/Base.Size.0_Wrap"
+        android:layout_marginStart="5dp"
+        android:textColor="@color/white"
+        android:textSize="11dp"
+        android:text="@string/msg_search_guide_5"
+        app:layout_constraintStart_toEndOf="@id/iv_check_5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/iv_check_5"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

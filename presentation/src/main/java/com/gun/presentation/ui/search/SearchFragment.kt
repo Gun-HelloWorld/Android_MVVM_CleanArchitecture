@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -19,6 +20,8 @@ import com.gun.mvvm_cleanarchitecture.databinding.FragmentSearchBinding
 import com.gun.presentation.common.BaseFragment
 import com.gun.presentation.ui.search.result.SearchResultPagerAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -28,6 +31,10 @@ class SearchFragment : BaseFragment() {
 
     private val searchViewModel: SearchViewModel by viewModels()
     private lateinit var viewPagerAdapter: SearchResultPagerAdapter
+
+    companion object {
+        const val AUTO_SEARCH_DELAY = 1500L
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -49,7 +56,6 @@ class SearchFragment : BaseFragment() {
         with(binding) {
             viewPager.adapter = viewPagerAdapter
             TabLayoutMediator(tabLayout, viewPager, true, true, viewPagerAdapter).attach()
-            searchView.setOnQueryTextListener(onQueryTextListener)
             tabLayout.addOnTabSelectedListener(onTabSelectedListener)
         }
     }
@@ -86,26 +92,41 @@ class SearchFragment : BaseFragment() {
                         }
                     }
                 }
+
+                launch {
+                    @OptIn(FlowPreview::class)
+                    binding.searchView.getQueryTextChangeStateFlow()
+                        .debounce(AUTO_SEARCH_DELAY)
+                        .filterNot { it.isEmpty() }
+                        .distinctUntilChanged()
+                        .collect { query ->
+                            requestSearch(query)
+                        }
+                }
+
             }
         }
     }
 
-    private val onQueryTextListener = object: SearchView.OnQueryTextListener {
-        override fun onQueryTextSubmit(query: String): Boolean {
-            showSearchResultView(true)
-            binding.searchView.clearFocus()
+    private fun SearchView.getQueryTextChangeStateFlow(): StateFlow<String> {
+        val query = MutableStateFlow("")
 
-            with(searchViewModel) {
-                queryStateFlow.value = query
-                getSearchPagingData ()
+        setOnQueryTextListener(object : OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (!query.isNullOrEmpty()) {
+                    requestSearch(query)
+                }
+                return false
             }
 
-            return false
-        }
-
-        override fun onQueryTextChange(query: String): Boolean {
-            return false
-        }
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (!newText.isNullOrEmpty()) {
+                    query.value = newText
+                }
+                return false
+            }
+        })
+        return query
     }
 
     private val onTabSelectedListener = object: OnTabSelectedListener {
@@ -127,6 +148,13 @@ class SearchFragment : BaseFragment() {
         override fun onTabUnselected(tab: TabLayout.Tab?) {}
 
         override fun onTabReselected(tab: TabLayout.Tab?) {}
+    }
+
+    private fun requestSearch(query: String) {
+        searchViewModel.queryStateFlow.value = query
+        searchViewModel.getSearchPagingData()
+        showSearchResultView(true)
+        binding.searchView.clearFocus()
     }
 
     private fun showSearchResultView(showSearchResult: Boolean) {
