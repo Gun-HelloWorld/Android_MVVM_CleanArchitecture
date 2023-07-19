@@ -4,23 +4,23 @@
         android:id="@+id/homeFragment"
         android:icon="@drawable/ic_menu_home_default"
         android:enabled="true"
-        android:title="Home" />
+        android:title="@string/label_home" />
 
     <item
         android:id="@+id/searchFragment"
         android:icon="@drawable/ic_menu_search_default"
         android:enabled="true"
-        android:title="Search" />
+        android:title="@string/label_search" />
 
     <item
         android:id="@+id/favoriteFragment"
         android:icon="@drawable/ic_menu_favorite_default"
         android:enabled="true"
-        android:title="Favorite" />
+        android:title="@string/label_favorite" />
 
     <item
         android:id="@+id/profileFragment"
         android:icon="@drawable/ic_menu_profile_default"
         android:enabled="true"
-        android:title="Profile" />
+        android:title="@string/label_profile" />
 </menu>

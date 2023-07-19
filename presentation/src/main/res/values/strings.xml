@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">MVVM_CleanArchitecture</string>
 
+    <string name="label_home">Home</string>
+    <string name="label_search">Search</string>
+    <string name="label_favorite">Favorite</string>
+    <string name="label_profile">Profile</string>
+
     <string name="label_character">Character</string>
     <string name="label_comic">Comic</string>
     <string name="label_creator">Creator</string>
@@ -13,7 +18,6 @@
     <string name="label_events">Events</string>
     <string name="label_stories">Stories</string>
 
-    <string name="label_search">Search</string>
     <string name="label_retry">Retry</string>
     <string name="label_modified">Modified</string>
     <string name="label_notice">Notice</string>
@@ -22,7 +26,7 @@
     <string name="label_more_information">More Information</string>
 
     <string name="msg_search_guide_1">@string/label_data_provided_by_marvel</string>
-    <string name="msg_search_guide_2">The Marvel API does not support the \"Contains\" search mechanism, so this search menu only supports the \"StartsWith\" search mechanism by by text you enter</string>
+    <string name="msg_search_guide_2">The Marvel API does not support the \"Contains\" search mechanism, so this search menu only supports the \"StartsWith\" search mechanism by text you enter</string>
     <string name="msg_search_guide_3">The Marvel API is offset-based paging use the offset and limit query parameters to paginate through items in a collection.</string>
     <string name="msg_search_guide_4">When scrolling to the end of loaded data, 20 additional data are automatically load.</string>
     <string name="msg_search_guide_5">It automatically searches after a few seconds without clicking the submit button after entering the search term.</string>
@@ -32,7 +36,7 @@
     <string name="title_error_result_not_found">No results found</string>
     <string name="msg_error_result_not_found">Sorry, there are not results for search</string>
 
-    <string-array name = "search_tab_name">
+    <string-array name="search_tab_name">
         <item>@string/label_series</item>
         <item>@string/label_comic</item>
         <item>@string/label_event</item>
