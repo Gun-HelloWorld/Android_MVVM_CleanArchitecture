@@ -2,7 +2,7 @@ package com.gun.presentation.ui.detail
 
 import androidx.lifecycle.viewModelScope
 import com.gun.domain.common.ContentType
-import com.gun.domain.usecase.GetDataUseCase
+import com.gun.domain.usecase.GetUseCase
 import com.gun.presentation.common.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DetailViewModel @Inject constructor(
-    private val getDetailDataUseCase: GetDataUseCase.GetDetailDataUseCase
+    private val getDetailDataUseCase: GetUseCase.GetDetailDataUseCase
 ) : BaseViewModel() {
 
     private val _detailUiDataStateFlow: MutableStateFlow<DetailUiModelState> =

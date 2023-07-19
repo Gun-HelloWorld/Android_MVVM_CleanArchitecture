@@ -7,10 +7,14 @@ import com.gun.presentation.common.BasePagingAdapter
 import com.gun.presentation.common.BaseViewHolder
 import com.gun.presentation.common.ItemClickListener
 import com.gun.domain.model.search.SearchResult
+import com.gun.presentation.ui.favorite.FavoriteChangedListener
 
 class SearchResultRecyclerAdapter(
-    itemClickListener: ItemClickListener<SearchResult>? = null
+    itemClickListener: ItemClickListener<SearchResult>? = null,
+    val favoriteChangedListener: FavoriteChangedListener<SearchResult>
 ) : BasePagingAdapter<SearchResult, SearchResultRecyclerAdapter.ViewHolder>(itemClickListener)  {
+
+    var favoriteIdList: List<Int> = mutableListOf()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -26,13 +30,17 @@ class SearchResultRecyclerAdapter(
         }
     }
 
-
     inner class ViewHolder(val binding: HolderSearchResultItemBinding) : BaseViewHolder(binding.root) {
         fun setData(data: SearchResult) {
             binding.data = data
+            binding.isFavorite = favoriteIdList.contains(data.id)
 
             binding.root.setOnClickListener {
                 itemClickListener?.onClickItem(data)
+            }
+
+            binding.checkBoxFavorite.setOnClickListener {
+                favoriteChangedListener.onFavoriteChange(data, binding.checkBoxFavorite.isChecked)
             }
         }
     }

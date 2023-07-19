@@ -65,6 +65,11 @@ dependencies {
 
     // Paging
     implementation(Dependencies.AndroidX.PAGING_COMMON)
+
+    // Room
+    implementation(Dependencies.AndroidX.ROOM)
+    kapt(Dependencies.AndroidX.ROOM_COMPILER)
+    implementation(Dependencies.AndroidX.ROOM_KTX)
 }
 
 // Hilt

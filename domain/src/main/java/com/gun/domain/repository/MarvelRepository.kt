@@ -4,6 +4,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import com.gun.domain.common.ContentType
 import com.gun.domain.model.*
+import com.gun.domain.model.favorite.Favorite
 import com.gun.domain.model.search.SearchResult
 import kotlinx.coroutines.flow.Flow
 
@@ -31,4 +32,9 @@ interface MarvelRepository {
 
     fun getSeriesList(offset: Int, limit: Int): Flow<Result<List<Series>>>
 
+    fun getFavoriteList(contentType: ContentType?): Flow<Result<List<Favorite>>>
+
+    fun insertFavorite(favorite: Favorite): Flow<Result<Favorite>>
+
+    fun deleteFavorite(favorite: Favorite): Flow<Result<Favorite>>
 }

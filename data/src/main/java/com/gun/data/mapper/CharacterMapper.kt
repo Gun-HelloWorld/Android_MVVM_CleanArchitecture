@@ -1,6 +1,6 @@
 package com.gun.data.mapper
 
-import com.gun.data.entity.character.CharactersDto
+import com.gun.data.entity.response.remote.character.CharactersDto
 import com.gun.domain.model.Character
 import com.gun.domain.model.SimpleInfo
 import com.gun.domain.model.search.PagingModel

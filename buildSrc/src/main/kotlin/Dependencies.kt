@@ -19,6 +19,7 @@ object Dependencies {
     private const val VERSION_TURBINE = "0.13.0"
     private const val VERSION_PAGING = "3.1.1"
     private const val VERSION_MOCKK = "1.13.4"
+    private const val VERSION_ROOM = "2.2.3"
 
     const val VERSION_ANDROIDX_NAVIGATION = "2.5.3"
     const val VERSION_HILT = "2.45"
@@ -57,6 +58,11 @@ object Dependencies {
         // Paging
         const val PAGING = "androidx.paging:paging-runtime:${VERSION_PAGING}"
         const val PAGING_COMMON = "androidx.paging:paging-common:${VERSION_PAGING}"
+
+        // Room
+        const val ROOM = "androidx.room:room-runtime:${VERSION_ROOM}"
+        const val ROOM_COMPILER = "androidx.room:room-compiler:${VERSION_ROOM}"
+        const val ROOM_KTX = "androidx.room:room-ktx:${VERSION_ROOM}"
     }
 
     object Glide {

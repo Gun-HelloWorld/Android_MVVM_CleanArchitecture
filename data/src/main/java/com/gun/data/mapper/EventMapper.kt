@@ -1,6 +1,6 @@
 package com.gun.data.mapper
 
-import com.gun.data.entity.event.EventDto
+import com.gun.data.entity.response.remote.event.EventDto
 import com.gun.domain.model.Event
 import com.gun.domain.model.SimpleInfo
 import com.gun.domain.model.search.PagingModel

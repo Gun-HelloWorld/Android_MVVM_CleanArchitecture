@@ -9,7 +9,7 @@ data class SearchResult(
     val name: String,
     val thumbnailPath: String,
     val thumbnailExtension: String,
-    val modified: String?
+    val modified: String?,
 ) {
     fun getSearchItemThumbnailUrl(): String {
         return "${thumbnailPath}/$SEARCH_ITEM_THUMBNAIL_IMAGE_SIZE.${thumbnailExtension}"

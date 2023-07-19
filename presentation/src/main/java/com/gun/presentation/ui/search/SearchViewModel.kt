@@ -6,7 +6,13 @@ import androidx.paging.LoadState
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import com.gun.domain.common.*
-import com.gun.domain.usecase.GetDataUseCase.GetSearchDataUseCase
+import com.gun.domain.model.favorite.Favorite
+import com.gun.domain.model.mapper.parseFavorite
+import com.gun.domain.model.search.SearchResult
+import com.gun.domain.usecase.DeleteUseCase
+import com.gun.domain.usecase.GetUseCase
+import com.gun.domain.usecase.GetUseCase.GetSearchDataUseCase
+import com.gun.domain.usecase.InsertUseCase
 import com.gun.presentation.common.BaseViewModel
 import com.gun.presentation.ui.common.PagingLoadStateListener
 import com.gun.presentation.ui.common.ResultEmptyType
@@ -20,7 +26,11 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchViewModel @Inject constructor(
     private val getSearchDataUseCase: GetSearchDataUseCase,
+    private val getFavoriteUseCase: GetUseCase.GetFavoriteUseCase,
+    private val insertFavoriteUseCase: InsertUseCase.InsertFavoriteUseCase,
+    private val deleteFavoriteUseCase: DeleteUseCase.DeleteFavoriteUseCase
 ) : BaseViewModel() {
+
     private var latestSearchedQueryStateFlow: MutableStateFlow<String?> = MutableStateFlow(null)
     private var latestSearchedContentType: MutableStateFlow<ContentType> = MutableStateFlow(SeriesType)
 
@@ -30,6 +40,11 @@ class SearchViewModel @Inject constructor(
     private val _searchUiDataStateFlow: MutableStateFlow<SearchUiModel> =
         MutableStateFlow(SearchUiModel.Initialize)
     val searchUiDataStateFlow = _searchUiDataStateFlow.asStateFlow()
+
+    private val _favoriteIdListStateFlow: MutableStateFlow<List<Int>> = MutableStateFlow(
+        mutableListOf()
+    )
+    val favoriteIdListStateFlow = _favoriteIdListStateFlow.asStateFlow()
 
     private val _searchUiEventSharedFlow = MutableSharedFlow<SearchUiEvent>()
     val searchUiEventSharedFlow = _searchUiEventSharedFlow.asSharedFlow()
@@ -115,5 +130,78 @@ class SearchViewModel @Inject constructor(
         }
 
         return true
+    }
+
+    fun changeFavoriteStatus(searchResult: SearchResult, isChecked: Boolean) {
+        val favorite = searchResult.parseFavorite(currentContentType.value)
+
+        if (isChecked) {
+            insertFavorite(favorite)
+        } else {
+            deleteFavorite(favorite)
+        }
+    }
+
+    fun getFavoriteList() {
+        viewModelScope.launch {
+            getFavoriteUseCase(currentContentType.value)
+                .onStart {
+                    _searchUiEventSharedFlow.emit(SearchUiEvent.ShowLoading)
+                }.onCompletion {
+                    _searchUiEventSharedFlow.emit(SearchUiEvent.HideLoading)
+                }.catch {
+                    _searchUiEventSharedFlow.emit(SearchUiEvent.ShowBadResult(ResultErrorType))
+                    it.printStackTrace()
+                }.collectLatest { result ->
+                    result.onSuccess { data ->
+                        val favoriteIdList = data.map { it.id }.toMutableList()
+                        _favoriteIdListStateFlow.value = favoriteIdList
+                    }
+                }
+        }
+    }
+
+    private fun insertFavorite(favorite: Favorite) {
+        viewModelScope.launch {
+            insertFavoriteUseCase(favorite)
+                .onStart {
+                    _searchUiEventSharedFlow.emit(SearchUiEvent.ShowLoading)
+                }.onCompletion {
+                    _searchUiEventSharedFlow.emit(SearchUiEvent.HideLoading)
+                }.catch {
+                    _searchUiEventSharedFlow.emit(SearchUiEvent.ShowBadResult(ResultErrorType))
+                    it.printStackTrace()
+                }.collectLatest { result ->
+                    result.onSuccess { insertFavorite ->
+                        val favoriteIdList = _favoriteIdListStateFlow.value.toMutableList()
+                        favoriteIdList.add(insertFavorite.id)
+                        _favoriteIdListStateFlow.value = favoriteIdList
+                    }.onFailure {
+                        // TODO SnackBar
+                    }
+                }
+        }
+    }
+
+    private fun deleteFavorite(favorite: Favorite) {
+        viewModelScope.launch {
+            deleteFavoriteUseCase(favorite)
+                .onStart {
+                    _searchUiEventSharedFlow.emit(SearchUiEvent.ShowLoading)
+                }.onCompletion {
+                    _searchUiEventSharedFlow.emit(SearchUiEvent.HideLoading)
+                }.catch {
+                    _searchUiEventSharedFlow.emit(SearchUiEvent.ShowBadResult(ResultErrorType))
+                    it.printStackTrace()
+                }.collectLatest { result ->
+                    result.onSuccess { deletedFavorite ->
+                        val favoriteIdList = _favoriteIdListStateFlow.value.toMutableList()
+                        favoriteIdList.remove(deletedFavorite.id)
+                        _favoriteIdListStateFlow.value = favoriteIdList
+                    }.onFailure {
+                        // TODO SnackBar
+                    }
+                }
+        }
     }
 }

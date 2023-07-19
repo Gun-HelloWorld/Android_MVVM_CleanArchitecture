@@ -2,13 +2,13 @@ package com.gun.presentation.ui.search
 
 import androidx.paging.*
 import app.cash.turbine.test
-import com.gun.data.datasource.MarvelRemoteDataSourceImpl
-import com.gun.data.datasource.MarvelRemotePagingDataSourceImpl
+import com.gun.data.datasource.remote.MarvelRemoteDataSourceImpl
+import com.gun.data.datasource.remote.MarvelRemotePagingDataSourceImpl
 import com.gun.data.network.MarvelApi
 import com.gun.data.repository.MarvelRepositoryImpl
 import com.gun.domain.common.*
 import com.gun.domain.model.search.SearchResult
-import com.gun.domain.usecase.GetSearchDataUseCaseImpl
+import com.gun.domain.usecase.search.GetSearchDataUseCaseImpl
 import com.gun.presentation.MainDispatcherRule
 import com.gun.presentation.fake.data.FakeDtoGenerator.generateEmptyCharactersDto
 import com.gun.presentation.fake.data.FakeDtoGenerator.generateEmptyComicDto

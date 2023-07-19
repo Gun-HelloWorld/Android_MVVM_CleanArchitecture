@@ -1,6 +1,6 @@
 package com.gun.data.mapper
 
-import com.gun.data.entity.creator.CreatorDto
+import com.gun.data.entity.response.remote.creator.CreatorDto
 import com.gun.domain.model.Creator
 import com.gun.domain.model.SimpleInfo
 import com.gun.domain.model.search.PagingModel

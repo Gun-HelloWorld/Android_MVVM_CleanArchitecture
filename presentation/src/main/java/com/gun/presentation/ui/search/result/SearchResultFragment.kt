@@ -14,6 +14,7 @@ import com.gun.mvvm_cleanarchitecture.databinding.FragmentSearchResultBinding
 import com.gun.presentation.common.BaseFragment
 import com.gun.presentation.common.ItemClickListener
 import com.gun.presentation.ui.common.LoadingStateAdapter
+import com.gun.presentation.ui.favorite.FavoriteChangedListener
 import com.gun.presentation.ui.search.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -22,7 +23,7 @@ import kotlinx.coroutines.launch
 private const val KEY_SEARCH_CONTENT_TYPE = "key_search_content_type"
 
 @AndroidEntryPoint
-class SearchResultFragment : BaseFragment(), ItemClickListener<SearchResult> {
+class SearchResultFragment : BaseFragment(), ItemClickListener<SearchResult>, FavoriteChangedListener<SearchResult> {
 
     private lateinit var binding: FragmentSearchResultBinding
     private lateinit var searchRecyclerAdapter: SearchResultRecyclerAdapter
@@ -62,8 +63,13 @@ class SearchResultFragment : BaseFragment(), ItemClickListener<SearchResult> {
         initObserver()
     }
 
+    override fun onResume() {
+        super.onResume()
+        searchViewModel.getFavoriteList()
+    }
+
     private fun initLayout() {
-        searchRecyclerAdapter = SearchResultRecyclerAdapter(itemClickListener = this)
+        searchRecyclerAdapter = SearchResultRecyclerAdapter(itemClickListener = this, favoriteChangedListener = this)
 
         with(binding) {
             lifecycleOwner = viewLifecycleOwner
@@ -122,6 +128,12 @@ class SearchResultFragment : BaseFragment(), ItemClickListener<SearchResult> {
                         }
                     }
                 }
+
+                launch {
+                    searchViewModel.favoriteIdListStateFlow.collect {
+                        searchRecyclerAdapter.favoriteIdList = it
+                    }
+                }
             }
         }
     }
@@ -137,5 +149,9 @@ class SearchResultFragment : BaseFragment(), ItemClickListener<SearchResult> {
         contentType?.let {
             searchViewModel.setSearchUiEventSharedFlow(SearchPageMoveEvent.MoveToDetail(contentId, contentType))
         }
+    }
+
+    override fun onFavoriteChange(data: SearchResult, isChecked: Boolean) {
+        searchViewModel.changeFavoriteStatus(data, isChecked)
     }
 }

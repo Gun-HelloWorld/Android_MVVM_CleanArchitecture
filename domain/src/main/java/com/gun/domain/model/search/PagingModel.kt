@@ -5,5 +5,5 @@ data class PagingModel<T>(
     val limit: Int,
     val total: Int,
     val count: Int,
-    val list: List<T>?
+    var list: List<T>?
 )

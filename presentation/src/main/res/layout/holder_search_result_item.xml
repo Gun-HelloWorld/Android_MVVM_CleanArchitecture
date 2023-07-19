@@ -7,6 +7,9 @@
         <variable
             name="data"
             type="com.gun.domain.model.search.SearchResult" />
+        <variable
+            name="isFavorite"
+            type="Boolean" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -80,6 +83,7 @@
                     android:scaleY="0.8"
                     app:layout_constraintHorizontal_bias="1"
                     android:layout_marginStart="5dp"
+                    android:checked="@{isFavorite}"
                     app:layout_constraintStart_toEndOf="@id/tv_modified_date"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/tv_modified_date"

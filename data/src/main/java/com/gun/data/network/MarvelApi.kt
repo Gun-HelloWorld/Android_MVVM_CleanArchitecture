@@ -1,10 +1,10 @@
 package com.gun.data.network
 
-import com.gun.data.entity.character.CharactersDto
-import com.gun.data.entity.comic.ComicDto
-import com.gun.data.entity.creator.CreatorDto
-import com.gun.data.entity.event.EventDto
-import com.gun.data.entity.series.SeriesDto
+import com.gun.data.entity.response.remote.character.CharactersDto
+import com.gun.data.entity.response.remote.comic.ComicDto
+import com.gun.data.entity.response.remote.creator.CreatorDto
+import com.gun.data.entity.response.remote.event.EventDto
+import com.gun.data.entity.response.remote.series.SeriesDto
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

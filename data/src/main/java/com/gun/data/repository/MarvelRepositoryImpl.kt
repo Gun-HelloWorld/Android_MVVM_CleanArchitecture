@@ -3,17 +3,21 @@ package com.gun.data.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingSource
-import com.gun.data.datasource.MarvelRemoteDataSource
-import com.gun.data.datasource.MarvelRemotePagingDataSourceImpl
+import com.gun.data.datasource.local.MarvelLocalDataSource
+import com.gun.data.datasource.remote.MarvelRemoteDataSource
+import com.gun.data.datasource.remote.MarvelRemotePagingDataSourceImpl
 import com.gun.data.mapper.toDomainModel
+import com.gun.data.mapper.toEntity
 import com.gun.domain.common.ContentType
 import com.gun.domain.model.*
+import com.gun.domain.model.favorite.Favorite
 import com.gun.domain.model.search.SearchResult
 import com.gun.domain.repository.MarvelRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class MarvelRepositoryImpl(
+    private val marvelLocalDataSource: MarvelLocalDataSource,
     private val marvelRemoteDataSource: MarvelRemoteDataSource,
     private var marvelRemotePagingDataSource: PagingSource<Int, SearchResult>
 ) : MarvelRepository {
@@ -74,4 +78,15 @@ class MarvelRepositoryImpl(
         emit(marvelRemoteDataSource.getSeriesList(offset, limit).map { it.toDomainModel() })
     }
 
+    override fun getFavoriteList(contentType: ContentType?): Flow<Result<List<Favorite>>> = flow {
+        emit(marvelLocalDataSource.getFavoriteList(contentType).map { it.map { f-> f.toDomainModel() } })
+    }
+
+    override fun insertFavorite(favorite: Favorite): Flow<Result<Favorite>> = flow {
+        emit(marvelLocalDataSource.insertFavorite(favorite.toEntity()).map { it.toDomainModel() })
+    }
+
+    override fun deleteFavorite(favorite: Favorite): Flow<Result<Favorite>> = flow {
+        emit(marvelLocalDataSource.deleteFavorite(favorite.toEntity()).map { it.toDomainModel() })
+    }
 }
