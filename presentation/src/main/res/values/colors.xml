@@ -16,6 +16,7 @@
     <color name="color_appbar_semi_transparent">#90000000</color>
     <color name="color_common_transparent">@android:color/transparent</color>
     <color name="color_common_shimmer_effect_bg">#3a3a3a</color>
+    <color name="color_filter_button_ripple">#393A3B</color>
 
     <color name="color_indicator_active">#FF3636</color>
     <color name="color_indicator_default">#C4C4C5</color>

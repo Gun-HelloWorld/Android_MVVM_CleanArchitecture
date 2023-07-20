@@ -2,31 +2,31 @@ package com.gun.presentation.ui.favorite
 
 import androidx.lifecycle.viewModelScope
 import com.gun.domain.common.ContentType
-import com.gun.domain.model.favorite.Favorite
 import com.gun.domain.usecase.DeleteUseCase
 import com.gun.domain.usecase.GetUseCase
 import com.gun.domain.usecase.InsertUseCase
 import com.gun.presentation.common.BaseViewModel
 import com.gun.presentation.ui.common.ResultErrorType
+import com.gun.presentation.ui.favorite.model.FavoriteUiModelState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.onCompletion
-import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class FavoriteViewModel @Inject constructor(
     private val getFavoriteUseCase: GetUseCase.GetFavoriteUseCase,
-    private val insertFavoriteUseCase: InsertUseCase.InsertFavoriteUseCase,
     private val deleteFavoriteUseCase: DeleteUseCase.DeleteFavoriteUseCase
 ): BaseViewModel() {
+
+    private val _favoriteUiDataStateFlow: MutableStateFlow<FavoriteUiModelState> =
+        MutableStateFlow(FavoriteUiModelState.Nothing)
+    val favoriteUiStateFlow = _favoriteUiDataStateFlow.asStateFlow()
 
     fun getFavoriteList(contentType: ContentType?) {
         println("FavoriteViewModel - getFavoriteList()")
         viewModelScope.launch {
-            getFavoriteUseCase(null)
+            getFavoriteUseCase(contentType)
                 .onStart {
                     println("FavoriteViewModel - getFavoriteList() - onStart()")
                 }.onCompletion {
@@ -36,16 +36,14 @@ class FavoriteViewModel @Inject constructor(
                     it.printStackTrace()
                 }.collectLatest { result ->
                     println("FavoriteViewModel - getFavoriteList() - collectLatest(): $result")
+
+                    result.onSuccess { favoriteList ->
+                        _favoriteUiDataStateFlow.value = FavoriteUiModelState.ShowData(favoriteList)
+                    }.onFailure {
+                        _messageSharedFlow.emit(it.message ?: "Error")
+                    }
                 }
         }
-    }
-
-    fun insertFavorite(favorite: Favorite) {
-        insertFavoriteUseCase(favorite)
-    }
-
-    fun deleteFavorite(favorite: Favorite) {
-        deleteFavoriteUseCase(favorite)
     }
 
 }

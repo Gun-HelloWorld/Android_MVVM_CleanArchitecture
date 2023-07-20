@@ -21,6 +21,7 @@
     <string name="label_retry">Retry</string>
     <string name="label_modified">Modified</string>
     <string name="label_notice">Notice</string>
+    <string name="label_filter">Filter</string>
 
     <string name="label_data_provided_by_marvel">Data provided by Marvel. © 2014 Marvel</string>
     <string name="label_more_information">More Information</string>
