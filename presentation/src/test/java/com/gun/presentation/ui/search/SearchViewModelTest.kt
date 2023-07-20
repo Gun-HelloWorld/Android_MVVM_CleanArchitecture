@@ -2,12 +2,17 @@ package com.gun.presentation.ui.search
 
 import androidx.paging.*
 import app.cash.turbine.test
+import com.gun.data.database.MarvelDao
+import com.gun.data.datasource.local.MarvelLocalDataSourceImpl
 import com.gun.data.datasource.remote.MarvelRemoteDataSourceImpl
 import com.gun.data.datasource.remote.MarvelRemotePagingDataSourceImpl
 import com.gun.data.network.MarvelApi
 import com.gun.data.repository.MarvelRepositoryImpl
 import com.gun.domain.common.*
 import com.gun.domain.model.search.SearchResult
+import com.gun.domain.usecase.favorite.DeleteFavoriteUseCaseImpl
+import com.gun.domain.usecase.favorite.GetFavoriteListUseCaseImpl
+import com.gun.domain.usecase.favorite.InsertFavoriteUseCaseImpl
 import com.gun.domain.usecase.search.GetSearchDataUseCaseImpl
 import com.gun.presentation.MainDispatcherRule
 import com.gun.presentation.fake.data.FakeDtoGenerator.generateEmptyCharactersDto
@@ -38,6 +43,7 @@ class SearchViewModelTest {
     private val testPagingDataConsumer = TestPagingDataConsumer<SearchResult>()
 
     private val mockMarvelApi = mockk<MarvelApi>()
+    private val mockMarveDao = mockk<MarvelDao>()
 
     private val invalidSearchQueryValue = null
     private val validSearchQueryValue = "Not empty some query value"
@@ -51,11 +57,18 @@ class SearchViewModelTest {
 
     @Before
     fun setUp() {
+        val localDataSource = MarvelLocalDataSourceImpl(mockMarveDao)
         val pagingDataSource = MarvelRemotePagingDataSourceImpl(mockMarvelApi)
         val remoteDataSource = MarvelRemoteDataSourceImpl(mockMarvelApi)
-        val repository = MarvelRepositoryImpl(remoteDataSource, pagingDataSource)
-        val useCase = GetSearchDataUseCaseImpl(repository)
-        searchViewModel = SearchViewModel(useCase)
+
+        val repository = MarvelRepositoryImpl(localDataSource, remoteDataSource, pagingDataSource)
+
+        val getSearchDataUseCase = GetSearchDataUseCaseImpl(repository)
+        val getFavoriteUseCase = GetFavoriteListUseCaseImpl(repository)
+        val insertFavoriteUseCase = InsertFavoriteUseCaseImpl(repository)
+        val deleteFavoriteUseCase = DeleteFavoriteUseCaseImpl(repository)
+
+        searchViewModel = SearchViewModel(getSearchDataUseCase, getFavoriteUseCase, insertFavoriteUseCase, deleteFavoriteUseCase)
 
         // PagingData 경우 Paging 에서 자체적으로 에러, 로딩상태 관리하므로
         // 리스너 등록하여 수신된 상태에 따라 뷰모델 errorSharedFlow, loadingStateFlow 를 조작한다.
