@@ -20,6 +20,17 @@ MVVM & Clean Architecture 패턴을 적용하고 Marvel의 Public API를 통해 
       <img src="https://github.com/Gun-HelloWorld/Android_MVVM_CleanArchitecture/assets/129313980/bb8363a6-e921-44cf-8911-a1ed8c974a98" width="250" height="555"/>
     </td>
   </tr>
+
+  <th>Favorite</th>
+  <th>Profile</th>
+  <tr>
+    <td>
+      <img src="https://github.com/Gun-HelloWorld/Android_MVVM_CleanArchitecture/assets/129313980/35b1e2ec-b02b-44a6-9fb1-28e649767ce0" width="250" height="555"/>
+    </td>
+    <td>
+      <p align="center">적용예정</p>
+    </td>
+  </tr>
 </table>
 
 <br>
@@ -28,7 +39,7 @@ MVVM & Clean Architecture 패턴을 적용하고 Marvel의 Public API를 통해 
 - [x] 홈 화면 - 상단 로고 애니메이션, 배너, 카테고리별 아이템 표시
 - [x] 아이템 상세 화면 - 각 콘텐츠 상세화면 표시
 - [x] 검색 화면 - 검색 결과 표시
-- [ ] 즐겨찾기 화면 - 로컬 기반 즐겨찾기 컬렉션 표시
+- [x] 즐겨찾기 화면 - 로컬 기반 즐겨찾기 컬렉션 표시
 - [ ] 프로필 화면 - 로컬 기반 프로필 관리 화면 표시
 
 <br>
@@ -60,6 +71,8 @@ MVVM & Clean Architecture 패턴을 적용하고 Marvel의 Public API를 통해 
   - 화면 회전 시 `View`가 재생성 되지만 관련 데이터가 소멸되지 않도록 보장하며, 사용자 이벤트를 처리하고 `View`에서 표시해야 할 데이터 및 상태를 관리합니다.
 * [AAC-Paging3](https://developer.android.com/topic/libraries/architecture/paging/v3-overview)
   - 화면에 표시된 데이터 리스트를 끝까지 스크롤 시 자동으로 다음 데이터 세트를 요청하여 효율적인 페이징 처리를 쉽게 도와줍니다.
+* [AAC-Room](https://developer.android.com/training/data-storage/room)
+  - `SQLite`를 보다 쉽게 사용할 수 있도록 도와주며, 직접적인 `Thread` Switching 없이도 `DAO` 인터페이스이 쿼리 함수에 Kotlin의 `suspend` 키워드를 명시하여 내부적으로 비동기처리 되도록 지원합니다.
 * [Glide](https://github.com/bumptech/glide)
   - 이미지를 빠르고 효율적으로 표시해 주는 것을 도와줍니다.
 * [DotsIndicator](https://github.com/tommybuonomo/dotsindicator)
