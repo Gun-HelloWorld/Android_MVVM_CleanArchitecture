@@ -36,7 +36,7 @@
     <string name="title_error_exception">Oops</string>
     <string name="msg_error_exception">something went wrong. Let\'s try one more time.</string>
     <string name="title_error_result_not_found">No results found</string>
-    <string name="msg_error_result_not_found">Sorry, there are not results for search</string>
+    <string name="msg_error_result_not_found">Sorry, there are not results</string>
 
     <string-array name="search_tab_name">
         <item>@string/label_series</item>
