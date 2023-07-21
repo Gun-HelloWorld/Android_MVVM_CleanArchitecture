@@ -87,6 +87,7 @@ class FavoriteFragment : BaseFragment(), ItemClickListener<Favorite>, OnClickLis
                             is FavoriteUiEvent.ShowLoading -> {
                                 binding.shimmerViewContainer.startShimmer()
                                 binding.shimmerViewContainer.visibility = View.VISIBLE
+                                binding.recyclerView.visibility = View.GONE
                             }
 
                             is FavoriteUiEvent.HideLoading -> {
