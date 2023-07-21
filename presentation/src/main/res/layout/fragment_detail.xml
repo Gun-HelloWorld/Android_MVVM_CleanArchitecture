@@ -10,6 +10,10 @@
             type="com.gun.domain.model.detail.ContentDetail" />
 
         <variable
+            name="isFavorite"
+            type="Boolean" />
+
+        <variable
             name="imageLoadListener"
             type="com.gun.presentation.common.ImageLoadListener" />
     </data>
@@ -49,6 +53,18 @@
                 app:imageUrl="@{data.thumbnailUrl}"
                 app:imageError="@{@drawable/ic_error_banner}"
                 tools:srcCompat="@drawable/test_thumbnail_portrait_xlarge" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_bottom_gradient" />
+
+            <CheckBox
+                android:id="@+id/check_box_favorite"
+                style="@style/CheckBox_Favorite_Style"
+                android:checked="@{isFavorite}"
+                android:layout_marginBottom="5dp"
+                android:layout_gravity="end|bottom"/>
 
         </com.google.android.material.card.MaterialCardView>
 

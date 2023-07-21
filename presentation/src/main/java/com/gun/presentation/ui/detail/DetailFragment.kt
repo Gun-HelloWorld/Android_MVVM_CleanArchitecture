@@ -4,7 +4,9 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnClickListener
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
@@ -23,7 +25,7 @@ import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class DetailFragment : BaseFragment(), ImageLoadListener {
+class DetailFragment : BaseFragment(), ImageLoadListener, OnClickListener {
 
     private lateinit var binding: FragmentDetailBinding
 
@@ -31,12 +33,10 @@ class DetailFragment : BaseFragment(), ImageLoadListener {
 
     private val args: DetailFragmentArgs by navArgs()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail, container, false)
         binding.imageLoadListener = this
+        binding.checkBoxFavorite.setOnClickListener(this)
 
         return binding.root
     }
@@ -48,6 +48,7 @@ class DetailFragment : BaseFragment(), ImageLoadListener {
 
         if (detailViewModel.detailUiStateFlow.value is DetailUiModelState.Nothing) {
             detailViewModel.getDetailData(args.contentId, args.contentType)
+            detailViewModel.getFavoriteList(args.contentType)
         }
     }
 
@@ -97,11 +98,27 @@ class DetailFragment : BaseFragment(), ImageLoadListener {
                         Snackbar.make(binding.root, it, Snackbar.LENGTH_LONG).show()
                     }
                 }
+
+                launch {
+                    detailViewModel.favoriteIdListStateFlow.collect {
+                        binding.isFavorite = it.contains(args.contentId)
+                    }
+                }
             }
         }
     }
 
     override fun onImageLoadedWithBitmap(imageView: ImageView, bitmap: Bitmap) {
         BlurUtil.blurToDetailBackground(requireContext(), imageView, bitmap, 60)
+    }
+
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.check_box_favorite -> {
+                if (v is CheckBox) {
+                    detailViewModel.changeFavoriteStatus(v.isChecked, args.contentType)
+                }
+            }
+        }
     }
 }
