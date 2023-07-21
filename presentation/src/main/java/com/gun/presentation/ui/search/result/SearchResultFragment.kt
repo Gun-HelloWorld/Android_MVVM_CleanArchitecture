@@ -131,7 +131,7 @@ class SearchResultFragment : BaseFragment(), ItemClickListener<SearchResult>, Fa
 
                 launch {
                     searchViewModel.favoriteIdListStateFlow.collect {
-                        searchRecyclerAdapter.favoriteIdList = it
+                        searchRecyclerAdapter.setFavoriteIdList(it)
                     }
                 }
             }

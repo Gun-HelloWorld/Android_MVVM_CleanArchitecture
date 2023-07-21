@@ -1,5 +1,6 @@
 package com.gun.presentation.ui.search.result
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.gun.mvvm_cleanarchitecture.databinding.HolderSearchResultItemBinding
@@ -14,7 +15,13 @@ class SearchResultRecyclerAdapter(
     val favoriteChangedListener: FavoriteChangedListener<SearchResult>
 ) : BasePagingAdapter<SearchResult, SearchResultRecyclerAdapter.ViewHolder>(itemClickListener)  {
 
-    var favoriteIdList: List<Int> = mutableListOf()
+    private var favoriteIdList: List<Int> = mutableListOf()
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun setFavoriteIdList(favoriteIdList: List<Int>) {
+        this.favoriteIdList = favoriteIdList
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
