@@ -15,11 +15,38 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_filter"
             style="@style/Material_Button_Filter_Style"
             android:text="@string/label_filter"
             app:layout_constraintTop_toTopOf="@id/tv_title"
             app:layout_constraintBottom_toBottomOf="@id/tv_title"
             app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.gun.presentation.ui.common.CustomBadResultView
+            android:id="@+id/view_bad_result"
+            style="@style/Base.Size.0_0"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="20dp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_view_container"
+            style="@style/Base.Size.0_0"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="20dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <include layout="@layout/layout_favorite_shimmer" />
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"

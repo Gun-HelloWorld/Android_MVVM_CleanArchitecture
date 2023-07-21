@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Base.Size.Match_Wrap"
+    tools:context="com.gun.presentation.ui.favorite.FavoriteFragment">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_view_item_1"
+        style="@style/CardView_Favorite_Item_Style"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/card_view_item_2"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <View
+            style="@style/ImageView_Home_List_Thumbnail_Style"
+            android:background="@color/color_common_shimmer_effect_bg" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <View
+        style="@style/Base.TextView.Favorite_List_Item_Name_Style"
+        android:layout_height="20dp"
+        android:background="@color/color_common_shimmer_effect_bg"
+        app:layout_constraintEnd_toEndOf="@id/card_view_item_1"
+        app:layout_constraintStart_toStartOf="@id/card_view_item_1"
+        app:layout_constraintTop_toBottomOf="@id/card_view_item_1" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_view_item_2"
+        style="@style/CardView_Favorite_Item_Style"
+        app:layout_constraintStart_toEndOf="@id/card_view_item_1"
+        app:layout_constraintEnd_toStartOf="@id/card_view_item_3"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <View
+            style="@style/ImageView_Home_List_Thumbnail_Style"
+            android:background="@color/color_common_shimmer_effect_bg" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <View
+        style="@style/Base.TextView.Favorite_List_Item_Name_Style"
+        android:layout_height="20dp"
+        android:background="@color/color_common_shimmer_effect_bg"
+        app:layout_constraintEnd_toEndOf="@id/card_view_item_2"
+        app:layout_constraintStart_toStartOf="@id/card_view_item_2"
+        app:layout_constraintTop_toBottomOf="@id/card_view_item_2" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_view_item_3"
+        style="@style/CardView_Favorite_Item_Style"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/card_view_item_2"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <View
+            style="@style/ImageView_Home_List_Thumbnail_Style"
+            android:background="@color/color_common_shimmer_effect_bg" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <View
+        style="@style/Base.TextView.Favorite_List_Item_Name_Style"
+        android:layout_height="20dp"
+        android:background="@color/color_common_shimmer_effect_bg"
+        app:layout_constraintEnd_toEndOf="@id/card_view_item_3"
+        app:layout_constraintStart_toStartOf="@id/card_view_item_3"
+        app:layout_constraintTop_toBottomOf="@id/card_view_item_3" />
+</androidx.constraintlayout.widget.ConstraintLayout>

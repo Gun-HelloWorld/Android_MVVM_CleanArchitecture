@@ -18,18 +18,12 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         style="@style/Base.Size.Match_Wrap"
+        android:background="?android:attr/selectableItemBackground"
         android:onClick="@{() -> onClickListener.onClickItem(data)}">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_view"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintDimensionRatio="H,10:17"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="3dp"
-            app:cardUseCompatPadding="true"
-            app:cardBackgroundColor="@color/color_common_shimmer_effect_bg"
-            android:outlineSpotShadowColor="@color/color_card_view_shadow_color"
+            style="@style/CardView_Favorite_Item_Style"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -46,9 +40,7 @@
 
         <TextView
             android:id="@+id/tv_name"
-            style="@style/Base.TextView.Home_List_Item_Name_Style"
-            android:autoSizeMinTextSize="9dp"
-            android:autoSizeTextType="uniform"
+            style="@style/Base.TextView.Favorite_List_Item_Name_Style"
             android:text="@{data.name}"
             tools:text="Test"
             app:layout_constraintEnd_toEndOf="@id/card_view"

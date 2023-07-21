@@ -8,6 +8,7 @@ import com.gun.domain.model.favorite.Favorite
 import com.gun.domain.model.home.HomeList
 import com.gun.domain.model.search.SearchResult
 import kotlinx.coroutines.flow.Flow
+import kotlin.time.Duration
 
 interface GetUseCase {
 
@@ -30,7 +31,7 @@ interface GetUseCase {
     }
 
     interface GetFavoriteUseCase {
-        operator fun invoke(contentType: ContentType?): Flow<Result<List<Favorite>>>
+        operator fun invoke(contentType: ContentType?, shimmerDuration: Duration? = null): Flow<Result<List<Favorite>>>
     }
 
 }

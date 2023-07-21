@@ -22,6 +22,7 @@
     <string name="label_modified">Modified</string>
     <string name="label_notice">Notice</string>
     <string name="label_filter">Filter</string>
+    <string name="label_all">All</string>
 
     <string name="label_data_provided_by_marvel">Data provided by Marvel. © 2014 Marvel</string>
     <string name="label_more_information">More Information</string>
@@ -38,6 +39,15 @@
     <string name="msg_error_result_not_found">Sorry, there are not results for search</string>
 
     <string-array name="search_tab_name">
+        <item>@string/label_series</item>
+        <item>@string/label_comic</item>
+        <item>@string/label_event</item>
+        <item>@string/label_character</item>
+        <item>@string/label_creator</item>
+    </string-array>
+
+    <string-array name="favorite_filter_items">
+        <item>@string/label_all</item>
         <item>@string/label_series</item>
         <item>@string/label_comic</item>
         <item>@string/label_event</item>

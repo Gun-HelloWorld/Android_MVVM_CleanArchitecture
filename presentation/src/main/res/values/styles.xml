@@ -193,6 +193,18 @@
         <item name="android:textSize">11dp</item>
     </style>
 
+    <style name="Base.TextView.Favorite_List_Item_Name_Style" parent="Base.Size.0_Wrap">
+        <item name="android:layout_marginStart">5dp</item>
+        <item name="android:layout_marginEnd">5dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textSize">12dp</item>
+        <item name="android:textColor">@color/color_common_normal_text_white</item>
+        <item name="android:autoSizeTextType" tools:targetApi="o">uniform</item>
+        <item name="autoSizeMinTextSize">9dp</item>
+    </style>
+
     <!--######################################## Button #########################################-->
 
     <style name="Button_Retry_Style" parent="Base.Size.Wrap_Wrap">
@@ -227,6 +239,7 @@
         <item name="android:textSize">12dp</item>
         <item name="android:textAllCaps">false</item>
         <item name="cornerRadius">15dp</item>
+        <item name="iconPadding">5dp</item>
     </style>
 
     <!--####################################### CheckBox ########################################-->
@@ -268,6 +281,15 @@
         <item name="cardElevation">3dp</item>
         <item name="cardUseCompatPadding">true</item>
         <item name="cardBackgroundColor">@color/color_search_semi_transparent_color</item>
+    </style>
+
+    <style name="CardView_Favorite_Item_Style" parent="Base.Size.0_0">
+        <item name="layout_constraintDimensionRatio">"H,10:17"</item>
+        <item name="cardCornerRadius">8dp</item>
+        <item name="cardElevation">3dp</item>
+        <item name="cardUseCompatPadding">true</item>
+        <item name="cardBackgroundColor">@color/color_common_shimmer_effect_bg</item>
+        <item name="android:outlineSpotShadowColor" tools:targetApi="p">@color/color_card_view_shadow_color</item>
     </style>
 
     <!--####################################### TabLayout #######################################-->
