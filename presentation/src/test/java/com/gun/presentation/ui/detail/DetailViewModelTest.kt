@@ -3,9 +3,13 @@ package com.gun.presentation.ui.detail
 
 import app.cash.turbine.test
 import com.gun.domain.common.*
+import com.gun.domain.usecase.DeleteUseCase
+import com.gun.domain.usecase.GetUseCase
+import com.gun.domain.usecase.InsertUseCase
 import com.gun.presentation.MainDispatcherRule
 import com.gun.presentation.fake.data.FakeContentDetailGenerator
 import com.gun.presentation.fake.usecase.FakeGetDetailDataUseCaseImpl
+import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -21,11 +25,20 @@ class DetailViewModelTest {
     private val availableContentTypeList = listOf(CharacterType, ComicType, SeriesType, EventType, CreatorType)
 
     private lateinit var detailViewModel: DetailViewModel
+
     private val fakeGetDetailDataUseCaseImpl = FakeGetDetailDataUseCaseImpl()
+    private val mockGetFavoriteUseCase = mockk<GetUseCase.GetFavoriteUseCase>()
+    private val mockInsertFavoriteUseCase = mockk<InsertUseCase.InsertFavoriteUseCase>()
+    private val mockDeleteFavoriteUseCase = mockk<DeleteUseCase.DeleteFavoriteUseCase>()
 
     @Before
     fun setUp() {
-        detailViewModel = DetailViewModel(fakeGetDetailDataUseCaseImpl)
+        detailViewModel = DetailViewModel(
+            fakeGetDetailDataUseCaseImpl,
+            mockGetFavoriteUseCase,
+            mockInsertFavoriteUseCase,
+            mockDeleteFavoriteUseCase
+        )
     }
 
     @Test
