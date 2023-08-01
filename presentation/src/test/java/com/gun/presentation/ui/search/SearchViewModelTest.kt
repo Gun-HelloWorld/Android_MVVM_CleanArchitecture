@@ -9,10 +9,8 @@ import com.gun.data.datasource.remote.MarvelRemotePagingDataSourceImpl
 import com.gun.data.network.MarvelApi
 import com.gun.data.repository.MarvelRepositoryImpl
 import com.gun.domain.common.*
+import com.gun.domain.model.mapper.parseFavorite
 import com.gun.domain.model.search.SearchResult
-import com.gun.domain.usecase.favorite.DeleteFavoriteUseCaseImpl
-import com.gun.domain.usecase.favorite.GetFavoriteListUseCaseImpl
-import com.gun.domain.usecase.favorite.InsertFavoriteUseCaseImpl
 import com.gun.domain.usecase.search.GetSearchDataUseCaseImpl
 import com.gun.presentation.MainDispatcherRule
 import com.gun.presentation.fake.data.FakeDtoGenerator.generateEmptyCharactersDto
@@ -20,13 +18,17 @@ import com.gun.presentation.fake.data.FakeDtoGenerator.generateEmptyComicDto
 import com.gun.presentation.fake.data.FakeDtoGenerator.generateEmptyCreatorDto
 import com.gun.presentation.fake.data.FakeDtoGenerator.generateEmptyEventDto
 import com.gun.presentation.fake.data.FakeDtoGenerator.generateEmptySeriesDto
+import com.gun.presentation.fake.data.FakeSearchResultGenerator
+import com.gun.presentation.fake.usecase.FakeDeleteFavoriteUseCaseImpl
+import com.gun.presentation.fake.usecase.FakeGetFavoriteDataUseCaseImpl
+import com.gun.presentation.fake.usecase.FakeInsertFavoriteUseCaseImpl
 import com.gun.presentation.test.TestPagingDataConsumer
 import com.gun.presentation.ui.common.ResultEmptyType
 import com.gun.presentation.ui.common.ResultErrorType
 import io.mockk.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.test.*
-import org.junit.Assert
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -44,6 +46,10 @@ class SearchViewModelTest {
 
     private val mockMarvelApi = mockk<MarvelApi>()
     private val mockMarveDao = mockk<MarvelDao>()
+
+    private val fakeGetFavoriteUseCaseImpl = FakeGetFavoriteDataUseCaseImpl()
+    private val fakeInsertFavoriteUseCaseImpl = FakeInsertFavoriteUseCaseImpl()
+    private val fakeDeleteFavoriteUseCaseImpl = FakeDeleteFavoriteUseCaseImpl()
 
     private val invalidSearchQueryValue = null
     private val validSearchQueryValue = "Not empty some query value"
@@ -64,11 +70,13 @@ class SearchViewModelTest {
         val repository = MarvelRepositoryImpl(localDataSource, remoteDataSource, pagingDataSource)
 
         val getSearchDataUseCase = GetSearchDataUseCaseImpl(repository)
-        val getFavoriteUseCase = GetFavoriteListUseCaseImpl(repository)
-        val insertFavoriteUseCase = InsertFavoriteUseCaseImpl(repository)
-        val deleteFavoriteUseCase = DeleteFavoriteUseCaseImpl(repository)
 
-        searchViewModel = SearchViewModel(getSearchDataUseCase, getFavoriteUseCase, insertFavoriteUseCase, deleteFavoriteUseCase)
+        searchViewModel = SearchViewModel(
+            getSearchDataUseCase,
+            fakeGetFavoriteUseCaseImpl,
+            fakeInsertFavoriteUseCaseImpl,
+            fakeDeleteFavoriteUseCaseImpl
+        )
 
         // PagingData 경우 Paging 에서 자체적으로 에러, 로딩상태 관리하므로
         // 리스너 등록하여 수신된 상태에 따라 뷰모델 errorSharedFlow, loadingStateFlow 를 조작한다.
@@ -146,9 +154,9 @@ class SearchViewModelTest {
             searchViewModel.getSearchPagingData()
 
             // [Then]
-            Assert.assertEquals(true, awaitItem() is SearchUiModel.Initialize)
-            Assert.assertEquals(true, awaitItem() is SearchUiModel.Clear)
-            Assert.assertEquals(true, awaitItem() is SearchUiModel.ShowData)
+            assertEquals(true, awaitItem() is SearchUiModel.Initialize)
+            assertEquals(true, awaitItem() is SearchUiModel.Clear)
+            assertEquals(true, awaitItem() is SearchUiModel.ShowData)
 
             cancelAndConsumeRemainingEvents()
         }
@@ -193,8 +201,8 @@ class SearchViewModelTest {
 
             // [Then]
             val actualItem = expectMostRecentItem()
-            Assert.assertEquals(expectedItem, actualItem as SearchUiEvent.ShowBadResult)
-            Assert.assertEquals(expectedItem.badResultType, actualItem.badResultType)
+            assertEquals(expectedItem, actualItem as SearchUiEvent.ShowBadResult)
+            assertEquals(expectedItem.badResultType, actualItem.badResultType)
 
             cancelAndConsumeRemainingEvents()
         }
@@ -222,8 +230,8 @@ class SearchViewModelTest {
 
             // [Then]
             val actualItem = expectMostRecentItem()
-            Assert.assertEquals(expectedItem, actualItem as SearchUiEvent.ShowBadResult)
-            Assert.assertEquals(expectedItem.badResultType, actualItem.badResultType)
+            assertEquals(expectedItem, actualItem as SearchUiEvent.ShowBadResult)
+            assertEquals(expectedItem.badResultType, actualItem.badResultType)
 
             cancelAndConsumeRemainingEvents()
         }
@@ -242,9 +250,11 @@ class SearchViewModelTest {
 
             // [Then]
             val actualUiEvent = awaitItem()
-            Assert.assertEquals(expectedUiEvent, actualUiEvent as SearchPageMoveEvent.MoveToDetail)
-            Assert.assertEquals(expectedContentId, actualUiEvent.contentId)
-            Assert.assertEquals(expectedContentType,actualUiEvent.contentType)
+            assertEquals(expectedUiEvent, actualUiEvent as SearchPageMoveEvent.MoveToDetail)
+            assertEquals(expectedContentId, actualUiEvent.contentId)
+            assertEquals(expectedContentType,actualUiEvent.contentType)
+
+            cancelAndConsumeRemainingEvents()
         }
     }
 
@@ -267,12 +277,133 @@ class SearchViewModelTest {
         val actualTypeByNull = searchViewModel.getContentTypeFromTabTitle(expectedInvalidPair.first)
 
         // [Then]
-        Assert.assertEquals(expectedSeriesPair.second, actualTypeBySeries)
-        Assert.assertEquals(expectedComicPair.second, actualTypeByComic)
-        Assert.assertEquals(expectedEventPair.second, actualTypeByEvent)
-        Assert.assertEquals(expectedCharacterPair.second, actualTypeByCharacter)
-        Assert.assertEquals(expectedCreatorPair.second, actualTypeByCreator)
-        Assert.assertEquals(expectedInvalidPair.second, actualTypeByNull)
+        assertEquals(expectedSeriesPair.second, actualTypeBySeries)
+        assertEquals(expectedComicPair.second, actualTypeByComic)
+        assertEquals(expectedEventPair.second, actualTypeByEvent)
+        assertEquals(expectedCharacterPair.second, actualTypeByCharacter)
+        assertEquals(expectedCreatorPair.second, actualTypeByCreator)
+        assertEquals(expectedInvalidPair.second, actualTypeByNull)
+    }
+
+    @Test
+    fun `changeFavoriteStatus()_메서드_호출_시_isChecked_파라미터_true_전달_시_insert_성공_후_favoriteIdListStateFlow_변화_테스트`() = runTest {
+        // [Given] Value
+        val someContentId = 0
+        val someContentType = availableContentTypeValueList.random()
+        val targetSearchResult = FakeSearchResultGenerator.generate(someContentId)
+        val expectedFavoriteId = targetSearchResult.id
+        val expectedContainFavoriteList = true
+
+        // [Given] Pre-Situation (ContentType 설정)
+        searchViewModel.currentContentType.value = someContentType // changeFavoriteStatus() 호출 시 currentContentType 참조
+
+        // [When]
+        searchViewModel.changeFavoriteStatus(targetSearchResult, true)
+        fakeInsertFavoriteUseCaseImpl.emit(Result.success(targetSearchResult.parseFavorite(someContentType)))
+
+        // [Then]
+        val favoriteIdList = searchViewModel.favoriteIdListStateFlow.value
+        assertEquals(expectedContainFavoriteList, favoriteIdList.contains(expectedFavoriteId))
+    }
+
+    @Test
+    fun `changeFavoriteStatus()_메서드_호출_시_isChecked_파라미터_true_전달_시_insert_실패_후_에러_메세지_수신_테스트`() = runTest {
+        searchViewModel.messageSharedFlow.test {
+            // [Given] Value
+            val someContentId = 0
+            val someContentType = availableContentTypeValueList.random()
+            val targetSearchResult = FakeSearchResultGenerator.generate(someContentId)
+            val expectedException = Exception("에러 발생")
+
+            // [Given] Pre-Situation (ContentType 설정)
+            searchViewModel.currentContentType.value = someContentType // changeFavoriteStatus() 호출 시 currentContentType 참조
+
+            // [When]
+            searchViewModel.changeFavoriteStatus(targetSearchResult, true)
+            fakeInsertFavoriteUseCaseImpl.emit(Result.failure(expectedException))
+
+            // [Then]
+            val actualMessage = awaitItem()
+            assertEquals(expectedException.message, actualMessage)
+
+            cancelAndConsumeRemainingEvents()
+        }
+    }
+
+    @Test
+    fun `changeFavoriteStatus()_메서드_호출_시_isChecked_파라미터_false_전달_시_delete_성공_후_favoriteIdListStateFlow_변화_테스트`() = runTest {
+        // [Given] Value
+        val someContentId = 0
+        val someContentType = availableContentTypeValueList.random()
+        val targetSearchResult = FakeSearchResultGenerator.generate(someContentId)
+        val expectedFavoriteId = targetSearchResult.id
+        val expectedContainFavoriteList = false
+
+        // [Given] Pre-Situation (ContentType 설정, 즐겨찾기 추가)
+        searchViewModel.currentContentType.value = someContentType // changeFavoriteStatus() 호출 시 currentContentType 참조
+        searchViewModel.changeFavoriteStatus(targetSearchResult, true)
+        fakeInsertFavoriteUseCaseImpl.emit(Result.success(targetSearchResult.parseFavorite(someContentType)))
+
+        // [When]
+        searchViewModel.changeFavoriteStatus(targetSearchResult, false)
+        fakeDeleteFavoriteUseCaseImpl.emit(Result.success(targetSearchResult.parseFavorite(someContentType)))
+
+        // [Then]
+        val favoriteIdList = searchViewModel.favoriteIdListStateFlow.value
+        assertEquals(expectedContainFavoriteList, favoriteIdList.contains(expectedFavoriteId))
+    }
+
+    @Test
+    fun `changeFavoriteStatus()_메서드_호출_시_isChecked_파라미터_false_전달_시_delete_실패_후_에러_메세지_수신_테스트`() = runTest {
+        searchViewModel.messageSharedFlow.test {
+            // [Given] Value
+            val someContentId = 0
+            val someContentType = availableContentTypeValueList.random()
+            val targetSearchResult = FakeSearchResultGenerator.generate(someContentId)
+            val expectedException = Exception("에러 발생")
+            val expectedRemainFavoriteId = true
+
+            // [Given] Pre-Situation (ContentType 설정, 즐겨찾기 추가)
+            searchViewModel.currentContentType.value = someContentType // changeFavoriteStatus() 호출 시 currentContentType 참조
+            searchViewModel.changeFavoriteStatus(targetSearchResult, true)
+            fakeInsertFavoriteUseCaseImpl.emit(Result.success(targetSearchResult.parseFavorite(someContentType)))
+
+            // [When]
+            searchViewModel.changeFavoriteStatus(targetSearchResult, false)
+            fakeInsertFavoriteUseCaseImpl.emit(Result.failure(expectedException))
+
+            // [Then]
+            val actualMessage = awaitItem()
+            val actualFavoriteIdList = searchViewModel.favoriteIdListStateFlow.value
+            assertEquals(expectedException.message, actualMessage)
+            assertEquals(expectedRemainFavoriteId, actualFavoriteIdList.contains(someContentId))
+
+            cancelAndConsumeRemainingEvents()
+        }
+    }
+
+    @Test
+    fun `getFavoriteList()_메서드_호출_시_데이터_정상_수신_테스트`() = runTest {
+        // [Given] Value
+        val someContentId = 0
+        val someContentType = availableContentTypeValueList.random()
+        val targetSearchResult = FakeSearchResultGenerator.generate(someContentId)
+        val targetFavorite = targetSearchResult.parseFavorite(someContentType)
+        val expectedFavoriteId = targetSearchResult.id
+        val expectedContainFavoriteList = true
+
+        // [Given] Pre-Situation (ContentType 설정, 즐겨찾기 추가)
+        searchViewModel.currentContentType.value = someContentType // getFavoriteList() 호출 시 currentContentType 참조
+        searchViewModel.changeFavoriteStatus(targetSearchResult, true)
+        fakeInsertFavoriteUseCaseImpl.emit(Result.success(targetFavorite))
+
+        // [When]
+        searchViewModel.getFavoriteList()
+        fakeGetFavoriteUseCaseImpl.emit(Result.success(mutableListOf(targetFavorite)))
+
+        // [Then]
+        val actualFavoriteIdList = searchViewModel.favoriteIdListStateFlow.value
+        assertEquals(expectedContainFavoriteList, actualFavoriteIdList.contains(expectedFavoriteId))
     }
 
     /**
