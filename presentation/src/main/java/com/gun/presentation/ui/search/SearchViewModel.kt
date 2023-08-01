@@ -177,7 +177,7 @@ class SearchViewModel @Inject constructor(
                         favoriteIdList.add(insertFavorite.id)
                         _favoriteIdListStateFlow.value = favoriteIdList
                     }.onFailure {
-                        // TODO SnackBar
+                        _messageSharedFlow.emit(it.message ?: "Error")
                     }
                 }
         }
@@ -199,7 +199,7 @@ class SearchViewModel @Inject constructor(
                         favoriteIdList.remove(deletedFavorite.id)
                         _favoriteIdListStateFlow.value = favoriteIdList
                     }.onFailure {
-                        // TODO SnackBar
+                        _messageSharedFlow.emit(it.message ?: "Error")
                     }
                 }
         }

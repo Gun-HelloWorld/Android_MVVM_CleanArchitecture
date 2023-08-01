@@ -9,6 +9,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.PagingData
+import com.google.android.material.snackbar.Snackbar
 import com.gun.domain.model.search.SearchResult
 import com.gun.mvvm_cleanarchitecture.databinding.FragmentSearchResultBinding
 import com.gun.presentation.common.BaseFragment
@@ -126,6 +127,12 @@ class SearchResultFragment : BaseFragment(), ItemClickListener<SearchResult>, Fa
                                 }
                             }
                         }
+                    }
+                }
+
+                launch {
+                    searchViewModel.messageSharedFlow.collect {
+                        Snackbar.make(binding.root, it, Snackbar.LENGTH_LONG).show()
                     }
                 }
 
