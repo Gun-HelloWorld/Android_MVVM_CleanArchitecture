@@ -106,17 +106,9 @@ class SearchViewModel @Inject constructor(
 
         val param = GetSearchDataUseCase.GetSearchParams(query!!, getPageConfig(), contentType)
         viewModelScope.launch {
-            getSearchDataUseCase(param).cachedIn(this)
-                .onStart {
-                    _searchUiEventSharedFlow.emit(SearchUiEvent.ShowLoading)
-                }.onCompletion {
-                    _searchUiEventSharedFlow.emit(SearchUiEvent.HideLoading)
-                }.catch {
-                    _searchUiEventSharedFlow.emit(SearchUiEvent.ShowBadResult(ResultErrorType))
-                    it.printStackTrace()
-                }.collectLatest { result ->
-                    _searchUiDataStateFlow.value = SearchUiModel.ShowData(contentType, result)
-                }
+            getSearchDataUseCase(param).cachedIn(this).collectLatest { result ->
+                _searchUiDataStateFlow.value = SearchUiModel.ShowData(contentType, result)
+            }
         }
     }
 
@@ -144,20 +136,12 @@ class SearchViewModel @Inject constructor(
 
     fun getFavoriteList() {
         viewModelScope.launch {
-            getFavoriteUseCase(currentContentType.value)
-                .onStart {
-                    _searchUiEventSharedFlow.emit(SearchUiEvent.ShowLoading)
-                }.onCompletion {
-                    _searchUiEventSharedFlow.emit(SearchUiEvent.HideLoading)
-                }.catch {
-                    _searchUiEventSharedFlow.emit(SearchUiEvent.ShowBadResult(ResultErrorType))
-                    it.printStackTrace()
-                }.collectLatest { result ->
-                    result.onSuccess { data ->
-                        val favoriteIdList = data.map { it.id }.toMutableList()
-                        _favoriteIdListStateFlow.value = favoriteIdList
-                    }
+            getFavoriteUseCase(currentContentType.value).collectLatest { result ->
+                result.onSuccess { data ->
+                    val favoriteIdList = data.map { it.id }.toMutableList()
+                    _favoriteIdListStateFlow.value = favoriteIdList
                 }
+            }
         }
     }
 
