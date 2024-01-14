@@ -18,9 +18,4 @@
         android:enabled="true"
         android:title="@string/label_favorite" />
 
-    <item
-        android:id="@+id/profileFragment"
-        android:icon="@drawable/ic_menu_profile_default"
-        android:enabled="true"
-        android:title="@string/label_profile" />
 </menu>
