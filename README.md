@@ -8,7 +8,6 @@ MVVM & Clean Architecture 패턴을 적용하고 Marvel의 Public API를 통해 
 <table>  
   <th>Home</th>
   <th>Detail</th>
-  <th>Search</th>
   <tr>
     <td>
       <img src="https://github.com/Gun-HelloWorld/Android_MVVM_CleanArchitecture/assets/129313980/d15f3b15-b53a-41a9-a42e-da28d48b1b90" width="250" height="555"/>
@@ -16,23 +15,23 @@ MVVM & Clean Architecture 패턴을 적용하고 Marvel의 Public API를 통해 
     <td>
       <img src="https://github.com/Gun-HelloWorld/Android_MVVM_CleanArchitecture/assets/129313980/0131a890-219e-4e9b-b821-040698abc09d" width="250" height="555"/>
     </td>
-    <td>
-      <img src="https://github.com/Gun-HelloWorld/Android_MVVM_CleanArchitecture/assets/129313980/bb8363a6-e921-44cf-8911-a1ed8c974a98" width="250" height="555"/>
-    </td>
-  </tr>
-
-  <th>Favorite</th>
-  <th>Profile</th>
-  <tr>
-    <td>
-      <img src="https://github.com/Gun-HelloWorld/Android_MVVM_CleanArchitecture/assets/129313980/35b1e2ec-b02b-44a6-9fb1-28e649767ce0" width="250" height="555"/>
-    </td>
-    <td>
-      <p align="center">적용예정</p>
-    </td>
   </tr>
 </table>
 
+<br>
+
+<table>  
+  <th>Search</th>
+  <th>Favorite</th>
+  <tr>
+    <td>
+      <img src="https://github.com/Gun-HelloWorld/Android_MVVM_CleanArchitecture/assets/129313980/bb8363a6-e921-44cf-8911-a1ed8c974a98" width="250" height="555"/>
+    </td>
+    <td>
+      <img src="https://github.com/Gun-HelloWorld/Android_MVVM_CleanArchitecture/assets/129313980/35b1e2ec-b02b-44a6-9fb1-28e649767ce0" width="250" height="555"/>
+    </td>
+  </tr>
+</table>
 <br>
 
 ## 적용 범위
@@ -40,7 +39,6 @@ MVVM & Clean Architecture 패턴을 적용하고 Marvel의 Public API를 통해 
 - [x] 아이템 상세 화면 - 각 콘텐츠 상세화면 표시
 - [x] 검색 화면 - 검색 결과 표시
 - [x] 즐겨찾기 화면 - 로컬 기반 즐겨찾기 컬렉션 표시
-- [ ] 프로필 화면 - 로컬 기반 프로필 관리 화면 표시
 
 <br>
 
